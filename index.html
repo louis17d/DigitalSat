@@ -3,17 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Servizi elettrici professionali, realizzazione e certificazione impianti civili e industriali, fotovoltaico, automazioni e sicurezza. Richiedi un preventivo gratuito.">
+  <meta name="description" content="Digital Sat realizza impianti elettrici civili e industriali, sistemi fotovoltaici e antintrusione a Bari. Richiedi un preventivo gratuito.">
   <meta name="robots" content="index, follow">
   
-  <title>Digital Sat | Impianti Elettrici e Tecnologici</title>
+  <title>Digital Sat | Impianti Elettrici e Fotovoltaico a Bari</title>
   
+  <!-- FontAwesome per icone moderne -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
+  <!-- EmailJS SDK -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script type="text/javascript">
     (function() {
-      // SOSTITUISCI CON LA TUA PUBLIC KEY DI EMAILJS
       emailjs.init("YOUR_PUBLIC_KEY");
     })();
   </script>
@@ -26,7 +27,7 @@
       --dark-color: #121212;
       --light-color: #ffffff;
       --bg-gray: #f8f9fa;
-      --text-muted: #6c757d;
+      --text-muted: #495057;
       --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
@@ -113,8 +114,9 @@
       display: block;
     }
 
-    nav a:hover {
+    nav a:hover, nav a:focus {
       color: var(--accent-color);
+      outline: 2px solid var(--accent-color);
     }
 
     /* Dropdown Navigation */
@@ -159,7 +161,8 @@
       padding-left: 1.5rem;
     }
 
-    .dropdown:hover .dropdown-content {
+    .dropdown:hover .dropdown-content,
+    .dropdown:focus-within .dropdown-content {
       display: block;
     }
 
@@ -287,6 +290,52 @@
       font-size: 1.05rem;
     }
 
+    /* Chi Siamo Section */
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .about-text h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: var(--primary-color);
+    }
+
+    .about-text p {
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+
+    .about-features {
+      list-style: none;
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .about-features li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      color: var(--dark-color);
+    }
+
+    .about-features i {
+      color: var(--primary-color);
+    }
+
+    .about-card-box {
+      background: var(--bg-gray);
+      padding: 3rem;
+      border-radius: 16px;
+      border-left: 5px solid var(--accent-color);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+    }
+
     /* Services Grid */
     .services-grid {
       display: grid;
@@ -353,14 +402,52 @@
       margin-bottom: 1.5rem;
     }
 
-    /* Preventivi / Contatti Section */
+    /* Preventivi & Contatti Section */
     .preventivi-section {
       background-color: var(--bg-gray);
     }
 
-    .contact-form {
-      max-width: 700px;
+    .contact-wrapper {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+      max-width: 1100px;
       margin: 0 auto;
+    }
+
+    .contact-info-card {
+      background: var(--dark-color);
+      color: var(--light-color);
+      padding: 3rem;
+      border-radius: 16px;
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .contact-info-item {
+      display: flex;
+      gap: 15px;
+      align-items: flex-start;
+    }
+
+    .contact-info-item i {
+      font-size: 1.5rem;
+      color: var(--accent-color);
+      margin-top: 3px;
+    }
+
+    .contact-info-item h4 {
+      font-size: 1.1rem;
+      margin-bottom: 0.3rem;
+    }
+
+    .contact-info-item p {
+      color: #cbd5e1;
+      font-size: 0.95rem;
+    }
+
+    .contact-form {
       background: var(--light-color);
       padding: 3rem;
       border-radius: 16px;
@@ -376,6 +463,7 @@
       margin-bottom: 0.5rem;
       font-weight: 600;
       font-size: 0.9rem;
+      color: var(--dark-color);
     }
 
     .form-group input,
@@ -496,7 +584,7 @@
       header {
         padding: 0.6rem 4%;
       }
-      .contact-form {
+      .contact-form, .contact-info-card {
         padding: 1.5rem;
       }
     }
@@ -504,10 +592,11 @@
 </head>
 <body>
 
+  <!-- Header & Nav Semantico -->
   <header>
     <a href="#home" class="logo-container">
       <div class="logo-img">
-        <img src="Assets/IMG_7597.png" alt="Logo Digital Sat">
+        <img src="Assets/digital-sat-logo-impianti-elettrici.png" alt="Logo Digital Sat Impianti Elettrici">
       </div>
       <div class="logo-text">Digital Sat</div>
     </a>
@@ -521,6 +610,7 @@
     <nav id="mainNav">
       <ul>
         <li><a href="#home">Home</a></li>
+        <li><a href="#chisiamo">Chi Siamo</a></li>
         
         <li class="dropdown" id="dropServizi">
           <a href="#servizi">Servizi</a>
@@ -541,109 +631,175 @@
         </li>
 
         <li><a href="#preventivi">Preventivi</a></li>
+        <li><a href="#contatti">Contatti</a></li>
       </ul>
     </nav>
   </header>
 
-  <section id="home" class="hero">
-    <div class="hero-content">
-      <h1>Soluzioni Elettriche e Tecnologiche di <span>Eccellenza</span></h1>
-      <p>Realizzazione, manutenzione e certificazione di impianti civili e industriali, sistemi fotovoltaici e soluzioni di sicurezza avanzate.</p>
-      <div class="btn-group">
-        <a href="#preventivi" class="btn btn-primary"><i class="fa-solid fa-calculator"></i> Preventivo Gratuito</a>
-        <a href="#servizi" class="btn btn-outline"><i class="fa-solid fa-arrow-down"></i> Scopri i Servizi</a>
-      </div>
-    </div>
-  </section>
-
-  <section id="servizi">
-    <div class="section-title">
-      <h2>I Nostri Servizi</h2>
-      <p>Tecnologia e innovazione applicate al comfort e alla sicurezza</p>
-    </div>
-    <div class="services-grid">
-      <div class="service-card" id="fotovoltaico">
-        <i class="fa-solid fa-solar-panel"></i>
-        <h3>Fotovoltaici & Storage</h3>
-        <p>Sistemi ad alta efficienza energetica con accumulo per l'indipendenza e il risparmio energetico totale.</p>
-      </div>
-      <div class="service-card" id="tv-satellite">
-        <i class="fa-solid fa-satellite-dish"></i>
-        <h3>TV & Sistemi Satellitari</h3>
-        <p>Installazione e orientamento parabole, impianti digitale terrestre e distribuzione segnale ottimizzata.</p>
-      </div>
-      <div class="service-card" id="citofonia">
-        <i class="fa-solid fa-video"></i>
-        <h3>Citofonia & Videocitofonia Smart</h3>
-        <p>Dispositivi connessi per il controllo degli accessi residenziali e commerciali anche da remoto via smartphone.</p>
-      </div>
-      <div class="service-card" id="allarmi">
-        <i class="fa-solid fa-shield-halved"></i>
-        <h3>Sistemi di Allarme & Antintrusione</h3>
-        <p>Soluzioni di sicurezza perimetrali e interne ad altissima affidabilità contro ogni effrazione.</p>
-      </div>
-    </div>
-  </section>
-
-  <section id="impianti" style="background-color: var(--bg-gray);">
-    <div class="section-title">
-      <h2>Tipologie di Impianti</h2>
-      <p>Progettati a regola d'arte per ogni settore d'applicazione</p>
-    </div>
-    <div class="impianti-container">
-      <div class="impianto-box" id="civili">
-        <h3>Impianti Civili</h3>
-        <p>Soluzioni su misura per abitazioni, condomini e uffici. Focalizzati su efficienza, design, domotica e totale conformità alle normative di sicurezza vigenti.</p>
-        <a href="#preventivi" class="btn btn-primary" style="margin-top: 1rem;"><i class="fa-solid fa-chevron-right"></i> Richiedi Info</a>
-      </div>
-      <div class="impianto-box" id="industriali">
-        <h3>Impianti Industriali</h3>
-        <p>Infrastrutture elettriche complesse per aziende, capannoni e centri logistici. Cablaggi strutturati, quadri di media/bassa tensione e massima continuità operativa.</p>
-        <a href="#preventivi" class="btn btn-primary" style="margin-top: 1rem;"><i class="fa-solid fa-chevron-right"></i> Richiedi Info</a>
-      </div>
-    </div>
-  </section>
-
-  <section id="preventivi" class="preventivi-section">
-    <div class="section-title">
-      <h2>Richiedi un Preventivo</h2>
-      <p>Compila il modulo per essere ricontattato da un nostro tecnico specializzato</p>
-    </div>
-    <div class="contact-form">
-      <form id="quoteForm">
-        <div class="form-group">
-          <label for="name">Nome e Cognome</label>
-          <input type="text" id="name" name="user_name" required placeholder="Inserisci il tuo nome">
+  <main>
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+      <div class="hero-content">
+        <h1>Impianti Elettrici e Fotovoltaico a <span>Bari</span></h1>
+        <p>Realizzazione, manutenzione e certificazione di impianti civili e industriali, sistemi fotovoltaici e soluzioni di sicurezza avanzate per proteggere i tuoi spazi.</p>
+        <div class="btn-group">
+          <a href="#preventivi" class="btn btn-primary"><i class="fa-solid fa-calculator" aria-hidden="true"></i> Richiedi Preventivo Gratuito</a>
+          <a href="#servizi" class="btn btn-outline"><i class="fa-solid fa-arrow-down" aria-hidden="true"></i> Scopri i Servizi</a>
         </div>
-        <div class="form-group">
-          <label for="phone">Telefono</label>
-          <input type="tel" id="phone" name="user_phone" required placeholder="Il tuo numero di telefono">
-        </div>
-        <div class="form-group">
-          <label for="service">Servizio di Interesse</label>
-          <select id="service" name="service_type">
-            <option value="Fotovoltaici & Storage">Fotovoltaici & Storage</option>
-            <option value="TV & Sistemi Satellitari">TV & Sistemi Satellitari</option>
-            <option value="Citofonia & Videocitofonia Smart">Citofonia & Videocitofonia Smart</option>
-            <option value="Sistemi di Allarme">Sistemi di Allarme</option>
-            <option value="Impianti Civili">Impianti Civili</option>
-            <option value="Impianti Industriali">Impianti Industriali</option>
-          </select>
-        </div>
-        <div class="form-group">
-          <label for="message">Messaggio / Dettagli</label>
-          <textarea id="message" name="message" rows="4" placeholder="Descrivi brevemente la tua richiesta..."></textarea>
-        </div>
-        <button type="submit" id="submitBtn" class="btn btn-primary" style="width: 100%; justify-content: center;"><i class="fa-solid fa-paper-plane"></i> Invia Richiesta</button>
-        <div id="formStatus"></div>
-      </form>
-    </div>
-  </section>
+      </div>
+    </section>
 
+    <!-- Chi Siamo Section -->
+    <section id="chisiamo">
+      <div class="section-title">
+        <h2>Chi Siamo</h2>
+        <p>Competenza, sicurezza e innovazione tecnologica al tuo servizio</p>
+      </div>
+      <div class="about-grid">
+        <div class="about-text">
+          <h3>Professionisti degli impianti elettrici e tecnologici</h3>
+          <p>Digital Sat opera nel settore impiantistico offrendo soluzioni su misura per privati, condomini e aziende. Grazie a un'esperienza consolidata e a un aggiornamento costante sulle nuove tecnologie, garantiamo interventi a regola d'arte nel pieno rispetto delle normative vigenti.</p>
+          <ul class="about-features">
+            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Certificazione e conformità degli impianti</li>
+            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Materiali e componentistica di prima scelta</li>
+            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Assistenza tecnica e manutenzione programmata</li>
+          </ul>
+        </div>
+        <div class="about-card-box">
+          <h3 style="color: var(--dark-color); margin-bottom: 1rem;"><i class="fa-solid fa-bullseye" style="color: var(--primary-color);"></i> La Nostra Missione</h3>
+          <p style="color: var(--text-muted); margin-bottom: 0;">Garantire il massimo comfort energetico e la totale sicurezza degli ambienti attraverso impianti efficienti, sicuri e progettati per durare nel tempo.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Servizi Section -->
+    <section id="servizi" style="background-color: var(--bg-gray);">
+      <div class="section-title">
+        <h2>I Nostri Servizi</h2>
+        <p>Tecnologia e innovazione applicate al comfort e alla sicurezza</p>
+      </div>
+      <div class="services-grid">
+        <article class="service-card" id="fotovoltaico">
+          <i class="fa-solid fa-solar-panel" aria-hidden="true"></i>
+          <h3>Fotovoltaici & Storage</h3>
+          <p>Sistemi ad alta efficienza energetica con accumulo per l'indipendenza e il risparmio energetico totale.</p>
+        </article>
+        <article class="service-card" id="tv-satellite">
+          <i class="fa-solid fa-satellite-dish" aria-hidden="true"></i>
+          <h3>TV & Sistemi Satellitari</h3>
+          <p>Installazione e orientamento parabole, impianti digitale terrestre e distribuzione segnale ottimizzata.</p>
+        </article>
+        <article class="service-card" id="citofonia">
+          <i class="fa-solid fa-video" aria-hidden="true"></i>
+          <h3>Citofonia & Videocitofonia Smart</h3>
+          <p>Dispositivi connessi per il controllo degli accessi residenziali e commerciali anche da remoto via smartphone.</p>
+        </article>
+        <article class="service-card" id="allarmi">
+          <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
+          <h3>Sistemi di Allarme & Antintrusione</h3>
+          <p>Soluzioni di sicurezza perimetrali e interne ad altissima affidabilità contro ogni effrazione.</p>
+        </article>
+      </div>
+    </section>
+
+    <!-- Impianti Section -->
+    <section id="impianti">
+      <div class="section-title">
+        <h2>Tipologie di Impianti</h2>
+        <p>Progettati a regola d'arte per ogni settore d'applicazione</p>
+      </div>
+      <div class="impianti-container">
+        <article class="impianto-box" id="civili">
+          <h3>Impianti Civili</h3>
+          <p>Soluzioni su misura per abitazioni, condomini e uffici. Focalizzati su efficienza, design, domotica e totale conformità alle normative di sicurezza vigenti.</p>
+          <a href="#preventivi" class="btn btn-primary" style="margin-top: 1rem;"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i> Richiedi Info</a>
+        </article>
+        <article class="impianto-box" id="industriali">
+          <h3>Impianti Industriali</h3>
+          <p>Infrastrutture elettriche complesse per aziende, capannoni e centri logistici. Cablaggi strutturati, quadri di media/bassa tensione e massima continuità operativa.</p>
+          <a href="#preventivi" class="btn btn-primary" style="margin-top: 1rem;"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i> Richiedi Info</a>
+        </article>
+      </div>
+    </section>
+
+    <!-- Preventivi / Contatti Section -->
+    <section id="preventivi" class="preventivi-section">
+      <div class="section-title">
+        <h2>Preventivi & Contatti</h2>
+        <p>Mettiti in contatto con noi o compila il modulo per un preventivo gratuito</p>
+      </div>
+      
+      <div class="contact-wrapper" id="contatti">
+        <div class="contact-info-card">
+          <h3>Informazioni di Contatto</h3>
+          <div class="contact-info-item">
+            <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
+            <div>
+              <h4>Sede Operativa</h4>
+              <p>Bari (BA), Puglia</p>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <i class="fa-solid fa-phone" aria-hidden="true"></i>
+            <div>
+              <h4>Telefono</h4>
+              <p>+39 080 0000000</p>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <i class="fa-solid fa-envelope" aria-hidden="true"></i>
+            <div>
+              <h4>Email</h4>
+              <p>info@digitalsatimpianti.it</p>
+            </div>
+          </div>
+          <div class="contact-info-item">
+            <i class="fa-solid fa-clock" aria-hidden="true"></i>
+            <div>
+              <h4>Orari di Lavoro</h4>
+              <p>Lun - Ven: 08:00 - 18:00</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="contact-form">
+          <form id="quoteForm">
+            <div class="form-group">
+              <label for="name">Nome e Cognome</label>
+              <input type="text" id="name" name="user_name" required placeholder="Es. Mario Rossi">
+            </div>
+            <div class="form-group">
+              <label for="phone">Telefono</label>
+              <input type="tel" id="phone" name="user_phone" required placeholder="Es. 3331234567">
+            </div>
+            <div class="form-group">
+              <label for="service">Servizio di Interesse</label>
+              <select id="service" name="service_type">
+                <option value="Fotovoltaici & Storage">Fotovoltaici & Storage</option>
+                <option value="TV & Sistemi Satellitari">TV & Sistemi Satellitari</option>
+                <option value="Citofonia & Videocitofonia Smart">Citofonia & Videocitofonia Smart</option>
+                <option value="Sistemi di Allarme">Sistemi di Allarme</option>
+                <option value="Impianti Civili">Impianti Civili</option>
+                <option value="Impianti Industriali">Impianti Industriali</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="message">Messaggio / Dettagli</label>
+              <textarea id="message" name="message" rows="4" placeholder="Descrivi brevemente la tua richiesta..."></textarea>
+            </div>
+            <button type="submit" id="submitBtn" class="btn btn-primary" style="width: 100%; justify-content: center;"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Invia Richiesta Preventivo</button>
+            <div id="formStatus" aria-live="polite"></div>
+          </form>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
   <footer>
     <div class="logo-container" style="justify-content: center; margin-bottom: 1rem;">
       <div class="logo-img">
-        <img src="Assets/IMG_7597.png" alt="Logo Digital Sat">
+        <img src="Assets/digital-sat-logo-impianti-elettrici.png" alt="Logo Digital Sat Impianti Elettrici">
       </div>
       <div class="logo-text">Digital Sat</div>
     </div>
@@ -657,8 +813,9 @@
     const dropdowns = document.querySelectorAll('.dropdown');
 
     menuToggle.addEventListener('click', () => {
-      menuToggle.classList.toggle('active');
+      const isExpanded = menuToggle.classList.toggle('active');
       mainNav.classList.toggle('active');
+      menuToggle.setAttribute('aria-expanded', isExpanded);
     });
 
     dropdowns.forEach(dropdown => {
@@ -691,13 +848,11 @@
     quoteForm.addEventListener('submit', function(e) {
       e.preventDefault();
       
-      // Feedback visivo di caricamento
       submitBtn.disabled = true;
-      submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Invio in corso...';
+      submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i> Invio in corso...';
       formStatus.style.color = 'var(--text-muted)';
       formStatus.textContent = '';
 
-      // Inserisci qui i tuoi ID di EmailJS
       const SERVICE_ID = "YOUR_SERVICE_ID";
       const TEMPLATE_ID = "YOUR_TEMPLATE_ID";
 
@@ -707,12 +862,12 @@
           formStatus.textContent = 'Richiesta inviata con successo! Ti ricontatteremo presto.';
           quoteForm.reset();
           submitBtn.disabled = false;
-          submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Invia Richiesta';
+          submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Invia Richiesta Preventivo';
         }, function(error) {
           formStatus.style.color = '#c62828';
           formStatus.textContent = 'Errore durante l\'invio. Riprova più tardi.';
           submitBtn.disabled = false;
-          submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Invia Richiesta';
+          submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Invia Richiesta Preventivo';
         });
     });
   </script>
