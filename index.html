@@ -74,8 +74,6 @@
       justify-content: center;
       border: 2px solid var(--accent-color);
       flex-shrink: 0;
-      font-weight: bold;
-      color: var(--accent-color);
     }
 
     .logo-text {
@@ -111,7 +109,7 @@
       color: var(--accent-color);
     }
 
-    /* Dropdown Servizi */
+    /* Stile Dropdown Servizi */
     .dropdown-content {
       display: none;
       position: absolute;
@@ -156,101 +154,23 @@
     .hero {
       position: relative;
       min-height: 85vh;
-      background: linear-gradient(rgba(10, 25, 47, 0.88), rgba(10, 25, 47, 0.88));
-      color: var(--light-color);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      padding: 2rem 5%;
-    }
-
-    .hero h1 {
-      font-size: 2.5rem;
-      margin-bottom: 1rem;
-      color: var(--accent-color);
-    }
-
-    .hero p {
-      font-size: 1.2rem;
-      max-width: 700px;
-      margin-bottom: 2rem;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 0.8rem 1.8rem;
-      background-color: var(--primary-color);
-      color: var(--light-color);
-      text-decoration: none;
-      border-radius: 4px;
-      font-weight: 600;
-      transition: background-color 0.3s;
-    }
-
-    .btn:hover {
-      background-color: #093170;
-    }
-
-    /* Content Sections */
-    section {
-      padding: 4rem 5%;
-    }
-
-    .section-title {
-      text-align: center;
-      font-size: 2rem;
-      margin-bottom: 2rem;
-      position: relative;
-    }
-
-    .section-title::after {
-      content: '';
-      display: block;
-      width: 60px;
-      height: 3px;
-      background-color: var(--accent-color);
-      margin: 0.5rem auto 0;
-    }
-
-    .services-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-      gap: 2rem;
-      margin-top: 2rem;
-    }
-
-    .service-card {
-      background-color: var(--bg-gray);
-      padding: 2rem;
-      border-radius: 8px;
-      border-left: 4px solid var(--primary-color);
-      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-    }
-
-    .service-card h3 {
-      margin-bottom: 0.8rem;
-      color: var(--primary-color);
-    }
-
-    footer {
-      background-color: var(--dark-color);
-      color: var(--light-color);
-      text-align: center;
-      padding: 2rem 5%;
-      margin-top: 2rem;
+      background: linear-gradient(rgba(10, 25, 47, 0.88), rgba(10, 25, 47, 0.88)),
+                  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Cdefs%3E%3Cpattern id='p' width='40' height='40' patternUnits='userSpaceOnUse'%3E%3Cpath d='M0 40L40 0M0 0l40 40' fill='none' stroke='%231e3a8a' stroke-width='0.5' opacity='0.2'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23p)'/%3E%3C/svg%3E");
     }
   </style>
 </head>
 <body>
 
-  <!-- Header & Nav Bar -->
   <header>
     <a href="#home" class="logo-container">
-      <div class="logo-img">EL</div>
+      <div class="logo-img">
+        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#ffc107" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
+        </svg>
+      </div>
       <div class="logo-text">Elettricista Qualificato</div>
     </a>
+    
     <nav>
       <ul>
         <li><a href="#home">Home</a></li>
@@ -270,64 +190,8 @@
     </nav>
   </header>
 
-  <!-- Hero Section -->
   <section id="home" class="hero">
-    <h1>Soluzioni Elettriche Professionali</h1>
-    <p>Progettazione, installazione e manutenzione di impianti civili, industriali e sistemi ad alta tecnologia.</p>
-    <a href="#contatti" class="btn">Richiedi un Preventivo</a>
   </section>
-
-  <!-- Chi Siamo -->
-  <section id="chi-siamo">
-    <h2 class="section-title">Chi Siamo</h2>
-    <p style="text-align: center; max-width: 800px; margin: 0 auto;">
-      Siamo professionisti qualificati nel settore elettrico ed elettronico con anni di esperienza. Ci occupiamo di progettazione, realizzazione e certificazione di impianti garantendo elevati standard di sicurezza, efficienza energetica ed innovazione tecnologica.
-    </p>
-  </section>
-
-  <!-- Servizi -->
-  <section id="servizi" style="background-color: var(--bg-gray);">
-    <h2 class="section-title">I Nostri Servizi</h2>
-    <div class="services-grid">
-      
-      <div class="service-card" id="impianti">
-        <h3>Impianti Civili e Industriali</h3>
-        <p>Progettazione e realizzazione di impianti elettrici completi per abitazioni, uffici, negozi e complessi industriali nel rispetto delle normative vigenti.</p>
-      </div>
-
-      <div class="service-card" id="fotovoltaico">
-        <h3>Fotovoltaico</h3>
-        <p>Installazione di sistemi fotovoltaici ed energetici ad alto rendimento, integrati con batterie di accumulo per l'indipendenza energetica.</p>
-      </div>
-
-      <div class="service-card" id="tv-satelliti">
-        <h3>TV &amp; Satelliti</h3>
-        <p>Installazione e puntamento di antenne TV digitali terrestri e parabole satellitari, distribuzione segnali singoli e centralizzati.</p>
-      </div>
-
-      <div class="service-card" id="citofonia">
-        <h3>Citofonia</h3>
-        <p>Sistemi di videocitofonia analogici e IP smart, integrabili con dispositivi mobili per la gestione accessi da remoto.</p>
-      </div>
-
-      <div class="service-card" id="allarmi">
-        <h3>Allarmi</h3>
-        <p>Progettazione di impianti antifurto e videosorveglianza filari e wireless per la massima protezione della casa e dell'azienda.</p>
-      </div>
-
-    </div>
-  </section>
-
-  <!-- Contatti -->
-  <section id="contatti">
-    <h2 class="section-title">Contatti</h2>
-    <p style="text-align: center;">Hai bisogno di un intervento o di un preventivo? Contattaci subito.</p>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2026 Elettricista Qualificato - Tutti i diritti riservati.</p>
-  </footer>
 
 </body>
 </html>
