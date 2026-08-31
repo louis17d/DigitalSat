@@ -28,6 +28,7 @@
       --light-color: #ffffff;
       --bg-gray: #f8f9fa;
       --text-muted: #495057;
+      --gradient-nav: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
       --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
@@ -48,18 +49,19 @@
       background-color: var(--light-color);
     }
 
-    /* Header & Navigation */
+    /* Header & Modern Vibrant Navigation */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 0.8rem 5%;
-      background-color: var(--dark-color);
+      padding: 1rem 5%;
+      background: var(--gradient-nav);
       position: sticky;
       top: 0;
       z-index: 1000;
-      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+      box-shadow: 0 4px 25px rgba(15, 23, 42, 0.3);
       width: 100%;
+      border-bottom: 3px solid var(--accent-color);
     }
 
     .logo-container {
@@ -71,16 +73,17 @@
     }
 
     .logo-img {
-      width: 45px;
-      height: 45px;
+      width: 48px;
+      height: 48px;
       border-radius: 50%;
-      background: var(--primary-color);
+      background: linear-gradient(135deg, var(--accent-color), #ff8f00);
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 2px solid var(--accent-color);
+      border: 2px solid var(--light-color);
       flex-shrink: 0;
       overflow: hidden;
+      box-shadow: 0 0 15px rgba(255, 193, 7, 0.4);
     }
 
     .logo-img img {
@@ -90,33 +93,39 @@
     }
 
     .logo-text {
-      font-weight: 700;
-      font-size: 1.1rem;
+      font-weight: 800;
+      font-size: 1.25rem;
       letter-spacing: 0.5px;
+      background: linear-gradient(to right, #ffffff, var(--accent-color));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
     }
 
     /* Desktop Navigation */
     nav ul {
       display: flex;
       list-style: none;
-      gap: 1.5rem;
+      gap: 0.8rem;
       align-items: center;
     }
 
     nav a {
       color: var(--light-color);
       text-decoration: none;
-      font-weight: 500;
+      font-weight: 600;
       font-size: 0.9rem;
       text-transform: uppercase;
       letter-spacing: 0.5px;
       transition: var(--transition-smooth);
-      display: block;
+      padding: 0.6rem 1rem;
+      border-radius: 50px;
     }
 
     nav a:hover, nav a:focus {
-      color: var(--accent-color);
-      outline: 2px solid var(--accent-color);
+      color: var(--dark-color);
+      background-color: var(--accent-color);
+      box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
+      outline: none;
     }
 
     /* Dropdown Navigation */
@@ -132,15 +141,15 @@
     .dropdown-content {
       display: none;
       position: absolute;
-      top: 100%;
+      top: 130%;
       left: 0;
-      background-color: var(--dark-color);
-      min-width: 220px;
-      box-shadow: 0px 10px 30px rgba(0,0,0,0.4);
-      border-radius: 8px;
-      padding: 0.5rem 0;
+      background: #1e293b;
+      min-width: 230px;
+      box-shadow: 0px 15px 35px rgba(0,0,0,0.4);
+      border-radius: 12px;
+      padding: 0.6rem 0;
       z-index: 1001;
-      border: 1px solid rgba(255,255,255,0.05);
+      border: 1px solid rgba(255, 193, 7, 0.2);
     }
 
     .dropdown-content li {
@@ -150,15 +159,18 @@
     .dropdown-content a {
       padding: 0.7rem 1.2rem;
       text-transform: capitalize;
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       color: var(--light-color);
       white-space: nowrap;
+      border-radius: 0;
+      background: transparent;
     }
 
     .dropdown-content a:hover {
-      background-color: rgba(255, 255, 255, 0.08);
-      color: var(--accent-color);
+      background-color: var(--accent-color);
+      color: var(--dark-color);
       padding-left: 1.5rem;
+      box-shadow: none;
     }
 
     .dropdown:hover .dropdown-content,
@@ -183,7 +195,7 @@
       display: block;
       width: 100%;
       height: 3px;
-      background-color: var(--light-color);
+      background-color: var(--accent-color);
       border-radius: 2px;
       transition: var(--transition-smooth);
     }
@@ -426,13 +438,14 @@
     }
 
     .contact-info-card {
-      background: #1f2937;
+      background: #1e293b;
       color: var(--light-color);
       padding: 3rem;
       border-radius: 16px;
       display: flex;
       flex-direction: column;
       gap: 2rem;
+      border: 1px solid rgba(255, 193, 7, 0.15);
     }
 
     .contact-info-item {
@@ -532,7 +545,7 @@
         width: 100%;
         max-width: 320px;
         height: 100vh;
-        background-color: var(--dark-color);
+        background: var(--gradient-nav);
         box-shadow: -5px 0 25px rgba(0,0,0,0.5);
         transition: right 0.4s ease-in-out;
         padding-top: 5rem;
@@ -552,13 +565,19 @@
 
       nav ul li {
         width: 100%;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
       }
 
       nav a {
         padding: 1rem 1.5rem;
         font-size: 0.95rem;
         width: 100%;
+        border-radius: 0;
+      }
+
+      nav a:hover {
+        background-color: rgba(255, 193, 7, 0.15);
+        color: var(--accent-color);
       }
 
       .dropdown > a::after {
@@ -568,7 +587,7 @@
       .dropdown-content {
         position: static;
         box-shadow: none;
-        background-color: rgba(0, 0, 0, 0.2);
+        background-color: rgba(0, 0, 0, 0.25);
         padding-left: 1rem;
         display: none;
         border: none;
@@ -603,7 +622,7 @@
 </head>
 <body>
 
-  <!-- Header & Nav Semantico -->
+  <!-- Header & Modern Vibrant Nav -->
   <header>
     <a href="#home" class="logo-container">
       <div class="logo-img">
@@ -630,7 +649,7 @@
   </header>
 
   <main>
-    <!-- 1. HERO SECTION (Impatto iniziale e cattura attenzione) -->
+    <!-- 1. HERO SECTION -->
     <section id="home" class="hero">
       <div class="hero-content">
         <h1>Impianti Elettrici e Fotovoltaico a <span>Bari</span></h1>
@@ -642,7 +661,7 @@
       </div>
     </section>
 
-    <!-- 2. SERVIZI (Cosa offriamo subito dopo l'impatto) -->
+    <!-- 2. SERVIZI -->
     <section id="servizi" style="background-color: var(--bg-gray);">
       <div class="section-title">
         <h2>I Nostri Servizi</h2>
@@ -672,7 +691,7 @@
       </div>
     </section>
 
-    <!-- 3. IMPIANTI (Approfondimento tecnico civile/industriale) -->
+    <!-- 3. IMPIANTI -->
     <section id="impianti">
       <div class="section-title">
         <h2>Tipologie di Impianti</h2>
@@ -692,7 +711,7 @@
       </div>
     </section>
 
-    <!-- 4. CHI SIAMO (Costruzione di autorità e fiducia) -->
+    <!-- 4. CHI SIAMO -->
     <section id="chisiamo" style="background-color: var(--bg-gray);">
       <div class="section-title">
         <h2>Chi Siamo</h2>
@@ -715,7 +734,7 @@
       </div>
     </section>
 
-    <!-- 5. PREVENTIVI & CONTATTI (Chiusura per spingere all'azione) -->
+    <!-- 5. PREVENTIVI & CONTATTI -->
     <section id="preventivi" class="preventivi-section">
       <div class="section-title">
         <h2>Preventivi & Contatti</h2>
@@ -796,7 +815,7 @@
       </div>
       <div class="logo-text">Digital Sat</div>
     </div>
-    <p>&copy; 2026 Digital Sat. Tutti i diritti riservati. P.IVA / CF Configurata.</p>
+    <p>&copy; 2026 Digital Sat. Tutti i diritti riservati. Manutenzione e assistenza autorizzata / specializzata.</p>
   </footer>
 
   <script>
