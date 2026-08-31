@@ -1053,7 +1053,7 @@
   </footer>
 
   <script>
-    // Gestione Menu Mobile & Dropdown con Toggle Bidirezionale e Click Outside
+    // Gestione Menu Mobile & Dropdown con Toggle Corretto
     const menuToggle = document.getElementById('menuToggle');
     const mainNav = document.getElementById('mainNav');
     const dropdowns = document.querySelectorAll('.dropdown');
@@ -1072,15 +1072,14 @@
           e.preventDefault();
           const isOpen = dropdown.classList.contains('active');
           
-          // Chiudi tutti i dropdown
-          dropdowns.class.forEach?.(); // safety
+          // Chiudi tutti i dropdown per default
           dropdowns.forEach(d => {
             d.classList.remove('active');
             const t = d.querySelector('a');
-            if(t) t.setAttribute('aria-expanded', 'false');
+            if (t) t.setAttribute('aria-expanded', 'false');
           });
 
-          // Se non era aperto, aprilo
+          // Se il dropdown cliccato NON era aperto, adesso aprilo
           if (!isOpen) {
             dropdown.classList.add('active');
             trigger.setAttribute('aria-expanded', 'true');
@@ -1101,7 +1100,7 @@
           dropdowns.forEach(d => {
             d.classList.remove('active');
             const t = d.querySelector('a');
-            if(t) t.setAttribute('aria-expanded', 'false');
+            if (t) t.setAttribute('aria-expanded', 'false');
           });
         }
       });
@@ -1114,7 +1113,7 @@
           dropdowns.forEach(d => {
             d.classList.remove('active');
             const t = d.querySelector('a');
-            if(t) t.setAttribute('aria-expanded', 'false');
+            if (t) t.setAttribute('aria-expanded', 'false');
           });
         }
       }
