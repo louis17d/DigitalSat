@@ -1053,7 +1053,7 @@
   </footer>
 
   <script>
-    // Gestione Menu Mobile & Dropdown con Toggle Corretto
+    // Gestione Menu Mobile & Dropdown con Toggle Bidirezionale Nativo
     const menuToggle = document.getElementById('menuToggle');
     const mainNav = document.getElementById('mainNav');
     const dropdowns = document.querySelectorAll('.dropdown');
@@ -1064,23 +1064,23 @@
       menuToggle.setAttribute('aria-expanded', isActive);
     });
 
-    // Toggle dropdown (apertura e chiusura al secondo click su mobile)
+    // Toggle diretto del dropdown con controllo nativo sull'elemento cliccato
     dropdowns.forEach(dropdown => {
       const trigger = dropdown.querySelector('a');
       trigger.addEventListener('click', (e) => {
         if (window.innerWidth <= 992) {
           e.preventDefault();
-          const isOpen = dropdown.classList.contains('active');
+          const wasActive = dropdown.classList.contains('active');
           
-          // Chiudi tutti i dropdown per default
+          // Chiudi tutti i dropdown
           dropdowns.forEach(d => {
             d.classList.remove('active');
             const t = d.querySelector('a');
             if (t) t.setAttribute('aria-expanded', 'false');
           });
 
-          // Se il dropdown cliccato NON era aperto, adesso aprilo
-          if (!isOpen) {
+          // Se non era attivo, aprilo; se era già attivo, resta chiuso (toggle perfetto)
+          if (!wasActive) {
             dropdown.classList.add('active');
             trigger.setAttribute('aria-expanded', 'true');
           }
@@ -1088,7 +1088,7 @@
       });
     });
 
-    // Chiusura automatica menu mobile al click su link standard
+    // Chiusura automatica menu mobile al click su link standard interno
     document.querySelectorAll('nav a').forEach(link => {
       link.addEventListener('click', (e) => {
         if (window.innerWidth <= 992 && link.parentElement.classList.contains('dropdown')) {
