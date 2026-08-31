@@ -9,9 +9,11 @@
   <title>Digital Sat | Impianti Elettrici e Tecnologici</title>
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script type="text/javascript">
     (function() {
+      // SOSTITUISCI CON LA TUA PUBLIC KEY DI EMAILJS
       emailjs.init("YOUR_PUBLIC_KEY");
     })();
   </script>
@@ -237,6 +239,7 @@
       transition: var(--transition-smooth);
       cursor: pointer;
       font-size: 0.95rem;
+      border: none;
     }
 
     .btn-primary {
@@ -253,6 +256,7 @@
     .btn-outline {
       border: 2px solid var(--light-color);
       color: var(--light-color);
+      background: transparent;
     }
 
     .btn-outline:hover {
@@ -391,6 +395,13 @@
       outline: none;
       border-color: var(--primary-color);
       box-shadow: 0 0 0 3px rgba(13, 71, 161, 0.15);
+    }
+
+    #formStatus {
+      margin-top: 1rem;
+      text-align: center;
+      font-weight: 600;
+      font-size: 0.95rem;
     }
 
     /* Footer */
@@ -602,28 +613,29 @@
       <form id="quoteForm">
         <div class="form-group">
           <label for="name">Nome e Cognome</label>
-          <input type="text" id="name" required placeholder="Inserisci il tuo nome">
+          <input type="text" id="name" name="user_name" required placeholder="Inserisci il tuo nome">
         </div>
         <div class="form-group">
           <label for="phone">Telefono</label>
-          <input type="tel" id="phone" required placeholder="Il tuo numero di telefono">
+          <input type="tel" id="phone" name="user_phone" required placeholder="Il tuo numero di telefono">
         </div>
         <div class="form-group">
           <label for="service">Servizio di Interesse</label>
-          <select id="service">
-            <option value="fotovoltaico">Fotovoltaici & Storage</option>
-            <option value="tv">TV & Sistemi Satellitari</option>
-            <option value="citofonia">Citofonia & Videocitofonia Smart</option>
-            <option value="allarmi">Sistemi di Allarme</option>
-            <option value="civile">Impianti Civili</option>
-            <option value="industriale">Impianti Industriali</option>
+          <select id="service" name="service_type">
+            <option value="Fotovoltaici & Storage">Fotovoltaici & Storage</option>
+            <option value="TV & Sistemi Satellitari">TV & Sistemi Satellitari</option>
+            <option value="Citofonia & Videocitofonia Smart">Citofonia & Videocitofonia Smart</option>
+            <option value="Sistemi di Allarme">Sistemi di Allarme</option>
+            <option value="Impianti Civili">Impianti Civili</option>
+            <option value="Impianti Industriali">Impianti Industriali</option>
           </select>
         </div>
         <div class="form-group">
           <label for="message">Messaggio / Dettagli</label>
-          <textarea id="message" rows="4" placeholder="Descrivi brevemente la tua richiesta..."></textarea>
+          <textarea id="message" name="message" rows="4" placeholder="Descrivi brevemente la tua richiesta..."></textarea>
         </div>
-        <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;"><i class="fa-solid fa-paper-plane"></i> Invia Richiesta</button>
+        <button type="submit" id="submitBtn" class="btn btn-primary" style="width: 100%; justify-content: center;"><i class="fa-solid fa-paper-plane"></i> Invia Richiesta</button>
+        <div id="formStatus"></div>
       </form>
     </div>
   </section>
@@ -669,6 +681,39 @@
           dropdowns.forEach(d => d.classList.remove('active'));
         }
       });
+    });
+
+    // EmailJS Form Handling Script
+    const quoteForm = document.getElementById('quoteForm');
+    const submitBtn = document.getElementById('submitBtn');
+    const formStatus = document.getElementById('formStatus');
+
+    quoteForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      
+      // Feedback visivo di caricamento
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> Invio in corso...';
+      formStatus.style.color = 'var(--text-muted)';
+      formStatus.textContent = '';
+
+      // Inserisci qui i tuoi ID di EmailJS
+      const SERVICE_ID = "YOUR_SERVICE_ID";
+      const TEMPLATE_ID = "YOUR_TEMPLATE_ID";
+
+      emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, this)
+        .then(function() {
+          formStatus.style.color = '#2e7d32';
+          formStatus.textContent = 'Richiesta inviata con successo! Ti ricontatteremo presto.';
+          quoteForm.reset();
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Invia Richiesta';
+        }, function(error) {
+          formStatus.style.color = '#c62828';
+          formStatus.textContent = 'Errore durante l\'invio. Riprova più tardi.';
+          submitBtn.disabled = false;
+          submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane"></i> Invia Richiesta';
+        });
     });
   </script>
 
