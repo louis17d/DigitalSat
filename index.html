@@ -1,9 +1,9 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Digital Sat realizza impianti elettrici civili e industriali, sistemi fotovoltaici e antintrusione a Bari. Richiedi un preventivo gratuito.">
+  <meta name="description" content="Digital Sat di Coviello Giuseppe realizza impianti elettrici civili e industriali, sistemi fotovoltaici e antintrusione a Bari. Richiedi un preventivo gratuito.">
   <meta name="robots" content="index, follow">
   
   <title>Digital Sat | Impianti Elettrici e Fotovoltaico a Bari</title>
@@ -21,14 +21,17 @@
 
   <style>
     :root {
-      --primary-color: #0d47a1;
-      --primary-light: #1565c0;
-      --accent-color: #ffc107;
-      --dark-color: #121212;
+      /* Palette estratta e abbinata al logo (Blu profondo corporativo + Accento elettrico) */
+      --brand-navy: #1b2a47;
+      --brand-navy-dark: #121c2e;
+      --primary-color: #1b2a47;
+      --primary-light: #2c436d;
+      --accent-color: #00d2ff;
+      --accent-gradient: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
+      --dark-color: #0b111e;
       --light-color: #ffffff;
-      --bg-gray: #f8f9fa;
-      --text-muted: #495057;
-      --gradient-nav: linear-gradient(135deg, #0f172a 0%, #1e3a8a 100%);
+      --bg-gray: #f4f7fb;
+      --text-muted: #556270;
       --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
@@ -49,19 +52,19 @@
       background-color: var(--light-color);
     }
 
-    /* Header & Modern Vibrant Navigation */
+    /* Header & Navigation */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 1rem 5%;
-      background: var(--gradient-nav);
+      padding: 0.9rem 5%;
+      background-color: var(--brand-navy-dark);
       position: sticky;
       top: 0;
       z-index: 1000;
-      box-shadow: 0 4px 25px rgba(15, 23, 42, 0.3);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.25);
       width: 100%;
-      border-bottom: 3px solid var(--accent-color);
+      border-bottom: 2px solid rgba(0, 210, 255, 0.2);
     }
 
     .logo-container {
@@ -76,14 +79,14 @@
       width: 48px;
       height: 48px;
       border-radius: 50%;
-      background: linear-gradient(135deg, var(--accent-color), #ff8f00);
+      background: var(--brand-navy);
       display: flex;
       align-items: center;
       justify-content: center;
-      border: 2px solid var(--light-color);
+      border: 2px solid var(--accent-color);
       flex-shrink: 0;
       overflow: hidden;
-      box-shadow: 0 0 15px rgba(255, 193, 7, 0.4);
+      box-shadow: 0 0 12px rgba(0, 210, 255, 0.3);
     }
 
     .logo-img img {
@@ -92,39 +95,48 @@
       object-fit: cover;
     }
 
+    .logo-text-wrap {
+      display: flex;
+      flex-direction: column;
+    }
+
     .logo-text {
       font-weight: 800;
-      font-size: 1.25rem;
+      font-size: 1.15rem;
       letter-spacing: 0.5px;
-      background: linear-gradient(to right, #ffffff, var(--accent-color));
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+      color: var(--light-color);
+    }
+
+    .logo-subtext {
+      font-size: 0.72rem;
+      color: #94a3b8;
+      letter-spacing: 0.3px;
     }
 
     /* Desktop Navigation */
     nav ul {
       display: flex;
       list-style: none;
-      gap: 0.8rem;
+      gap: 1rem;
       align-items: center;
     }
 
     nav a {
       color: var(--light-color);
       text-decoration: none;
-      font-weight: 600;
+      font-weight: 500;
       font-size: 0.9rem;
       text-transform: uppercase;
       letter-spacing: 0.5px;
       transition: var(--transition-smooth);
-      padding: 0.6rem 1rem;
-      border-radius: 50px;
+      display: block;
+      padding: 0.5rem 0.8rem;
+      border-radius: 6px;
     }
 
     nav a:hover, nav a:focus {
-      color: var(--dark-color);
-      background-color: var(--accent-color);
-      box-shadow: 0 4px 12px rgba(255, 193, 7, 0.3);
+      color: var(--accent-color);
+      background-color: rgba(255, 255, 255, 0.05);
       outline: none;
     }
 
@@ -136,20 +148,21 @@
     .dropdown > a::after {
       content: ' ▾';
       font-size: 0.7rem;
+      color: var(--accent-color);
     }
 
     .dropdown-content {
       display: none;
       position: absolute;
-      top: 130%;
+      top: 100%;
       left: 0;
-      background: #1e293b;
+      background-color: var(--brand-navy-dark);
       min-width: 230px;
       box-shadow: 0px 15px 35px rgba(0,0,0,0.4);
-      border-radius: 12px;
-      padding: 0.6rem 0;
+      border-radius: 8px;
+      padding: 0.5rem 0;
       z-index: 1001;
-      border: 1px solid rgba(255, 193, 7, 0.2);
+      border: 1px solid rgba(0, 210, 255, 0.2);
     }
 
     .dropdown-content li {
@@ -159,18 +172,16 @@
     .dropdown-content a {
       padding: 0.7rem 1.2rem;
       text-transform: capitalize;
-      font-size: 0.88rem;
+      font-size: 0.85rem;
       color: var(--light-color);
       white-space: nowrap;
       border-radius: 0;
-      background: transparent;
     }
 
     .dropdown-content a:hover {
-      background-color: var(--accent-color);
-      color: var(--dark-color);
+      background-color: rgba(0, 210, 255, 0.1);
+      color: var(--accent-color);
       padding-left: 1.5rem;
-      box-shadow: none;
     }
 
     .dropdown:hover .dropdown-content,
@@ -204,8 +215,8 @@
     .hero {
       position: relative;
       min-height: 85vh;
-      background: linear-gradient(135deg, rgba(13, 71, 161, 0.9), rgba(18, 18, 18, 0.95)),
-                  radial-gradient(circle, rgba(255,193,7,0.1) 0%, transparent 70%);
+      background: linear-gradient(135deg, rgba(27, 42, 71, 0.92), rgba(11, 17, 30, 0.95)),
+                  radial-gradient(circle, rgba(0, 210, 255, 0.12) 0%, transparent 70%);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -231,7 +242,7 @@
 
     .hero p {
       font-size: clamp(1rem, 1.5vw, 1.2rem);
-      color: #e0e0e0;
+      color: #cbd5e1;
       margin-bottom: 2rem;
       line-height: 1.7;
     }
@@ -258,14 +269,15 @@
     }
 
     .btn-primary {
-      background-color: var(--accent-color);
-      color: var(--dark-color);
-      box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
+      background: var(--accent-gradient);
+      color: var(--brand-navy-dark);
+      box-shadow: 0 4px 20px rgba(0, 210, 255, 0.35);
+      font-weight: 700;
     }
 
     .btn-primary:hover {
-      background-color: #ffca28;
       transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(0, 210, 255, 0.5);
     }
 
     .btn-outline {
@@ -276,7 +288,7 @@
 
     .btn-outline:hover {
       background-color: var(--light-color);
-      color: var(--dark-color);
+      color: var(--brand-navy-dark);
       transform: translateY(-2px);
     }
 
@@ -293,7 +305,7 @@
     .section-title h2 {
       font-size: 2.2rem;
       font-weight: 700;
-      color: var(--dark-color);
+      color: var(--brand-navy);
       margin-bottom: 0.8rem;
     }
 
@@ -314,26 +326,26 @@
       padding: 2.5rem 2rem;
       border-radius: 12px;
       transition: var(--transition-smooth);
-      border: 1px solid rgba(0,0,0,0.08);
-      box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+      border: 1px solid rgba(0,0,0,0.06);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.03);
     }
 
     .service-card:hover {
       transform: translateY(-5px);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-      border-color: var(--primary-color);
+      box-shadow: 0 12px 30px rgba(27, 42, 71, 0.1);
+      border-color: var(--accent-color);
     }
 
     .service-card i {
       font-size: 2.5rem;
-      color: var(--primary-color);
+      color: var(--brand-navy);
       margin-bottom: 1.5rem;
     }
 
     .service-card h3 {
       font-size: 1.25rem;
       margin-bottom: 1rem;
-      color: var(--dark-color);
+      color: var(--brand-navy);
     }
 
     .service-card p {
@@ -349,12 +361,13 @@
     }
 
     .impianto-box {
-      background: linear-gradient(135deg, var(--dark-color), #1f2937);
+      background: linear-gradient(135deg, var(--brand-navy), var(--brand-navy-dark));
       color: var(--light-color);
       padding: 3rem 2rem;
       border-radius: 16px;
       position: relative;
       overflow: hidden;
+      border-top: 4px solid var(--accent-color);
     }
 
     .impianto-box h3 {
@@ -379,7 +392,7 @@
     .about-text h3 {
       font-size: 1.8rem;
       margin-bottom: 1rem;
-      color: var(--primary-color);
+      color: var(--brand-navy);
     }
 
     .about-text p {
@@ -403,7 +416,11 @@
     }
 
     .about-features i {
-      color: var(--primary-color);
+      color: var(--accent-color);
+      background: var(--brand-navy);
+      padding: 6px;
+      border-radius: 50%;
+      font-size: 0.8rem;
     }
 
     .about-card-box {
@@ -417,7 +434,7 @@
 
     /* Preventivi & Contatti Section */
     .preventivi-section {
-      background-color: var(--dark-color);
+      background-color: var(--brand-navy-dark);
       color: var(--light-color);
     }
 
@@ -426,7 +443,7 @@
     }
 
     .preventivi-section .section-title p {
-      color: #cbd5e1;
+      color: #94a3b8;
     }
 
     .contact-wrapper {
@@ -438,14 +455,14 @@
     }
 
     .contact-info-card {
-      background: #1e293b;
+      background: var(--brand-navy);
       color: var(--light-color);
       padding: 3rem;
       border-radius: 16px;
       display: flex;
       flex-direction: column;
       gap: 2rem;
-      border: 1px solid rgba(255, 193, 7, 0.15);
+      border: 1px solid rgba(0, 210, 255, 0.15);
     }
 
     .contact-info-item {
@@ -495,7 +512,7 @@
     .form-group textarea {
       width: 100%;
       padding: 0.9rem 1rem;
-      border: 1px solid #ced4da;
+      border: 1px solid #cbd5e1;
       border-radius: 8px;
       font-size: 1rem;
       transition: var(--transition-smooth);
@@ -505,8 +522,8 @@
     .form-group select:focus,
     .form-group textarea:focus {
       outline: none;
-      border-color: var(--primary-color);
-      box-shadow: 0 0 0 3px rgba(13, 71, 161, 0.15);
+      border-color: var(--accent-color);
+      box-shadow: 0 0 0 3px rgba(0, 210, 255, 0.2);
     }
 
     #formStatus {
@@ -518,17 +535,17 @@
 
     /* Footer */
     footer {
-      background-color: #0b0b0b;
+      background-color: #070b12;
       color: var(--light-color);
       padding: 3rem 5% 1.5rem;
       text-align: center;
     }
 
     footer p {
-      color: var(--text-muted);
+      color: #94a3b8;
       font-size: 0.9rem;
       margin-top: 2rem;
-      border-top: 1px solid rgba(255,255,255,0.1);
+      border-top: 1px solid rgba(255,255,255,0.08);
       padding-top: 1.5rem;
     }
 
@@ -545,11 +562,12 @@
         width: 100%;
         max-width: 320px;
         height: 100vh;
-        background: var(--gradient-nav);
+        background-color: var(--brand-navy-dark);
         box-shadow: -5px 0 25px rgba(0,0,0,0.5);
         transition: right 0.4s ease-in-out;
         padding-top: 5rem;
         overflow-y: auto;
+        border-left: 1px solid rgba(0, 210, 255, 0.2);
       }
 
       nav.active {
@@ -565,7 +583,7 @@
 
       nav ul li {
         width: 100%;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       }
 
       nav a {
@@ -576,7 +594,7 @@
       }
 
       nav a:hover {
-        background-color: rgba(255, 193, 7, 0.15);
+        background-color: rgba(0, 210, 255, 0.1);
         color: var(--accent-color);
       }
 
@@ -587,7 +605,7 @@
       .dropdown-content {
         position: static;
         box-shadow: none;
-        background-color: rgba(0, 0, 0, 0.25);
+        background-color: rgba(0, 0, 0, 0.2);
         padding-left: 1rem;
         display: none;
         border: none;
@@ -622,13 +640,16 @@
 </head>
 <body>
 
-  <!-- Header & Modern Vibrant Nav -->
+  <!-- Header & Nav Semantico -->
   <header>
     <a href="#home" class="logo-container">
       <div class="logo-img">
         <img src="Assets/digital-sat-logo-impianti-elettrici.png" alt="Logo Digital Sat Impianti Elettrici">
       </div>
-      <div class="logo-text">Digital Sat</div>
+      <div class="logo-text-wrap">
+        <div class="logo-text">Digital Sat</div>
+        <div class="logo-subtext">di Coviello Giuseppe</div>
+      </div>
     </a>
 
     <button class="menu-toggle" id="menuToggle" aria-label="Apri menu di navigazione">
@@ -640,8 +661,25 @@
     <nav id="mainNav">
       <ul>
         <li><a href="#home">Home</a></li>
-        <li><a href="#servizi">Servizi</a></li>
-        <li><a href="#impianti">Impianti</a></li>
+        
+        <li class="dropdown" id="dropServizi">
+          <a href="#servizi">Servizi</a>
+          <ul class="dropdown-content">
+            <li><a href="#fotovoltaico">Fotovoltaici & Storage</a></li>
+            <li><a href="#tv-satellite">TV & Sistemi Satellitari</a></li>
+            <li><a href="#citofonia">Citofonia & Videocitofonia Smart</a></li>
+            <li><a href="#allarmi">Sistemi di Allarme & Antintrusione</a></li>
+          </ul>
+        </li>
+
+        <li class="dropdown" id="dropImpianti">
+          <a href="#impianti">Impianti</a>
+          <ul class="dropdown-content">
+            <li><a href="#civili">Civili</a></li>
+            <li><a href="#industriali">Industriali</a></li>
+          </ul>
+        </li>
+
         <li><a href="#chisiamo">Chi Siamo</a></li>
         <li><a href="#preventivi">Preventivi & Contatti</a></li>
       </ul>
@@ -720,7 +758,7 @@
       <div class="about-grid">
         <div class="about-text">
           <h3>Professionisti degli impianti elettrici e tecnologici</h3>
-          <p>Digital Sat opera nel settore impiantistico offrendo soluzioni su misura per privati, condomini e aziende. Grazie a un'esperienza consolidata e a un aggiornamento costante sulle nuove tecnologie, garantiamo interventi a regola d'arte nel pieno rispetto delle normative vigenti.</p>
+          <p>Digital Sat di Coviello Giuseppe opera nel settore impiantistico offrendo soluzioni su misura per privati, condomini e aziende. Grazie a un'esperienza consolidata e a un aggiornamento costante sulle nuove tecnologie, garantiamo interventi a regola d'arte nel pieno rispetto delle normative vigenti.</p>
           <ul class="about-features">
             <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Certificazione e conformità degli impianti</li>
             <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Materiali e componentistica di prima scelta</li>
@@ -728,7 +766,7 @@
           </ul>
         </div>
         <div class="about-card-box">
-          <h3 style="color: var(--dark-color); margin-bottom: 1rem;"><i class="fa-solid fa-bullseye" style="color: var(--primary-color);"></i> La Nostra Missione</h3>
+          <h3 style="color: var(--brand-navy); margin-bottom: 1rem;"><i class="fa-solid fa-bullseye" style="color: var(--accent-color);"></i> La Nostra Missione</h3>
           <p style="color: var(--text-muted); margin-bottom: 0;">Garantire il massimo comfort energetico e la totale sicurezza degli ambienti attraverso impianti efficienti, sicuri e progettati per durare nel tempo.</p>
         </div>
       </div>
@@ -813,9 +851,12 @@
       <div class="logo-img">
         <img src="Assets/digital-sat-logo-impianti-elettrici.png" alt="Logo Digital Sat Impianti Elettrici">
       </div>
-      <div class="logo-text">Digital Sat</div>
+      <div class="logo-text-wrap" style="text-align: left;">
+        <div class="logo-text">Digital Sat</div>
+        <div class="logo-subtext">di Coviello Giuseppe</div>
+      </div>
     </div>
-    <p>&copy; 2026 Digital Sat. Tutti i diritti riservati. Manutenzione e assistenza autorizzata / specializzata.</p>
+    <p>&copy; 2026 Digital Sat di Coviello Giuseppe. Tutti i diritti riservati. Manutenzione e assistenza autorizzata / specializzata.</p>
   </footer>
 
   <script>
@@ -862,7 +903,7 @@
       
       submitBtn.disabled = true;
       submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i> Invio in corso...';
-      formStatus.style.color = '#ffc107';
+      formStatus.style.color = '#00d2ff';
       formStatus.textContent = '';
 
       const SERVICE_ID = "YOUR_SERVICE_ID";
