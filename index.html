@@ -74,6 +74,14 @@
       justify-content: center;
       border: 2px solid var(--accent-color);
       flex-shrink: 0;
+      overflow: hidden; /* Mantiene l'immagine ritagliata nel cerchio */
+    }
+
+    /* Stile per l'immagine del logo */
+    .logo-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
     }
 
     .logo-text {
@@ -276,7 +284,9 @@
 
   <header>
     <a href="#" class="logo-container">
-      <div class="logo-img">⚡</div>
+      <div class="logo-img">
+        <img src="Assets/IMG_7597.png" alt="Logo Elettro Services">
+      </div>
       <div class="logo-text">ELETTRO SERVICES</div>
     </a>
 
@@ -349,4 +359,3 @@
 
 </body>
 </html>
-
