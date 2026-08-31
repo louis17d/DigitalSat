@@ -89,10 +89,6 @@
       align-items: center;
     }
 
-    nav ul li {
-      position: relative;
-    }
-
     nav a {
       color: var(--light-color);
       text-decoration: none;
@@ -101,7 +97,6 @@
       text-transform: uppercase;
       letter-spacing: 0.5px;
       transition: color 0.3s;
-      padding: 0.5rem 0;
       display: block;
     }
 
@@ -109,19 +104,27 @@
       color: var(--accent-color);
     }
 
-    /* Stile Dropdown Servizi */
+    /* Dropdown Navigation */
+    .dropdown {
+      position: relative;
+    }
+
+    .dropdown > a::after {
+      content: ' ▾';
+      font-size: 0.7rem;
+    }
+
     .dropdown-content {
       display: none;
       position: absolute;
       top: 100%;
       left: 0;
       background-color: var(--dark-color);
-      min-width: 250px;
-      box-shadow: 0 8px 16px rgba(0,0,0,0.3);
-      z-index: 1001;
-      border-radius: 0 0 4px 4px;
-      list-style: none;
+      min-width: 180px;
+      box-shadow: 0px 8px 16px rgba(0,0,0,0.3);
+      border-radius: 4px;
       padding: 0.5rem 0;
+      z-index: 1001;
     }
 
     .dropdown-content li {
@@ -129,24 +132,19 @@
     }
 
     .dropdown-content a {
-      padding: 0.7rem 1.2rem;
-      text-transform: none;
+      padding: 0.6rem 1.2rem;
+      text-transform: capitalize;
       font-size: 0.85rem;
       color: var(--light-color);
-      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
       white-space: nowrap;
     }
 
-    .dropdown-content li:last-child a {
-      border-bottom: none;
-    }
-
     .dropdown-content a:hover {
-      background-color: var(--primary-color);
+      background-color: rgba(255, 255, 255, 0.1);
       color: var(--accent-color);
     }
 
-    nav ul li.dropdown:hover .dropdown-content {
+    .dropdown:hover .dropdown-content {
       display: block;
     }
 
@@ -155,43 +153,44 @@
       position: relative;
       min-height: 85vh;
       background: linear-gradient(rgba(10, 25, 47, 0.88), rgba(10, 25, 47, 0.88)),
-                  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Cdefs%3E%3Cpattern id='p' width='40' height='40' patternUnits='userSpaceOnUse'%3E%3Cpath d='M0 40L40 0M0 0l40 40' fill='none' stroke='%231e3a8a' stroke-width='0.5' opacity='0.2'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='url(%23p)'/%3E%3C/svg%3E");
+                  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Cdefs%3E%3Cpattern id='p' width='40' height='40' patternUnits='userSpaceOnUse'%3E%3Cpath d='M0 40L");
     }
   </style>
 </head>
 <body>
 
   <header>
-    <a href="#home" class="logo-container">
-      <div class="logo-img">
-        <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="#ffc107" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-        </svg>
-      </div>
-      <div class="logo-text">Elettricista Qualificato</div>
+    <a href="#" class="logo-container">
+      <div class="logo-img">⚡</div>
+      <div class="logo-text">ELETTRO SERVICES</div>
     </a>
     
     <nav>
       <ul>
         <li><a href="#home">Home</a></li>
-        <li><a href="#chi-siamo">Chi Siamo</a></li>
+        
         <li class="dropdown">
-          <a href="#servizi" class="dropbtn">Servizi &#9662;</a>
+          <a href="#servizi">Servizi</a>
           <ul class="dropdown-content">
-            <li><a href="#impianti">Impianti Civili e Industriali</a></li>
             <li><a href="#fotovoltaico">Fotovoltaico</a></li>
-            <li><a href="#tv-satelliti">TV &amp; Satelliti</a></li>
+            <li><a href="#tv-satellite">TV & Satellite</a></li>
             <li><a href="#citofonia">Citofonia</a></li>
             <li><a href="#allarmi">Allarmi</a></li>
           </ul>
         </li>
-        <li><a href="#contatti">Contatti</a></li>
+
+        <li class="dropdown">
+          <a href="#impianti">Impianti</a>
+          <ul class="dropdown-content">
+            <li><a href="#civili">Civili</a></li>
+            <li><a href="#industriali">Industriali</a></li>
+          </ul>
+        </li>
+
+        <li><a href="#preventivi">Preventivi</a></li>
       </ul>
     </nav>
   </header>
-
-  <section id="home" class="hero">
-  </section>
 
 </body>
 </html>
