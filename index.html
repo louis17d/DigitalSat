@@ -290,52 +290,6 @@
       font-size: 1.05rem;
     }
 
-    /* Chi Siamo Section */
-    .about-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 3rem;
-      align-items: center;
-    }
-
-    .about-text h3 {
-      font-size: 1.8rem;
-      margin-bottom: 1rem;
-      color: var(--primary-color);
-    }
-
-    .about-text p {
-      color: var(--text-muted);
-      margin-bottom: 1.5rem;
-      line-height: 1.7;
-    }
-
-    .about-features {
-      list-style: none;
-      display: grid;
-      gap: 0.8rem;
-    }
-
-    .about-features li {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: 600;
-      color: var(--dark-color);
-    }
-
-    .about-features i {
-      color: var(--primary-color);
-    }
-
-    .about-card-box {
-      background: var(--bg-gray);
-      padding: 3rem;
-      border-radius: 16px;
-      border-left: 5px solid var(--accent-color);
-      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
-    }
-
     /* Services Grid */
     .services-grid {
       display: grid;
@@ -344,17 +298,17 @@
     }
 
     .service-card {
-      background: var(--bg-gray);
+      background: var(--light-color);
       padding: 2.5rem 2rem;
       border-radius: 12px;
       transition: var(--transition-smooth);
-      border: 1px solid rgba(0,0,0,0.05);
+      border: 1px solid rgba(0,0,0,0.08);
+      box-shadow: 0 4px 15px rgba(0,0,0,0.02);
     }
 
     .service-card:hover {
       transform: translateY(-5px);
       box-shadow: 0 10px 30px rgba(0,0,0,0.08);
-      background: var(--light-color);
       border-color: var(--primary-color);
     }
 
@@ -402,9 +356,65 @@
       margin-bottom: 1.5rem;
     }
 
+    /* Chi Siamo Section */
+    .about-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 3rem;
+      align-items: center;
+    }
+
+    .about-text h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: var(--primary-color);
+    }
+
+    .about-text p {
+      color: var(--text-muted);
+      margin-bottom: 1.5rem;
+      line-height: 1.7;
+    }
+
+    .about-features {
+      list-style: none;
+      display: grid;
+      gap: 0.8rem;
+    }
+
+    .about-features li {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-weight: 600;
+      color: var(--dark-color);
+    }
+
+    .about-features i {
+      color: var(--primary-color);
+    }
+
+    .about-card-box {
+      background: var(--light-color);
+      padding: 3rem;
+      border-radius: 16px;
+      border-left: 5px solid var(--accent-color);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+      border: 1px solid rgba(0,0,0,0.08);
+    }
+
     /* Preventivi & Contatti Section */
     .preventivi-section {
-      background-color: var(--bg-gray);
+      background-color: var(--dark-color);
+      color: var(--light-color);
+    }
+
+    .preventivi-section .section-title h2 {
+      color: var(--light-color);
+    }
+
+    .preventivi-section .section-title p {
+      color: #cbd5e1;
     }
 
     .contact-wrapper {
@@ -416,7 +426,7 @@
     }
 
     .contact-info-card {
-      background: var(--dark-color);
+      background: #1f2937;
       color: var(--light-color);
       padding: 3rem;
       border-radius: 16px;
@@ -449,9 +459,10 @@
 
     .contact-form {
       background: var(--light-color);
+      color: var(--dark-color);
       padding: 3rem;
       border-radius: 16px;
-      box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+      box-shadow: 0 10px 40px rgba(0,0,0,0.2);
     }
 
     .form-group {
@@ -494,7 +505,7 @@
 
     /* Footer */
     footer {
-      background-color: var(--dark-color);
+      background-color: #0b0b0b;
       color: var(--light-color);
       padding: 3rem 5% 1.5rem;
       text-align: center;
@@ -610,34 +621,16 @@
     <nav id="mainNav">
       <ul>
         <li><a href="#home">Home</a></li>
+        <li><a href="#servizi">Servizi</a></li>
+        <li><a href="#impianti">Impianti</a></li>
         <li><a href="#chisiamo">Chi Siamo</a></li>
-        
-        <li class="dropdown" id="dropServizi">
-          <a href="#servizi">Servizi</a>
-          <ul class="dropdown-content">
-            <li><a href="#fotovoltaico">Fotovoltaici & Storage</a></li>
-            <li><a href="#tv-satellite">TV & Sistemi Satellitari</a></li>
-            <li><a href="#citofonia">Citofonia & Videocitofonia Smart</a></li>
-            <li><a href="#allarmi">Sistemi di Allarme & Antintrusione</a></li>
-          </ul>
-        </li>
-
-        <li class="dropdown" id="dropImpianti">
-          <a href="#impianti">Impianti</a>
-          <ul class="dropdown-content">
-            <li><a href="#civili">Civili</a></li>
-            <li><a href="#industriali">Industriali</a></li>
-          </ul>
-        </li>
-
-        <li><a href="#preventivi">Preventivi</a></li>
-        <li><a href="#contatti">Contatti</a></li>
+        <li><a href="#preventivi">Preventivi & Contatti</a></li>
       </ul>
     </nav>
   </header>
 
   <main>
-    <!-- Hero Section -->
+    <!-- 1. HERO SECTION (Impatto iniziale e cattura attenzione) -->
     <section id="home" class="hero">
       <div class="hero-content">
         <h1>Impianti Elettrici e Fotovoltaico a <span>Bari</span></h1>
@@ -649,30 +642,7 @@
       </div>
     </section>
 
-    <!-- Chi Siamo Section -->
-    <section id="chisiamo">
-      <div class="section-title">
-        <h2>Chi Siamo</h2>
-        <p>Competenza, sicurezza e innovazione tecnologica al tuo servizio</p>
-      </div>
-      <div class="about-grid">
-        <div class="about-text">
-          <h3>Professionisti degli impianti elettrici e tecnologici</h3>
-          <p>Digital Sat opera nel settore impiantistico offrendo soluzioni su misura per privati, condomini e aziende. Grazie a un'esperienza consolidata e a un aggiornamento costante sulle nuove tecnologie, garantiamo interventi a regola d'arte nel pieno rispetto delle normative vigenti.</p>
-          <ul class="about-features">
-            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Certificazione e conformità degli impianti</li>
-            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Materiali e componentistica di prima scelta</li>
-            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Assistenza tecnica e manutenzione programmata</li>
-          </ul>
-        </div>
-        <div class="about-card-box">
-          <h3 style="color: var(--dark-color); margin-bottom: 1rem;"><i class="fa-solid fa-bullseye" style="color: var(--primary-color);"></i> La Nostra Missione</h3>
-          <p style="color: var(--text-muted); margin-bottom: 0;">Garantire il massimo comfort energetico e la totale sicurezza degli ambienti attraverso impianti efficienti, sicuri e progettati per durare nel tempo.</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Servizi Section -->
+    <!-- 2. SERVIZI (Cosa offriamo subito dopo l'impatto) -->
     <section id="servizi" style="background-color: var(--bg-gray);">
       <div class="section-title">
         <h2>I Nostri Servizi</h2>
@@ -702,7 +672,7 @@
       </div>
     </section>
 
-    <!-- Impianti Section -->
+    <!-- 3. IMPIANTI (Approfondimento tecnico civile/industriale) -->
     <section id="impianti">
       <div class="section-title">
         <h2>Tipologie di Impianti</h2>
@@ -722,14 +692,37 @@
       </div>
     </section>
 
-    <!-- Preventivi / Contatti Section -->
+    <!-- 4. CHI SIAMO (Costruzione di autorità e fiducia) -->
+    <section id="chisiamo" style="background-color: var(--bg-gray);">
+      <div class="section-title">
+        <h2>Chi Siamo</h2>
+        <p>Competenza, sicurezza e innovazione tecnologica al tuo servizio</p>
+      </div>
+      <div class="about-grid">
+        <div class="about-text">
+          <h3>Professionisti degli impianti elettrici e tecnologici</h3>
+          <p>Digital Sat opera nel settore impiantistico offrendo soluzioni su misura per privati, condomini e aziende. Grazie a un'esperienza consolidata e a un aggiornamento costante sulle nuove tecnologie, garantiamo interventi a regola d'arte nel pieno rispetto delle normative vigenti.</p>
+          <ul class="about-features">
+            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Certificazione e conformità degli impianti</li>
+            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Materiali e componentistica di prima scelta</li>
+            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Assistenza tecnica e manutenzione programmata</li>
+          </ul>
+        </div>
+        <div class="about-card-box">
+          <h3 style="color: var(--dark-color); margin-bottom: 1rem;"><i class="fa-solid fa-bullseye" style="color: var(--primary-color);"></i> La Nostra Missione</h3>
+          <p style="color: var(--text-muted); margin-bottom: 0;">Garantire il massimo comfort energetico e la totale sicurezza degli ambienti attraverso impianti efficienti, sicuri e progettati per durare nel tempo.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. PREVENTIVI & CONTATTI (Chiusura per spingere all'azione) -->
     <section id="preventivi" class="preventivi-section">
       <div class="section-title">
         <h2>Preventivi & Contatti</h2>
         <p>Mettiti in contatto con noi o compila il modulo per un preventivo gratuito</p>
       </div>
       
-      <div class="contact-wrapper" id="contatti">
+      <div class="contact-wrapper">
         <div class="contact-info-card">
           <h3>Informazioni di Contatto</h3>
           <div class="contact-info-item">
@@ -850,7 +843,7 @@
       
       submitBtn.disabled = true;
       submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i> Invio in corso...';
-      formStatus.style.color = 'var(--text-muted)';
+      formStatus.style.color = '#ffc107';
       formStatus.textContent = '';
 
       const SERVICE_ID = "YOUR_SERVICE_ID";
@@ -858,13 +851,13 @@
 
       emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, this)
         .then(function() {
-          formStatus.style.color = '#2e7d32';
+          formStatus.style.color = '#81c784';
           formStatus.textContent = 'Richiesta inviata con successo! Ti ricontatteremo presto.';
           quoteForm.reset();
           submitBtn.disabled = false;
           submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Invia Richiesta Preventivo';
         }, function(error) {
-          formStatus.style.color = '#c62828';
+          formStatus.style.color = '#e57373';
           formStatus.textContent = 'Errore durante l\'invio. Riprova più tardi.';
           submitBtn.disabled = false;
           submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Invia Richiesta Preventivo';
