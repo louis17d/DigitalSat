@@ -3,10 +3,18 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Servizi elettrici professionali, installazione impianti civili e industriali, fotovoltaico, automazioni e sicurezza. Richiedi un preventivo gratuito.">
+  <meta name="description" content="Servizi elettrici professionali, realizzazione e certificazione impianti civili e industriali, fotovoltaico, automazioni e sicurezza. Richiedi un preventivo gratuito.">
   <meta name="robots" content="index, follow">
   
   <title>Elettricista Qualificato | Impianti Elettrici e Soluzioni Tecnologiche</title>
+  
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script type="text/javascript">
+    (function() {
+      // Sostituisci con la tua Public Key da EmailJS.com
+      emailjs.init("YOUR_PUBLIC_KEY");
+    })();
+  </script>
 
   <style>
     :root {
@@ -57,8 +65,8 @@
     }
 
     .logo-img {
-      width: 45px;
-      height: 45px;
+      width: 55px;
+      height: 55px;
       border-radius: 50%;
       background: var(--primary-color);
       display: flex;
@@ -66,6 +74,8 @@
       justify-content: center;
       border: 2px solid var(--accent-color);
       flex-shrink: 0;
+      font-weight: bold;
+      color: var(--accent-color);
     }
 
     .logo-text {
@@ -78,6 +88,11 @@
       display: flex;
       list-style: none;
       gap: 1.2rem;
+      align-items: center;
+    }
+
+    nav ul li {
+      position: relative;
     }
 
     nav a {
@@ -88,448 +103,231 @@
       text-transform: uppercase;
       letter-spacing: 0.5px;
       transition: color 0.3s;
+      padding: 0.5rem 0;
+      display: block;
     }
 
     nav a:hover {
       color: var(--accent-color);
     }
 
+    /* Dropdown Servizi */
+    .dropdown-content {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      background-color: var(--dark-color);
+      min-width: 250px;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.3);
+      z-index: 1001;
+      border-radius: 0 0 4px 4px;
+      list-style: none;
+      padding: 0.5rem 0;
+    }
+
+    .dropdown-content li {
+      width: 100%;
+    }
+
+    .dropdown-content a {
+      padding: 0.7rem 1.2rem;
+      text-transform: none;
+      font-size: 0.85rem;
+      color: var(--light-color);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+      white-space: nowrap;
+    }
+
+    .dropdown-content li:last-child a {
+      border-bottom: none;
+    }
+
+    .dropdown-content a:hover {
+      background-color: var(--primary-color);
+      color: var(--accent-color);
+    }
+
+    nav ul li.dropdown:hover .dropdown-content {
+      display: block;
+    }
+
     /* Hero Section */
     .hero {
       position: relative;
-      min-height: 80vh;
-      background: linear-gradient(rgba(10, 25, 47, 0.88), rgba(10, 25, 47, 0.88)),
-                  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Cdefs%3E%3Cpattern id='p' width='40' height='40' patternUnits='userSpaceOnUse'%3E%3Cpath d='M0 40L40 0M0 0l40 40' stroke='%23ffffff' stroke-width='0.5' opacity='0.05'/%3E%3C/pattern%3E%3C/defs%3E%3Crect width='100%25' height='100%25' fill='%230a192f'/%3E%3Crect width='100%25' height='100%25' fill='url(%23p)'/%3E%3C/svg%3E") center/cover no-repeat;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
+      min-height: 85vh;
+      background: linear-gradient(rgba(10, 25, 47, 0.88), rgba(10, 25, 47, 0.88));
       color: var(--light-color);
-      padding: 3rem 1.5rem;
-    }
-
-    .hero-content {
-      max-width: 850px;
-    }
-
-    .hero-badge {
-      display: inline-block;
-      background: rgba(255, 193, 7, 0.15);
-      color: var(--accent-color);
-      padding: 0.4rem 1.2rem;
-      border-radius: 50px;
-      font-size: 0.85rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      margin-bottom: 1.5rem;
-      border: 1px solid var(--accent-color);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 2rem 5%;
     }
 
     .hero h1 {
       font-size: 2.5rem;
-      line-height: 1.2;
-      margin-bottom: 1.2rem;
-      font-weight: 700;
-    }
-
-    .hero h1 span {
+      margin-bottom: 1rem;
       color: var(--accent-color);
     }
 
     .hero p {
-      font-size: 1.15rem;
-      margin-bottom: 2.5rem;
-      color: #e0e0e0;
-      font-weight: 300;
-    }
-
-    .btn-cta {
-      display: inline-block;
-      padding: 1rem 2.5rem;
-      background-color: var(--accent-color);
-      color: var(--dark-color);
-      font-weight: 700;
-      text-decoration: none;
-      border-radius: 4px;
-      font-size: 1rem;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      transition: all 0.3s ease;
-      box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
-    }
-
-    .btn-cta:hover {
-      background-color: #e0a800;
-      transform: translateY(-2px);
-    }
-
-    /* Form Section */
-    .form-section {
-      padding: 5rem 1rem;
-      background-color: var(--bg-gray);
-      display: flex;
-      justify-content: center;
-    }
-
-    .form-container {
-      background: var(--light-color);
-      padding: 3rem;
-      border-radius: 8px;
-      box-shadow: 0 10px 30px rgba(0,0,0,0.06);
-      width: 100%;
-      max-width: 650px;
-      border: 1px solid #e9ecef;
-    }
-
-    .form-container h2 {
-      margin-bottom: 0.5rem;
-      text-align: center;
-      color: var(--primary-color);
-      font-size: 1.8rem;
-    }
-
-    .form-subtitle {
-      text-align: center;
-      color: var(--text-muted);
+      font-size: 1.2rem;
+      max-width: 700px;
       margin-bottom: 2rem;
-      font-size: 0.95rem;
     }
 
-    .form-group {
-      margin-bottom: 1.3rem;
-    }
-
-    .form-group label {
-      display: block;
-      margin-bottom: 0.4rem;
-      font-weight: 600;
-      font-size: 0.9rem;
-    }
-
-    .form-group input[type="text"],
-    .form-group input[type="email"],
-    .form-group input[type="tel"],
-    .form-group select,
-    .form-group textarea {
-      width: 100%;
-      padding: 0.85rem;
-      border: 1px solid #ced4da;
-      border-radius: 4px;
-      font-size: 0.95rem;
-      transition: border-color 0.3s;
-    }
-
-    .form-group input:focus,
-    .form-group select:focus,
-    .form-group textarea:focus {
-      outline: none;
-      border-color: var(--primary-color);
-    }
-
-    /* GDPR Checkbox */
-    .privacy-group {
-      display: flex;
-      align-items: flex-start;
-      gap: 10px;
-      margin-bottom: 1.5rem;
-    }
-
-    .privacy-group input[type="checkbox"] {
-      margin-top: 4px;
-      width: 18px;
-      height: 18px;
-      cursor: pointer;
-    }
-
-    .privacy-group label {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      font-weight: normal;
-      line-height: 1.4;
-    }
-
-    .privacy-group a {
-      color: var(--primary-color);
-      text-decoration: underline;
-    }
-
-    .btn-submit {
-      width: 100%;
-      padding: 1.1rem;
+    .btn {
+      display: inline-block;
+      padding: 0.8rem 1.8rem;
       background-color: var(--primary-color);
       color: var(--light-color);
-      border: none;
+      text-decoration: none;
       border-radius: 4px;
-      font-size: 1rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-      cursor: pointer;
+      font-weight: 600;
       transition: background-color 0.3s;
     }
 
-    .btn-submit:hover {
-      background-color: #0a3578;
+    .btn:hover {
+      background-color: #093170;
     }
 
-    #form-status {
-      margin-top: 1.2rem;
+    /* Content Sections */
+    section {
+      padding: 4rem 5%;
+    }
+
+    .section-title {
       text-align: center;
-      font-weight: 600;
-      font-size: 0.95rem;
+      font-size: 2rem;
+      margin-bottom: 2rem;
+      position: relative;
     }
 
-    /* Footer Legal Section */
+    .section-title::after {
+      content: '';
+      display: block;
+      width: 60px;
+      height: 3px;
+      background-color: var(--accent-color);
+      margin: 0.5rem auto 0;
+    }
+
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 2rem;
+    }
+
+    .service-card {
+      background-color: var(--bg-gray);
+      padding: 2rem;
+      border-radius: 8px;
+      border-left: 4px solid var(--primary-color);
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+    }
+
+    .service-card h3 {
+      margin-bottom: 0.8rem;
+      color: var(--primary-color);
+    }
+
     footer {
       background-color: var(--dark-color);
-      color: #a0a0a0;
-      padding: 3rem 5% 1.5rem;
-      font-size: 0.85rem;
-      border-top: 3px solid var(--accent-color);
-    }
-
-    .footer-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 2rem;
-      margin-bottom: 2rem;
-    }
-
-    .footer-col h3 {
       color: var(--light-color);
-      margin-bottom: 1rem;
-      font-size: 1rem;
-    }
-
-    .footer-col p {
-      margin-bottom: 0.5rem;
-    }
-
-    .footer-col a {
-      color: #a0a0a0;
-      text-decoration: none;
-    }
-
-    .footer-col a:hover {
-      color: var(--accent-color);
-    }
-
-    .footer-bottom {
-      border-top: 1px solid #2a2a2a;
-      padding-top: 1.5rem;
       text-align: center;
-      font-size: 0.8rem;
-    }
-
-    /* Cookie Banner */
-    #cookie-banner {
-      position: fixed;
-      bottom: 0;
-      left: 0;
-      right: 0;
-      background: #111;
-      color: #fff;
-      padding: 1rem 5%;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      box-shadow: 0 -2px 10px rgba(0,0,0,0.5);
-      z-index: 2000;
-      font-size: 0.85rem;
-    }
-
-    #cookie-banner button {
-      background: var(--accent-color);
-      color: var(--dark-color);
-      border: none;
-      padding: 0.5rem 1.2rem;
-      font-weight: bold;
-      border-radius: 4px;
-      cursor: pointer;
-      margin-left: 1rem;
-    }
-
-    /* Mobile Responsive */
-    @media (max-width: 768px) {
-      header {
-        flex-direction: column;
-        gap: 1rem;
-      }
-      nav ul {
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 0.8rem;
-      }
-      .hero h1 {
-        font-size: 1.8rem;
-      }
-      .hero p {
-        font-size: 1rem;
-      }
-      .form-container {
-        padding: 1.8rem;
-      }
-      #cookie-banner {
-        flex-direction: column;
-        gap: 1rem;
-        text-align: center;
-      }
-      #cookie-banner button {
-        margin-left: 0;
-        width: 100%;
-      }
+      padding: 2rem 5%;
+      margin-top: 2rem;
     }
   </style>
 </head>
 <body>
 
+  <!-- Header & Nav Bar -->
   <header>
     <a href="#home" class="logo-container">
-      <div class="logo-img">
-        <svg width="25" height="25" viewBox="0 0 24 24" fill="none" stroke="#ffc107" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-          <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon>
-        </svg>
-      </div>
-      <span class="logo-text">DIGITALSAT</span>
+      <div class="logo-img">EL</div>
+      <div class="logo-text">Elettricista Qualificato</div>
     </a>
     <nav>
       <ul>
         <li><a href="#home">Home</a></li>
-        <li><a href="#servizi">Impianti</a></li>
-        <li><a href="#fotovoltaico">Fotovoltaico</a></li>
-        <li><a href="#antenne">TV & Satelliti</a></li>
-        <li><a href="#preventivo">Preventivi</a></li>
+        <li><a href="#chi-siamo">Chi Siamo</a></li>
+        <li class="dropdown">
+          <a href="#servizi" class="dropbtn">Servizi &#9662;</a>
+          <ul class="dropdown-content">
+            <li><a href="#impianti">Impianti Civili e Industriali</a></li>
+            <li><a href="#fotovoltaico">Fotovoltaico</a></li>
+            <li><a href="#tv-satelliti">TV &amp; Satelliti</a></li>
+            <li><a href="#citofonia">Citofonia</a></li>
+            <li><a href="#allarmi">Allarmi</a></li>
+          </ul>
+        </li>
+        <li><a href="#contatti">Contatti</a></li>
       </ul>
     </nav>
   </header>
 
-  <section class="hero" id="home">
-    <div class="hero-content">
-      <span class="hero-badge">Interventi Tecnologici & Impianti Certificati DM 37/08</span>
-      <h1>Soluzioni Elettriche, Antenne e Sicurezza. <span>Qualità e Innovazione.</span></h1>
-      <p>Progettazione, manutenzione e pronto intervento per impianti civili e industriali. Richiedi un sopralluogo o un preventivo immediato per la tua abitazione o azienda.</p>
-      <a href="#preventivo" class="btn-cta">Richiedi Preventivo Gratuito</a>
-    </div>
+  <!-- Hero Section -->
+  <section id="home" class="hero">
+    <h1>Soluzioni Elettriche Professionali</h1>
+    <p>Progettazione, installazione e manutenzione di impianti civili, industriali e sistemi ad alta tecnologia.</p>
+    <a href="#contatti" class="btn">Richiedi un Preventivo</a>
   </section>
 
-  <section class="form-section" id="preventivo">
-    <div class="form-container">
-      <h2>Richiedi un Preventivo o un Sopralluogo</h2>
-      <p class="form-subtitle">Compila i campi sottostanti per essere ricontattato entro 24 ore lavorative.</p>
+  <!-- Chi Siamo -->
+  <section id="chi-siamo">
+    <h2 class="section-title">Chi Siamo</h2>
+    <p style="text-align: center; max-width: 800px; margin: 0 auto;">
+      Siamo professionisti qualificati nel settore elettrico ed elettronico con anni di esperienza. Ci occupiamo di progettazione, realizzazione e certificazione di impianti garantendo elevati standard di sicurezza, efficienza energetica ed innovazione tecnologica.
+    </p>
+  </section>
+
+  <!-- Servizi -->
+  <section id="servizi" style="background-color: var(--bg-gray);">
+    <h2 class="section-title">I Nostri Servizi</h2>
+    <div class="services-grid">
       
-      <form id="contact-form">
-        <div class="form-group">
-          <label for="user_name">Nome e Cognome / Azienda *</label>
-          <input type="text" id="user_name" name="user_name" required placeholder="Es. Mario Rossi">
-        </div>
+      <div class="service-card" id="impianti">
+        <h3>Impianti Civili e Industriali</h3>
+        <p>Progettazione e realizzazione di impianti elettrici completi per abitazioni, uffici, negozi e complessi industriali nel rispetto delle normative vigenti.</p>
+      </div>
 
-        <div class="form-group">
-          <label for="user_email">Email di Contatto *</label>
-          <input type="email" id="user_email" name="user_email" required placeholder="nome@dominio.it">
-        </div>
+      <div class="service-card" id="fotovoltaico">
+        <h3>Fotovoltaico</h3>
+        <p>Installazione di sistemi fotovoltaici ed energetici ad alto rendimento, integrati con batterie di accumulo per l'indipendenza energetica.</p>
+      </div>
 
-        <div class="form-group">
-          <label for="user_phone">Telefono *</label>
-          <input type="tel" id="user_phone" name="user_phone" required placeholder="Es. 333 1234567">
-        </div>
+      <div class="service-card" id="tv-satelliti">
+        <h3>TV &amp; Satelliti</h3>
+        <p>Installazione e puntamento di antenne TV digitali terrestri e parabole satellitari, distribuzione segnali singoli e centralizzati.</p>
+      </div>
 
-        <div class="form-group">
-          <label for="service">Servizio Richiesto *</label>
-          <select id="service" name="service" required>
-            <option value="">-- Seleziona opzione --</option>
-            <option value="Impianti Elettrici Civili / Industriali">Impianti Elettrici Civili / Industriali</option>
-            <option value="Antenne TV e Impianti Satellitari">Antenne TV e Impianti Satellitari</option>
-            <option value="Impianti Fotovoltaici">Impianti Fotovoltaici</option>
-            <option value="Videocitofonia e Automazioni">Videocitofonia e Automazioni</option>
-            <option value="Sistemi di Allarme e Videosorveglianza">Sistemi di Allarme e Videosorveglianza</option>
-            <option value="Assistenza e Riparazione Guasti">Assistenza e Riparazione Guasti</option>
-          </select>
-        </div>
+      <div class="service-card" id="citofonia">
+        <h3>Citofonia</h3>
+        <p>Sistemi di videocitofonia analogici e IP smart, integrabili con dispositivi mobili per la gestione accessi da remoto.</p>
+      </div>
 
-        <div class="form-group">
-          <label for="message">Note o Dettagli Richiesta *</label>
-          <textarea id="message" name="message" rows="4" required placeholder="Descrivi brevemente il lavoro o il problema da risolvere..."></textarea>
-        </div>
+      <div class="service-card" id="allarmi">
+        <h3>Allarmi</h3>
+        <p>Progettazione di impianti antifurto e videosorveglianza filari e wireless per la massima protezione della casa e dell'azienda.</p>
+      </div>
 
-        <div class="privacy-group">
-          <input type="checkbox" id="privacy_consent" name="privacy_consent" required>
-          <label for="privacy_consent">
-            Accetto l'<a href="#privacy" onclick="alert('Informativa Privacy: I dati trasmessi saranno utilizzati al solo scopo di rispondere alla richiesta di preventivo, nel rispetto del Regolamento UE 2016/679 (GDPR).'); return false;">Informativa sulla Privacy</a>. *
-          </label>
-        </div>
-
-        <button type="submit" class="btn-submit">Invia Richiesta</button>
-        <div id="form-status"></div>
-      </form>
     </div>
   </section>
 
+  <!-- Contatti -->
+  <section id="contatti">
+    <h2 class="section-title">Contatti</h2>
+    <p style="text-align: center;">Hai bisogno di un intervento o di un preventivo? Contattaci subito.</p>
+  </section>
+
+  <!-- Footer -->
   <footer>
-    <div class="footer-grid">
-      <div class="footer-col">
-        <h3>DIGITALSAT</h3>
-        <p>Soluzioni tecnologiche avanzate, impianti elettrici, antenne e sistemi di sicurezza.</p>
-        <p>Abilitazione D.M. 37/08</p>
-      </div>
-      <div class="footer-col">
-        <h3>Dati Legali</h3>
-        <p>Sede Legale: Italia (BA)</p>
-        <p>P.IVA: 00000000000</p>
-        <p>PEC: info@pec.it</p>
-      </div>
-      <div class="footer-col">
-        <h3>Contatti</h3>
-        <p>Telefono: +39 080 000000</p>
-        <p>Email: info@digitalsat.it</p>
-      </div>
-    </div>
-    <div class="footer-bottom">
-      <p>&copy; 2026 DIGITALSAT. Tutti i diritti riservati. | Privacy Policy | Cookie Policy</p>
-    </div>
+    <p>&copy; 2026 Elettricista Qualificato - Tutti i diritti riservati.</p>
   </footer>
-
-  <div id="cookie-banner">
-    <span>Questo sito impiega cookie tecnici strettamente necessari al corretto funzionamento della pagina.</span>
-    <button onclick="document.getElementById('cookie-banner').style.display='none';">Ho capito</button>
-  </div>
-
-  <script>
-    document.addEventListener('DOMContentLoaded', function() {
-      const form = document.getElementById('contact-form');
-      if (form) {
-        form.addEventListener('submit', async function(event) {
-          event.preventDefault();
-          
-          const statusDiv = document.getElementById('form-status');
-          statusDiv.style.color = '#0d47a1';
-          statusDiv.innerHTML = 'Invio della richiesta in corso...';
-
-          const formData = new FormData(this);
-          const data = Object.fromEntries(formData.entries());
-
-          try {
-            const response = await fetch('/api/send', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify(data)
-            });
-
-            if (response.ok) {
-              statusDiv.style.color = '#2e7d32';
-              statusDiv.innerHTML = '✓ Richiesta inviata con successo! Ti risponderemo a breve.';
-              form.reset();
-            } else {
-              throw new Error('Errore di risposta del server');
-            }
-          } catch (error) {
-            statusDiv.style.color = '#c62828';
-            statusDiv.innerHTML = '✖ Si è verificato un errore. Riprova o contattaci via telefono.';
-            console.error('Fetch error:', error);
-          }
-        });
-      }
-    });
-  </script>
 
 </body>
 </html>
