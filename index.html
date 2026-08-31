@@ -6,8 +6,9 @@
   <meta name="description" content="Servizi elettrici professionali, realizzazione e certificazione impianti civili e industriali, fotovoltaico, automazioni e sicurezza. Richiedi un preventivo gratuito.">
   <meta name="robots" content="index, follow">
   
-  <title>Digital Sat</title>
+  <title>Digital Sat | Impianti Elettrici e Tecnologici</title>
   
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script type="text/javascript">
     (function() {
@@ -18,11 +19,13 @@
   <style>
     :root {
       --primary-color: #0d47a1;
+      --primary-light: #1565c0;
       --accent-color: #ffc107;
       --dark-color: #121212;
       --light-color: #ffffff;
       --bg-gray: #f8f9fa;
       --text-muted: #6c757d;
+      --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
     * {
@@ -52,14 +55,14 @@
       position: sticky;
       top: 0;
       z-index: 1000;
-      box-shadow: 0 2px 10px rgba(0,0,0,0.3);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.15);
       width: 100%;
     }
 
     .logo-container {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       text-decoration: none;
       color: var(--light-color);
     }
@@ -74,10 +77,9 @@
       justify-content: center;
       border: 2px solid var(--accent-color);
       flex-shrink: 0;
-      overflow: hidden; /* Mantiene l'immagine ritagliata nel cerchio */
+      overflow: hidden;
     }
 
-    /* Stile per l'immagine del logo */
     .logo-img img {
       width: 100%;
       height: 100%;
@@ -86,7 +88,7 @@
 
     .logo-text {
       font-weight: 700;
-      font-size: 1rem;
+      font-size: 1.1rem;
       letter-spacing: 0.5px;
     }
 
@@ -94,7 +96,7 @@
     nav ul {
       display: flex;
       list-style: none;
-      gap: 1.2rem;
+      gap: 1.5rem;
       align-items: center;
     }
 
@@ -102,10 +104,10 @@
       color: var(--light-color);
       text-decoration: none;
       font-weight: 500;
-      font-size: 0.85rem;
+      font-size: 0.9rem;
       text-transform: uppercase;
       letter-spacing: 0.5px;
-      transition: color 0.3s;
+      transition: var(--transition-smooth);
       display: block;
     }
 
@@ -129,11 +131,12 @@
       top: 100%;
       left: 0;
       background-color: var(--dark-color);
-      min-width: 180px;
-      box-shadow: 0px 8px 16px rgba(0,0,0,0.3);
-      border-radius: 4px;
+      min-width: 220px;
+      box-shadow: 0px 10px 30px rgba(0,0,0,0.4);
+      border-radius: 8px;
       padding: 0.5rem 0;
       z-index: 1001;
+      border: 1px solid rgba(255,255,255,0.05);
     }
 
     .dropdown-content li {
@@ -141,7 +144,7 @@
     }
 
     .dropdown-content a {
-      padding: 0.6rem 1.2rem;
+      padding: 0.7rem 1.2rem;
       text-transform: capitalize;
       font-size: 0.85rem;
       color: var(--light-color);
@@ -149,8 +152,9 @@
     }
 
     .dropdown-content a:hover {
-      background-color: rgba(255, 255, 255, 0.1);
+      background-color: rgba(255, 255, 255, 0.08);
       color: var(--accent-color);
+      padding-left: 1.5rem;
     }
 
     .dropdown:hover .dropdown-content {
@@ -176,20 +180,233 @@
       height: 3px;
       background-color: var(--light-color);
       border-radius: 2px;
-      transition: all 0.3s ease-in-out;
+      transition: var(--transition-smooth);
     }
 
     /* Hero Section */
     .hero {
       position: relative;
       min-height: 85vh;
-      background: linear-gradient(rgba(10, 25, 47, 0.88), rgba(10, 25, 47, 0.88)),
-                  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='100%25' height='100%25'%3E%3Cdefs%3E%3Cpattern id='p' width='40' height='40' patternUnits='userSpaceOnUse'%3E%3Cpath d='M0 40L");
+      background: linear-gradient(135deg, rgba(13, 71, 161, 0.9), rgba(18, 18, 18, 0.95)),
+                  radial-gradient(circle, rgba(255,193,7,0.1) 0%, transparent 70%);
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      padding: 0 1rem;
+      padding: 4rem 1rem;
+      color: var(--light-color);
+    }
+
+    .hero-content {
+      max-width: 800px;
+    }
+
+    .hero h1 {
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      font-weight: 800;
+      margin-bottom: 1.2rem;
+      letter-spacing: -0.5px;
+    }
+
+    .hero h1 span {
+      color: var(--accent-color);
+    }
+
+    .hero p {
+      font-size: clamp(1rem, 1.5vw, 1.2rem);
+      color: #e0e0e0;
+      margin-bottom: 2rem;
+      line-height: 1.7;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 0.9rem 2rem;
+      border-radius: 50px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: var(--transition-smooth);
+      cursor: pointer;
+      font-size: 0.95rem;
+    }
+
+    .btn-primary {
+      background-color: var(--accent-color);
+      color: var(--dark-color);
+      box-shadow: 0 4px 15px rgba(255, 193, 7, 0.3);
+    }
+
+    .btn-primary:hover {
+      background-color: #ffca28;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      border: 2px solid var(--light-color);
+      color: var(--light-color);
+    }
+
+    .btn-outline:hover {
+      background-color: var(--light-color);
+      color: var(--dark-color);
+      transform: translateY(-2px);
+    }
+
+    /* Section Structure General */
+    section {
+      padding: 5rem 5%;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 3.5rem;
+    }
+
+    .section-title h2 {
+      font-size: 2.2rem;
+      font-weight: 700;
+      color: var(--dark-color);
+      margin-bottom: 0.8rem;
+    }
+
+    .section-title p {
+      color: var(--text-muted);
+      font-size: 1.05rem;
+    }
+
+    /* Services Grid */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 2rem;
+    }
+
+    .service-card {
+      background: var(--bg-gray);
+      padding: 2.5rem 2rem;
+      border-radius: 12px;
+      transition: var(--transition-smooth);
+      border: 1px solid rgba(0,0,0,0.05);
+    }
+
+    .service-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      background: var(--light-color);
+      border-color: var(--primary-color);
+    }
+
+    .service-card i {
+      font-size: 2.5rem;
+      color: var(--primary-color);
+      margin-bottom: 1.5rem;
+    }
+
+    .service-card h3 {
+      font-size: 1.25rem;
+      margin-bottom: 1rem;
+      color: var(--dark-color);
+    }
+
+    .service-card p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+    }
+
+    /* Impianti Section */
+    .impianti-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2.5rem;
+    }
+
+    .impianto-box {
+      background: linear-gradient(135deg, var(--dark-color), #1f2937);
+      color: var(--light-color);
+      padding: 3rem 2rem;
+      border-radius: 16px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .impianto-box h3 {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      color: var(--accent-color);
+    }
+
+    .impianto-box p {
+      color: #cbd5e1;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Preventivi / Contatti Section */
+    .preventivi-section {
+      background-color: var(--bg-gray);
+    }
+
+    .contact-form {
+      max-width: 700px;
+      margin: 0 auto;
+      background: var(--light-color);
+      padding: 3rem;
+      border-radius: 16px;
+      box-shadow: 0 10px 40px rgba(0,0,0,0.05);
+    }
+
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 0.9rem 1rem;
+      border: 1px solid #ced4da;
+      border-radius: 8px;
+      font-size: 1rem;
+      transition: var(--transition-smooth);
+    }
+
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--primary-color);
+      box-shadow: 0 0 0 3px rgba(13, 71, 161, 0.15);
+    }
+
+    /* Footer */
+    footer {
+      background-color: var(--dark-color);
+      color: var(--light-color);
+      padding: 3rem 5% 1.5rem;
+      text-align: center;
+    }
+
+    footer p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      margin-top: 2rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding-top: 1.5rem;
     }
 
     /* Responsive Queries */
@@ -206,7 +423,7 @@
         max-width: 320px;
         height: 100vh;
         background-color: var(--dark-color);
-        box-shadow: -5px 0 15px rgba(0,0,0,0.5);
+        box-shadow: -5px 0 25px rgba(0,0,0,0.5);
         transition: right 0.4s ease-in-out;
         padding-top: 5rem;
         overflow-y: auto;
@@ -244,13 +461,13 @@
         background-color: rgba(0, 0, 0, 0.2);
         padding-left: 1rem;
         display: none;
+        border: none;
       }
 
       .dropdown.active .dropdown-content {
         display: block;
       }
 
-      /* Hamburger Animation State */
       .menu-toggle.active span:nth-child(1) {
         transform: translateY(9px) rotate(45deg);
       }
@@ -268,14 +485,8 @@
       header {
         padding: 0.6rem 4%;
       }
-
-      .logo-img {
-        width: 40px;
-        height: 40px;
-      }
-
-      .logo-text {
-        font-size: 0.85rem;
+      .contact-form {
+        padding: 1.5rem;
       }
     }
   </style>
@@ -283,7 +494,7 @@
 <body>
 
   <header>
-    <a href="#" class="logo-container">
+    <a href="#home" class="logo-container">
       <div class="logo-img">
         <img src="Assets/IMG_7597.png" alt="Logo Digital Sat">
       </div>
@@ -322,6 +533,110 @@
       </ul>
     </nav>
   </header>
+
+  <section id="home" class="hero">
+    <div class="hero-content">
+      <h1>Soluzioni Elettriche e Tecnologiche di <span>Eccellenza</span></h1>
+      <p>Realizzazione, manutenzione e certificazione di impianti civili e industriali, sistemi fotovoltaici e soluzioni di sicurezza avanzate.</p>
+      <div class="btn-group">
+        <a href="#preventivi" class="btn btn-primary"><i class="fa-solid fa-calculator"></i> Preventivo Gratuito</a>
+        <a href="#servizi" class="btn btn-outline"><i class="fa-solid fa-arrow-down"></i> Scopri i Servizi</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="servizi">
+    <div class="section-title">
+      <h2>I Nostri Servizi</h2>
+      <p>Tecnologia e innovazione applicate al comfort e alla sicurezza</p>
+    </div>
+    <div class="services-grid">
+      <div class="service-card" id="fotovoltaico">
+        <i class="fa-solid fa-solar-panel"></i>
+        <h3>Fotovoltaici & Storage</h3>
+        <p>Sistemi ad alta efficienza energetica con accumulo per l'indipendenza e il risparmio energetico totale.</p>
+      </div>
+      <div class="service-card" id="tv-satellite">
+        <i class="fa-solid fa-satellite-dish"></i>
+        <h3>TV & Sistemi Satellitari</h3>
+        <p>Installazione e orientamento parabole, impianti digitale terrestre e distribuzione segnale ottimizzata.</p>
+      </div>
+      <div class="service-card" id="citofonia">
+        <i class="fa-solid fa-video"></i>
+        <h3>Citofonia & Videocitofonia Smart</h3>
+        <p>Dispositivi connessi per il controllo degli accessi residenziali e commerciali anche da remoto via smartphone.</p>
+      </div>
+      <div class="service-card" id="allarmi">
+        <i class="fa-solid fa-shield-halved"></i>
+        <h3>Sistemi di Allarme & Antintrusione</h3>
+        <p>Soluzioni di sicurezza perimetrali e interne ad altissima affidabilità contro ogni effrazione.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="impianti" style="background-color: var(--bg-gray);">
+    <div class="section-title">
+      <h2>Tipologie di Impianti</h2>
+      <p>Progettati a regola d'arte per ogni settore d'applicazione</p>
+    </div>
+    <div class="impianti-container">
+      <div class="impianto-box" id="civili">
+        <h3>Impianti Civili</h3>
+        <p>Soluzioni su misura per abitazioni, condomini e uffici. Focalizzati su efficienza, design, domotica e totale conformità alle normative di sicurezza vigenti.</p>
+        <a href="#preventivi" class="btn btn-primary" style="margin-top: 1rem;"><i class="fa-solid fa-chevron-right"></i> Richiedi Info</a>
+      </div>
+      <div class="impianto-box" id="industriali">
+        <h3>Impianti Industriali</h3>
+        <p>Infrastrutture elettriche complesse per aziende, capannoni e centri logistici. Cablaggi strutturati, quadri di media/bassa tensione e massima continuità operativa.</p>
+        <a href="#preventivi" class="btn btn-primary" style="margin-top: 1rem;"><i class="fa-solid fa-chevron-right"></i> Richiedi Info</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="preventivi" class="preventivi-section">
+    <div class="section-title">
+      <h2>Richiedi un Preventivo</h2>
+      <p>Compila il modulo per essere ricontattato da un nostro tecnico specializzato</p>
+    </div>
+    <div class="contact-form">
+      <form id="quoteForm">
+        <div class="form-group">
+          <label for="name">Nome e Cognome</label>
+          <input type="text" id="name" required placeholder="Inserisci il tuo nome">
+        </div>
+        <div class="form-group">
+          <label for="phone">Telefono</label>
+          <input type="tel" id="phone" required placeholder="Il tuo numero di telefono">
+        </div>
+        <div class="form-group">
+          <label for="service">Servizio di Interesse</label>
+          <select id="service">
+            <option value="fotovoltaico">Fotovoltaici & Storage</option>
+            <option value="tv">TV & Sistemi Satellitari</option>
+            <option value="citofonia">Citofonia & Videocitofonia Smart</option>
+            <option value="allarmi">Sistemi di Allarme</option>
+            <option value="civile">Impianti Civili</option>
+            <option value="industriale">Impianti Industriali</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label for="message">Messaggio / Dettagli</label>
+          <textarea id="message" rows="4" placeholder="Descrivi brevemente la tua richiesta..."></textarea>
+        </div>
+        <button type="submit" class="btn btn-primary" style="width: 100%; justify-content: center;"><i class="fa-solid fa-paper-plane"></i> Invia Richiesta</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <div class="logo-container" style="justify-content: center; margin-bottom: 1rem;">
+      <div class="logo-img">
+        <img src="Assets/IMG_7597.png" alt="Logo Digital Sat">
+      </div>
+      <div class="logo-text">Digital Sat</div>
+    </div>
+    <p>&copy; 2026 Digital Sat. Tutti i diritti riservati. P.IVA / CF Configurata.</p>
+  </footer>
 
   <script>
     // Responsive Mobile Menu & Dropdown Interaction Handling
