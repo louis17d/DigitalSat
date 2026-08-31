@@ -1,12 +1,12 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Digital Sat di Coviello Giuseppe realizza impianti elettrici civili e industriali, sistemi fotovoltaici e antintrusione a Bari. Massima qualità e certificazione a norma di legge.">
+  <meta name="description" content="DIGITAL SAT di Coviello Giuseppe realizza impianti elettrici civili e industriali, sistemi fotovoltaici e antintrusione a Bari. Massima qualità e certificazione a norma di legge.">
   <meta name="robots" content="index, follow">
   
-  <title>Digital Sat | Impianti Elettrici e Fotovoltaico a Bari</title>
+  <title>DIGITAL SAT | Impianti Elettrici e Fotovoltaico a Bari</title>
   
   <!-- FontAwesome per icone moderne -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -727,6 +727,7 @@
 
       .dropdown.active .dropdown-content {
         display: block;
+        animation: fadeIn 0.3s ease-in-out;
       }
 
       .menu-toggle.active span:nth-child(1) {
@@ -740,6 +741,11 @@
       .menu-toggle.active span:nth-child(3) {
         transform: translateY(-9px) rotate(-45deg);
       }
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(-5px); }
+      to { opacity: 1; transform: translateY(0); }
     }
 
     @media (max-width: 480px) {
@@ -758,10 +764,10 @@
   <header>
     <a href="#home" class="logo-container">
       <div class="logo-img">
-        <img src="Assets/IMG_7597.jpeg" alt="Logo Digital Sat Impianti Elettrici">
+        <img src="Assets/IMG_7597.jpeg" alt="Logo DIGITAL SAT Impianti Elettrici">
       </div>
       <div class="logo-text-wrap">
-        <div class="logo-text">Digital Sat</div>
+        <div class="logo-text">DIGITAL SAT</div>
         <div class="logo-subtext">di Coviello Giuseppe</div>
       </div>
     </a>
@@ -884,11 +890,11 @@
       </div>
     </section>
 
-    <!-- 4. IL METODO DI LAVORO (Crea ossessione e fiducia maniacale) -->
+    <!-- 4. IL METODO DI LAVORO -->
     <section id="metodo" style="background-color: var(--bg-gray);">
       <div class="section-title">
         <h2>Il Nostro Metodo Operativo</h2>
-        <p>Ecco perché affidarsi a Digital Sat significa zero problemi e massima precisione</p>
+        <p>Ecco perché affidarsi a DIGITAL SAT significa zero problemi e massima precisione</p>
       </div>
       <div class="process-grid">
         <div class="process-card">
@@ -917,13 +923,13 @@
     <!-- 5. CHI SIAMO -->
     <section id="chisiamo">
       <div class="section-title">
-        <h2>Chi C'è Dietro Digital Sat</h2>
+        <h2>Chi C'è Dietro DIGITAL SAT</h2>
         <p>Competenza tecnica diretta, affidabilità e passione per il lavoro ben fatto</p>
       </div>
       <div class="about-grid">
         <div class="about-text">
           <h3>Artigianato evoluto e rigorosa competenza ingegneristica</h3>
-          <p>Digital Sat di Coviello Giuseppe nasce con un obiettivo preciso: elevare gli standard dell'impiantistica elettrica e tecnologica. Ogni progetto viene seguito in prima persona con un approccio maniacale alla cura dei dettagli, dei cablaggi e della sicurezza complessiva.</p>
+          <p>DIGITAL SAT di Coviello Giuseppe nasce con un obiettivo preciso: elevare gli standard dell'impiantistica elettrica e tecnologica. Ogni progetto viene seguito in prima persona con un approccio maniacale alla cura dei dettagli, dei cablaggi e della sicurezza complessiva.</p>
           <ul class="about-features">
             <li><i class="fa-solid fa-check" aria-hidden="true"></i> Rapporto diretto e trasparente con il cliente</li>
             <li><i class="fa-solid fa-check" aria-hidden="true"></i> Utilizzo esclusivo di marchi leader della componentistica</li>
@@ -1036,42 +1042,48 @@
   <footer>
     <div class="logo-container" style="justify-content: center; margin-bottom: 1rem;">
       <div class="logo-img">
-        <img src="Assets/IMG_7597.jpeg" alt="Logo Digital Sat Impianti Elettrici">
+        <img src="Assets/IMG_7597.jpeg" alt="Logo DIGITAL SAT Impianti Elettrici">
       </div>
       <div class="logo-text-wrap" style="text-align: left;">
-        <div class="logo-text">Digital Sat</div>
+        <div class="logo-text">DIGITAL SAT</div>
         <div class="logo-subtext">di Coviello Giuseppe</div>
       </div>
     </div>
-    <p>&copy; 2026 Digital Sat di Coviello Giuseppe. Tutti i diritti riservati. Manutenzione e assistenza autorizzata / specializzata.</p>
+    <p>&copy; 2026 DIGITAL SAT di Coviello Giuseppe. Tutti i diritti riservati. Manutenzione e assistenza autorizzata / specializzata.</p>
   </footer>
 
   <script>
-    // Responsive Mobile Menu & Dropdown Interaction Handling
+    // Menu Toggle Mobile & Gestione Dropdown Tattili (Bug fixato)
     const menuToggle = document.getElementById('menuToggle');
     const mainNav = document.getElementById('mainNav');
     const dropdowns = document.querySelectorAll('.dropdown');
 
     menuToggle.addEventListener('click', () => {
-      const isExpanded = menuToggle.classList.toggle('active');
+      const isActive = menuToggle.classList.toggle('active');
       mainNav.classList.toggle('active');
-      menuToggle.setAttribute('aria-expanded', isExpanded);
+      menuToggle.setAttribute('aria-expanded', isActive);
     });
 
+    // Gestione apertura dropdown su schermi piccoli al tap
     dropdowns.forEach(dropdown => {
-      const dropLink = dropdown.querySelector('a');
-      dropLink.addEventListener('click', (e) => {
+      const trigger = dropdown.querySelector('a');
+      trigger.addEventListener('click', (e) => {
         if (window.innerWidth <= 992) {
           e.preventDefault();
+          dropdowns.forEach(d => {
+            if (d !== dropdown) d.classList.remove('active');
+          });
           dropdown.classList.toggle('active');
         }
       });
     });
 
-    // Close menu on selecting a standard link
-    const navLinks = document.querySelectorAll('nav a:not(.dropdown > a)');
-    navLinks.forEach(link => {
-      link.addEventListener('click', () => {
+    // Chiusura automatica del menu mobile al click su un link interno standard
+    document.querySelectorAll('nav a').forEach(link => {
+      link.addEventListener('click', (e) => {
+        if (window.innerWidth <= 992 && link.parentElement.classList.contains('dropdown')) {
+          return;
+        }
         if (window.innerWidth <= 992) {
           menuToggle.classList.remove('active');
           mainNav.classList.remove('active');
@@ -1097,15 +1109,15 @@
       const TEMPLATE_ID = "YOUR_TEMPLATE_ID";
 
       emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, this)
-        .then(function() {
-          formStatus.style.color = '#81c784';
+        .then(() => {
+          formStatus.style.color = '#10b981';
           formStatus.textContent = 'Richiesta inviata con successo! Ti ricontatteremo presto.';
           quoteForm.reset();
           submitBtn.disabled = false;
           submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Invia Richiesta Preventivo';
-        }, function(error) {
-          formStatus.style.color = '#e57373';
-          formStatus.textContent = 'Errore durante l\'invio. Riprova più tardi.';
+        }, (error) => {
+          formStatus.style.color = '#ef4444';
+          formStatus.textContent = 'Errore di invio. Verifica i dati o riprova più tardi.';
           submitBtn.disabled = false;
           submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Invia Richiesta Preventivo';
         });
