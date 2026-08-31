@@ -1,4 +1,4 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8">
@@ -783,7 +783,7 @@
         <li><a href="#home">Home</a></li>
         
         <li class="dropdown" id="dropServizi">
-          <a href="#servizi">Servizi</a>
+          <a href="#servizi" aria-expanded="false">Servizi</a>
           <ul class="dropdown-content">
             <li><a href="#fotovoltaico">Fotovoltaici & Storage</a></li>
             <li><a href="#tv-satellite">TV & Sistemi Satellitari</a></li>
@@ -793,7 +793,7 @@
         </li>
 
         <li class="dropdown" id="dropImpianti">
-          <a href="#impianti">Impianti</a>
+          <a href="#impianti" aria-expanded="false">Impianti</a>
           <ul class="dropdown-content">
             <li><a href="#civili">Civili</a></li>
             <li><a href="#industriali">Industriali</a></li>
@@ -1053,7 +1053,7 @@
   </footer>
 
   <script>
-    // Menu Toggle Mobile & Gestione Dropdown Tattili (Bug fixato)
+    // Gestione Menu Mobile & Dropdown con Toggle Bidirezionale e Click Outside
     const menuToggle = document.getElementById('menuToggle');
     const mainNav = document.getElementById('mainNav');
     const dropdowns = document.querySelectorAll('.dropdown');
@@ -1064,21 +1064,32 @@
       menuToggle.setAttribute('aria-expanded', isActive);
     });
 
-    // Gestione apertura dropdown su schermi piccoli al tap
+    // Toggle dropdown (apertura e chiusura al secondo click su mobile)
     dropdowns.forEach(dropdown => {
       const trigger = dropdown.querySelector('a');
       trigger.addEventListener('click', (e) => {
         if (window.innerWidth <= 992) {
           e.preventDefault();
+          const isOpen = dropdown.classList.contains('active');
+          
+          // Chiudi tutti i dropdown
+          dropdowns.class.forEach?.(); // safety
           dropdowns.forEach(d => {
-            if (d !== dropdown) d.classList.remove('active');
+            d.classList.remove('active');
+            const t = d.querySelector('a');
+            if(t) t.setAttribute('aria-expanded', 'false');
           });
-          dropdown.classList.toggle('active');
+
+          // Se non era aperto, aprilo
+          if (!isOpen) {
+            dropdown.classList.add('active');
+            trigger.setAttribute('aria-expanded', 'true');
+          }
         }
       });
     });
 
-    // Chiusura automatica del menu mobile al click su un link interno standard
+    // Chiusura automatica menu mobile al click su link standard
     document.querySelectorAll('nav a').forEach(link => {
       link.addEventListener('click', (e) => {
         if (window.innerWidth <= 992 && link.parentElement.classList.contains('dropdown')) {
@@ -1087,9 +1098,26 @@
         if (window.innerWidth <= 992) {
           menuToggle.classList.remove('active');
           mainNav.classList.remove('active');
-          dropdowns.forEach(d => d.classList.remove('active'));
+          dropdowns.forEach(d => {
+            d.classList.remove('active');
+            const t = d.querySelector('a');
+            if(t) t.setAttribute('aria-expanded', 'false');
+          });
         }
       });
+    });
+
+    // Chiusura dropdown al click all'esterno su mobile
+    document.addEventListener('click', (e) => {
+      if (window.innerWidth <= 992) {
+        if (!mainNav.contains(e.target) && !menuToggle.contains(e.target)) {
+          dropdowns.forEach(d => {
+            d.classList.remove('active');
+            const t = d.querySelector('a');
+            if(t) t.setAttribute('aria-expanded', 'false');
+          });
+        }
+      }
     });
 
     // EmailJS Form Handling Script
