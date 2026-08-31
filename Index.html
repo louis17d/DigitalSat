@@ -8,13 +8,38 @@
   
   <title>Elettricista Qualificato | Impianti Elettrici e Soluzioni Tecnologiche</title>
   
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
-  <script type="text/javascript">
-    (function() {
-      // Sostituisci con la tua Public Key da EmailJS.com
-      emailjs.init("YOUR_PUBLIC_KEY");
-    })();
-  </script>
+  <script>
+  document.getElementById('contact-form').addEventListener('submit', async function(event) {
+    event.preventDefault();
+    
+    const statusDiv = document.getElementById('form-status');
+    statusDiv.style.color = '#0d47a1';
+    statusDiv.innerHTML = 'Elaborazione e trasmissione dati in corso...';
+
+    const formData = new FormData(this);
+    const data = Object.fromEntries(formData.entries());
+
+    try {
+      const response = await fetch('/api/send', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data)
+      });
+
+      if (response.ok) {
+        statusDiv.style.color = '#2e7d32';
+        statusDiv.innerHTML = '✓ Richiesta presa in carico con successo! Ti abbiamo inviato una conferma via email.';
+        document.getElementById('contact-form').reset();
+      } else {
+        throw new Error('Errore nella risposta del server');
+      }
+    } catch (error) {
+      statusDiv.style.color = '#c62828';
+      statusDiv.innerHTML = '✖ Impossibile inviare la richiesta. Riprova o contattaci telefonicamente.';
+      console.error('Pages Function Error:', error);
+    }
+  });
+</script>
 
   <style>
     :root {
