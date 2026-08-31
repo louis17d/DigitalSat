@@ -1,9 +1,9 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Digital Sat di Coviello Giuseppe realizza impianti elettrici civili e industriali, sistemi fotovoltaici e antintrusione a Bari. Richiedi un preventivo gratuito.">
+  <meta name="description" content="Digital Sat di Coviello Giuseppe realizza impianti elettrici civili e industriali, sistemi fotovoltaici e antintrusione a Bari. Massima qualità e certificazione a norma di legge.">
   <meta name="robots" content="index, follow">
   
   <title>Digital Sat | Impianti Elettrici e Fotovoltaico a Bari</title>
@@ -21,7 +21,6 @@
 
   <style>
     :root {
-      /* Palette estratta e abbinata al logo (Blu profondo corporativo + Accento elettrico) */
       --brand-navy: #1b2a47;
       --brand-navy-dark: #121c2e;
       --primary-color: #1b2a47;
@@ -226,14 +225,15 @@
     }
 
     .hero-content {
-      max-width: 800px;
+      max-width: 850px;
     }
 
     .hero h1 {
-      font-size: clamp(2.2rem, 4vw, 3.5rem);
+      font-size: clamp(2.3rem, 4.5vw, 3.6rem);
       font-weight: 800;
       margin-bottom: 1.2rem;
       letter-spacing: -0.5px;
+      line-height: 1.2;
     }
 
     .hero h1 span {
@@ -314,6 +314,33 @@
       font-size: 1.05rem;
     }
 
+    /* Trust Stats Bar */
+    .stats-bar {
+      background: var(--brand-navy);
+      color: var(--light-color);
+      padding: 2.5rem 5%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 2rem;
+      text-align: center;
+      border-top: 3px solid var(--accent-color);
+      border-bottom: 3px solid var(--accent-color);
+    }
+
+    .stat-item h3 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      color: var(--accent-color);
+      margin-bottom: 0.3rem;
+    }
+
+    .stat-item p {
+      font-size: 0.95rem;
+      color: #cbd5e1;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
     /* Services Grid */
     .services-grid {
       display: grid;
@@ -381,6 +408,58 @@
       margin-bottom: 1.5rem;
     }
 
+    /* Metodo di Lavoro (Step by Step) */
+    .process-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
+      position: relative;
+    }
+
+    .process-card {
+      background: var(--light-color);
+      padding: 2.5rem 2rem;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+      position: relative;
+      transition: var(--transition-smooth);
+    }
+
+    .process-card:hover {
+      border-color: var(--accent-color);
+      transform: translateY(-3px);
+    }
+
+    .process-number {
+      position: absolute;
+      top: -15px;
+      left: 20px;
+      background: var(--accent-gradient);
+      color: var(--brand-navy-dark);
+      width: 35px;
+      height: 35px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 800;
+      font-size: 0.95rem;
+      box-shadow: 0 4px 10px rgba(0, 210, 255, 0.3);
+    }
+
+    .process-card h3 {
+      font-size: 1.2rem;
+      margin-top: 0.5rem;
+      margin-bottom: 0.8rem;
+      color: var(--brand-navy);
+    }
+
+    .process-card p {
+      color: var(--text-muted);
+      font-size: 0.9rem;
+    }
+
     /* Chi Siamo Section */
     .about-grid {
       display: grid;
@@ -430,6 +509,41 @@
       border-left: 5px solid var(--accent-color);
       box-shadow: 0 10px 30px rgba(0,0,0,0.05);
       border: 1px solid rgba(0,0,0,0.08);
+    }
+
+    /* FAQ Section */
+    .faq-container {
+      max-width: 800px;
+      margin: 0 auto;
+      display: grid;
+      gap: 1.2rem;
+    }
+
+    .faq-item {
+      background: var(--light-color);
+      border: 1px solid #e2e8f0;
+      border-radius: 10px;
+      padding: 1.5rem;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+    }
+
+    .faq-item h3 {
+      font-size: 1.1rem;
+      color: var(--brand-navy);
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .faq-item h3 i {
+      color: var(--accent-color);
+    }
+
+    .faq-item p {
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      padding-left: 24px;
     }
 
     /* Preventivi & Contatti Section */
@@ -680,6 +794,7 @@
           </ul>
         </li>
 
+        <li><a href="#metodo">Il Metodo</a></li>
         <li><a href="#chisiamo">Chi Siamo</a></li>
         <li><a href="#preventivi">Preventivi & Contatti</a></li>
       </ul>
@@ -690,8 +805,8 @@
     <!-- 1. HERO SECTION -->
     <section id="home" class="hero">
       <div class="hero-content">
-        <h1>Impianti Elettrici e Fotovoltaico a <span>Bari</span></h1>
-        <p>Realizzazione, manutenzione e certificazione di impianti civili e industriali, sistemi fotovoltaici e soluzioni di sicurezza avanzate per proteggere i tuoi spazi.</p>
+        <h1>Impianti Elettrici e Fotovoltaico d'Eccellenza a <span>Bari</span></h1>
+        <p>Progettazione sartoriale, posa a regola d'arte e conformità normativa assoluta per privati, condomini e aziende che non si accontentano del compromesso.</p>
         <div class="btn-group">
           <a href="#preventivi" class="btn btn-primary"><i class="fa-solid fa-calculator" aria-hidden="true"></i> Richiedi Preventivo Gratuito</a>
           <a href="#servizi" class="btn btn-outline"><i class="fa-solid fa-arrow-down" aria-hidden="true"></i> Scopri i Servizi</a>
@@ -699,32 +814,52 @@
       </div>
     </section>
 
+    <!-- TRUST STATS BAR -->
+    <div class="stats-bar">
+      <div class="stat-item">
+        <h3>100%</h3>
+        <p>Conformità di Legge</p>
+      </div>
+      <div class="stat-item">
+        <h3>A misura</h3>
+        <p>Soluzioni Personalizzate</p>
+      </div>
+      <div class="stat-item">
+        <h3>H24</h3>
+        <p>Assistenza e Manutenzione</p>
+      </div>
+      <div class="stat-item">
+        <h3>Top</h3>
+        <p>Componentistiche Scelte</p>
+      </div>
+    </div>
+
     <!-- 2. SERVIZI -->
     <section id="servizi" style="background-color: var(--bg-gray);">
       <div class="section-title">
-        <h2>I Nostri Servizi</h2>
-        <p>Tecnologia e innovazione applicate al comfort e alla sicurezza</p>
+        <h2>I Nostri Servizi Specialistici</h2>
+        <p>Soluzioni tecnologiche avanzate progettate per durare decenni</p>
       </div>
       <div class="services-grid">
         <article class="service-card" id="fotovoltaico">
           <i class="fa-solid fa-solar-panel" aria-hidden="true"></i>
           <h3>Fotovoltaici & Storage</h3>
-          <p>Sistemi ad alta efficienza energetica con accumulo per l'indipendenza e il risparmio energetico totale.</p>
+          <p>Sistemi ad alta efficienza energetica con batterie di accumulo di ultima generazione per azzerare i costi in bolletta e raggiungere la piena indipendenza.</p>
         </article>
         <article class="service-card" id="tv-satellite">
           <i class="fa-solid fa-satellite-dish" aria-hidden="true"></i>
           <h3>TV & Sistemi Satellitari</h3>
-          <p>Installazione e orientamento parabole, impianti digitale terrestre e distribuzione segnale ottimizzata.</p>
+          <p>Installazione professionale di parabole, impianti terrestri centralizzati e distribuzioni di segnale ottimizzate per massima purezza visiva.</p>
         </article>
         <article class="service-card" id="citofonia">
           <i class="fa-solid fa-video" aria-hidden="true"></i>
           <h3>Citofonia & Videocitofonia Smart</h3>
-          <p>Dispositivi connessi per il controllo degli accessi residenziali e commerciali anche da remoto via smartphone.</p>
+          <p>Sistemi di controllo accessi intelligenti connessi al tuo smartphone. Rispondi al cancello di casa o dell'azienda ovunque tu sia nel mondo.</p>
         </article>
         <article class="service-card" id="allarmi">
           <i class="fa-solid fa-shield-halved" aria-hidden="true"></i>
           <h3>Sistemi di Allarme & Antintrusione</h3>
-          <p>Soluzioni di sicurezza perimetrali e interne ad altissima affidabilità contro ogni effrazione.</p>
+          <p>Soluzioni di sicurezza perimetrali e interne ad altissima affidabilità, progettate su misura per sventare ogni tentativo di effrazione.</p>
         </article>
       </div>
     </section>
@@ -732,56 +867,108 @@
     <!-- 3. IMPIANTI -->
     <section id="impianti">
       <div class="section-title">
-        <h2>Tipologie di Impianti</h2>
-        <p>Progettati a regola d'arte per ogni settore d'applicazione</p>
+        <h2>Infrastrutture Elettriche Civili e Industriali</h2>
+        <p>Realizzazioni solide, sicurate e certificate a regola d'arte</p>
       </div>
       <div class="impianti-container">
         <article class="impianto-box" id="civili">
-          <h3>Impianti Civili</h3>
-          <p>Soluzioni su misura per abitazioni, condomini e uffici. Focalizzati su efficienza, design, domotica e totale conformità alle normative di sicurezza vigenti.</p>
-          <a href="#preventivi" class="btn btn-primary" style="margin-top: 1rem;"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i> Richiedi Info</a>
+          <h3>Impianti Civili & Domotica</h3>
+          <p>Progettiamo impianti per abitazioni di pregio e condomini che uniscono design, efficienza energetica e automazione intelligente. Sicurezza totale per la tua famiglia e comfort su misura.</p>
+          <a href="#preventivi" class="btn btn-primary" style="margin-top: 1rem;"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i> Richiedi Consulenza Civile</a>
         </article>
         <article class="impianto-box" id="industriali">
-          <h3>Impianti Industriali</h3>
-          <p>Infrastrutture elettriche complesse per aziende, capannoni e centri logistici. Cablaggi strutturati, quadri di media/bassa tensione e massima continuità operativa.</p>
-          <a href="#preventivi" class="btn btn-primary" style="margin-top: 1rem;"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i> Richiedi Info</a>
+          <h3>Impianti Industriali & Aziendali</h3>
+          <p>Infrastrutture elettriche complesse per capannoni, centri logistici e attività commerciali. Quadri di potenza, cablaggi strutturati e continuità operativa garantita senza interruzioni.</p>
+          <a href="#preventivi" class="btn btn-primary" style="margin-top: 1rem;"><i class="fa-solid fa-chevron-right" aria-hidden="true"></i> Richiedi Consulenza Industriale</a>
         </article>
       </div>
     </section>
 
-    <!-- 4. CHI SIAMO -->
-    <section id="chisiamo" style="background-color: var(--bg-gray);">
+    <!-- 4. IL METODO DI LAVORO (Crea ossessione e fiducia maniacale) -->
+    <section id="metodo" style="background-color: var(--bg-gray);">
       <div class="section-title">
-        <h2>Chi Siamo</h2>
-        <p>Competenza, sicurezza e innovazione tecnologica al tuo servizio</p>
+        <h2>Il Nostro Metodo Operativo</h2>
+        <p>Ecco perché affidarsi a Digital Sat significa zero problemi e massima precisione</p>
+      </div>
+      <div class="process-grid">
+        <div class="process-card">
+          <div class="process-number">1</div>
+          <h3>Sopralluogo & Analisi</h3>
+          <p>Esaminiamo lo stato attuale dell'immobile o dell'azienda per individuare criticità, fabbisogni energetici e margini di miglioramento tecnico.</p>
+        </div>
+        <div class="process-card">
+          <div class="process-number">2</div>
+          <h3>Progettazione Sartoriale</h3>
+          <p>Elaboriamo lo schema esecutivo dell'impianto dimensionando ogni componente al millimetro, senza sprechi e con i migliori standard di mercato.</p>
+        </div>
+        <div class="process-card">
+          <div class="process-number">3</div>
+          <h3>Installazione Certificata</h3>
+          <p>Eseguiamo i lavori con estrema pulizia, materiali di prima scelta e rispetto rigoroso dei tempi concordati, senza disagi per te.</p>
+        </div>
+        <div class="process-card">
+          <div class="process-number">4</div>
+          <h3>Collaudo & Rilasci</h3>
+          <p>Effettuiamo test strumentali approfonditi e consegniamo la Dichiarazione di Conformità (DICO) ufficiale a norma di legge.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5. CHI SIAMO -->
+    <section id="chisiamo">
+      <div class="section-title">
+        <h2>Chi C'è Dietro Digital Sat</h2>
+        <p>Competenza tecnica diretta, affidabilità e passione per il lavoro ben fatto</p>
       </div>
       <div class="about-grid">
         <div class="about-text">
-          <h3>Professionisti degli impianti elettrici e tecnologici</h3>
-          <p>Digital Sat di Coviello Giuseppe opera nel settore impiantistico offrendo soluzioni su misura per privati, condomini e aziende. Grazie a un'esperienza consolidata e a un aggiornamento costante sulle nuove tecnologie, garantiamo interventi a regola d'arte nel pieno rispetto delle normative vigenti.</p>
+          <h3>Artigianato evoluto e rigorosa competenza ingegneristica</h3>
+          <p>Digital Sat di Coviello Giuseppe nasce con un obiettivo preciso: elevare gli standard dell'impiantistica elettrica e tecnologica. Ogni progetto viene seguito in prima persona con un approccio maniacale alla cura dei dettagli, dei cablaggi e della sicurezza complessiva.</p>
           <ul class="about-features">
-            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Certificazione e conformità degli impianti</li>
-            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Materiali e componentistica di prima scelta</li>
-            <li><i class="fa-solid fa-circle-check" aria-hidden="true"></i> Assistenza tecnica e manutenzione programmata</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Rapporto diretto e trasparente con il cliente</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Utilizzo esclusivo di marchi leader della componentistica</li>
+            <li><i class="fa-solid fa-check" aria-hidden="true"></i> Aggiornamento continuo sulle normative di sicurezza</li>
           </ul>
         </div>
         <div class="about-card-box">
-          <h3 style="color: var(--brand-navy); margin-bottom: 1rem;"><i class="fa-solid fa-bullseye" style="color: var(--accent-color);"></i> La Nostra Missione</h3>
-          <p style="color: var(--text-muted); margin-bottom: 0;">Garantire il massimo comfort energetico e la totale sicurezza degli ambienti attraverso impianti efficienti, sicuri e progettati per durare nel tempo.</p>
+          <h3 style="color: var(--brand-navy); margin-bottom: 1rem;"><i class="fa-solid fa-shield-halved" style="color: var(--accent-color);"></i> Garanzia di Risultato</h3>
+          <p style="color: var(--text-muted); margin-bottom: 0;">Non ti lasciamo mai solo dopo il montaggio. Offriamo programmi di manutenzione programmata e assistenza rapida per preservare l'efficienza dei tuoi impianti nel corso degli anni.</p>
         </div>
       </div>
     </section>
 
-    <!-- 5. PREVENTIVI & CONTATTI -->
+    <!-- FAQ SECTION -->
+    <section style="background-color: var(--bg-gray);">
+      <div class="section-title">
+        <h2>Domande Frequenti (FAQ)</h2>
+        <p>Risposte chiare ai dubbi più comuni dei nostri clienti</p>
+      </div>
+      <div class="faq-container">
+        <div class="faq-item">
+          <h3><i class="fa-solid fa-circle-question"></i> Quanto tempo richiede l'installazione di un impianto fotovoltaico?</h3>
+          <p>In media, l'installazione residenziale standard viene completata in 1-2 giorni lavorativi, espletando successivamente tutte le pratiche di connessione e burocratiche.</p>
+        </div>
+        <div class="faq-item">
+          <h3><i class="fa-solid fa-circle-question"></i> Rilasciate la certificazione a fine lavori?</h3>
+          <p>Assolutamente sì. Ogni impianto viene collaudato e corredato dalla regolare Dichiarazione di Conformità (DICO) obbligatoria per legge.</p>
+        </div>
+        <div class="faq-item">
+          <h3><i class="fa-solid fa-circle-question"></i> Operate solo su Bari o anche in provincia?</h3>
+          <p>La nostra sede operativa principale è a Bari, ma interveniamo regolarmente su tutto il territorio provinciale e nei comuni limitrofi per impianti civili e industriali.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- 6. PREVENTIVI & CONTATTI -->
     <section id="preventivi" class="preventivi-section">
       <div class="section-title">
-        <h2>Preventivi & Contatti</h2>
-        <p>Mettiti in contatto con noi o compila il modulo per un preventivo gratuito</p>
+        <h2>Richiedi il Tuo Preventivo Gratuito</h2>
+        <p>Fai il primo passo verso un impianto sicuro, moderno ed efficiente</p>
       </div>
       
       <div class="contact-wrapper">
         <div class="contact-info-card">
-          <h3>Informazioni di Contatto</h3>
+          <h3>Contatti Diretti</h3>
           <div class="contact-info-item">
             <i class="fa-solid fa-location-dot" aria-hidden="true"></i>
             <div>
@@ -835,7 +1022,7 @@
             </div>
             <div class="form-group">
               <label for="message">Messaggio / Dettagli</label>
-              <textarea id="message" name="message" rows="4" placeholder="Descrivi brevemente la tua richiesta..."></textarea>
+              <textarea id="message" name="message" rows="4" placeholder="Descrivi brevemente la tua richiesta o il problema da risolvere..."></textarea>
             </div>
             <button type="submit" id="submitBtn" class="btn btn-primary" style="width: 100%; justify-content: center;"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Invia Richiesta Preventivo</button>
             <div id="formStatus" aria-live="polite"></div>
