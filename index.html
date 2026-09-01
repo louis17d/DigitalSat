@@ -648,6 +648,14 @@
       box-shadow: 0 0 0 3px rgba(0, 210, 255, 0.2);
     }
 
+    /* Stile per i campi non validi/vuoti */
+    .form-group input.field-error,
+    .form-group select.field-error,
+    .form-group textarea.field-error {
+      border-color: #ef4444 !important;
+      box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.25) !important;
+    }
+
     #formStatus {
       margin-top: 1rem;
       text-align: center;
@@ -913,7 +921,7 @@
         <div class="process-card">
           <div class="process-number">3</div>
           <h3>Installazione Certificata</h3>
-          <p>Eseguiamo i lavori con estrema pulizia, materials di prima scelta e rispetto rigoroso dei tempi concordati, senza disagi per te.</p>
+          <p>Eseguiamo i lavori con estrema pulizia, materiali di prima scelta e rispetto rigoroso dei tempi concordati, senza disagi per te.</p>
         </div>
         <div class="process-card">
           <div class="process-number">4</div>
@@ -1006,22 +1014,23 @@
         </div>
 
         <div class="contact-form">
-          <form id="quoteForm">
+          <form id="quoteForm" novalidate>
             <div class="form-group">
-              <label for="name">Nome e Cognome</label>
+              <label for="name">Nome e Cognome *</label>
               <input type="text" id="name" name="user_name" required placeholder="Es. Mario Rossi">
             </div>
             <div class="form-group">
-              <label for="email">Email</label>
+              <label for="email">Email *</label>
               <input type="email" id="email" name="user_email" required placeholder="Es. mario@example.com">
             </div>
             <div class="form-group">
-              <label for="phone">Telefono</label>
+              <label for="phone">Telefono *</label>
               <input type="tel" id="phone" name="user_phone" required placeholder="Es. 3331234567">
             </div>
             <div class="form-group">
-              <label for="service">Servizio di Interesse</label>
-              <select id="service" name="service_type">
+              <label for="service">Servizio di Interesse *</label>
+              <select id="service" name="service_type" required>
+                <option value="" disabled selected>-- Seleziona un servizio --</option>
                 <option value="Fotovoltaici & Storage">Fotovoltaici & Storage</option>
                 <option value="TV & Sistemi Satellitari">TV & Sistemi Satellitari</option>
                 <option value="Citofonia & Videocitofonia Smart">Citofonia & Videocitofonia Smart</option>
@@ -1031,8 +1040,8 @@
               </select>
             </div>
             <div class="form-group">
-              <label for="message">Messaggio / Dettagli</label>
-              <textarea id="message" name="message" rows="4" placeholder="Descrivi brevemente la tua richiesta o il problema da risolvere..."></textarea>
+              <label for="message">Messaggio / Dettagli *</label>
+              <textarea id="message" name="message" rows="4" required placeholder="Descrivi brevemente la tua richiesta o il problema da risolvere..."></textarea>
             </div>
             <button type="submit" id="submitBtn" class="btn btn-primary" style="width: 100%; justify-content: center;"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Invia Richiesta Preventivo</button>
             <div id="formStatus" aria-live="polite"></div>
@@ -1134,14 +1143,55 @@
       }
     });
 
-    // Gestione Invio Form tramite EmailJS
+    // Gestione Invio Form tramite EmailJS con Validazione Completa
     const quoteForm = document.getElementById('quoteForm');
     const submitBtn = document.getElementById('submitBtn');
     const formStatus = document.getElementById('formStatus');
 
+    // Rimuove la classe d'errore appena l'utente digita
+    quoteForm.querySelectorAll('input, select, textarea').forEach(field => {
+      field.addEventListener('input', () => {
+        if (field.value.trim() !== '') {
+          field.classList.remove('field-error');
+        }
+      });
+      field.addEventListener('change', () => {
+        if (field.value.trim() !== '') {
+          field.classList.remove('field-error');
+        }
+      });
+    });
+
     quoteForm.addEventListener('submit', function(e) {
       e.preventDefault();
-      
+
+      let isValid = true;
+      let firstInvalidField = null;
+
+      // Reset degli errori visivi
+      const requiredFields = quoteForm.querySelectorAll('input[required], select[required], textarea[required]');
+      requiredFields.forEach(field => {
+        if (!field.value || field.value.trim() === '') {
+          isValid = false;
+          field.classList.add('field-error');
+          if (!firstInvalidField) {
+            firstInvalidField = field;
+          }
+        } else {
+          field.classList.remove('field-error');
+        }
+      });
+
+      // Se il modulo non è completo, blocca l'invio
+      if (!isValid) {
+        formStatus.style.color = '#ef4444';
+        formStatus.textContent = 'Compila tutti i campi evidenziati in rosso per procedere.';
+        if (firstInvalidField) {
+          firstInvalidField.focus();
+        }
+        return;
+      }
+
       const SERVICE_ID = "Libero_service";
       const TEMPLATE_ADMIN = "template_zkgspel";
 
@@ -1150,7 +1200,7 @@
       formStatus.style.color = '#00d2ff';
       formStatus.textContent = '';
 
-      // Invio email diretta a EmailJS
+      // Invio tramite EmailJS
       emailjs.sendForm(SERVICE_ID, TEMPLATE_ADMIN, this)
         .then(() => {
           formStatus.style.color = '#10b981';
