@@ -1,0 +1,24 @@
+{
+  "name": "DIGITAL SAT - Impianti Elettrici e Fotovoltaico",
+  "short_name": "DIGITAL SAT",
+  "description": "DIGITAL SAT di Coviello Giuseppe realizza impianti elettrici civili e industriali, sistemi fotovoltaici e antintrusione a Bari e Modugno.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#121c2e",
+  "theme_color": "#121c2e",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "Assets/IMG_7597.jpeg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "Assets/IMG_7597.jpeg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "any maskable"
+    }
+  ]
+}
