@@ -10,11 +10,12 @@
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
+  <!-- SDK EmailJS -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script type="text/javascript">
     (function() {
-      // Inserisci qui la tua Public Key reale di EmailJS
-      emailjs.init("YOUR_PUBLIC_KEY");
+      // Inserisci la tua Public Key (Account > API Keys) al posto di 'INSERISCI_QUI_LA_TUA_PUBLIC_KEY'
+      emailjs.init("INSERISCI_QUI_LA_TUA_PUBLIC_KEY");
     })();
   </script>
 
@@ -917,7 +918,7 @@
         <div class="process-card">
           <div class="process-number">4</div>
           <h3>Collaudo & Rilasci</h3>
-          <p>Effettuiamo test instrumental approfonditi e consegniamo la Dichiarazione di Conformità (DICO) ufficiale a norma di legge.</p>
+          <p>Effettuiamo test strumentali approfonditi e consegniamo la Dichiarazione di Conformità (DICO) ufficiale a norma di legge.</p>
         </div>
       </div>
     </section>
@@ -985,7 +986,7 @@
             <i class="fa-solid fa-phone" aria-hidden="true"></i>
             <div>
               <h4>Telefono</h4>
-              <p><a href="tel:+39 3939537159" style="color: #cbd5e1; text-decoration: none;">+39 3939537159</a></p>
+              <p><a href="tel:+393939537159" style="color: #cbd5e1; text-decoration: none;">+39 3939537159</a></p>
             </div>
           </div>
           <div class="contact-info-item">
@@ -1051,11 +1052,11 @@
         <div class="logo-subtext">di Coviello Giuseppe</div>
       </div>
     </div>
-    <p>&copy; 2026 DIGITAL SAT di Coviello Giuseppe. Tutti i diritti riservati. Manutenzione e assistenza autorizzata / specializzata.</p>
+    <p>&copy; 2026 DIGITAL SAT di Coviello Giuseppe. Tutti i diritti riservati.</p>
   </footer>
 
   <script>
-    // Gestione Menu Mobile & Dropdown con Toggle Bidirezionale Corretto
+    // Gestione Menu Mobile & Dropdown con Toggle Bidirezionale
     const menuToggle = document.getElementById('menuToggle');
     const mainNav = document.getElementById('mainNav');
     const dropdowns = document.querySelectorAll('.dropdown');
@@ -1077,7 +1078,7 @@
       menuToggle.setAttribute('aria-expanded', isActive);
     });
 
-    // Toggle dropdown mobile corretto (solo sulle voci principali dei dropdown)
+    // Toggle dropdown mobile
     dropdowns.forEach(dropdown => {
       const trigger = dropdown.querySelector(':scope > a');
       if (trigger) {
@@ -1088,7 +1089,6 @@
             
             const wasActive = dropdown.classList.contains('active');
             
-            // Chiudi gli altri dropdown aperti
             dropdowns.forEach(d => {
               if (d !== dropdown) {
                 d.classList.remove('active');
@@ -1097,7 +1097,6 @@
               }
             });
 
-            // Inverti lo stato del corrente
             if (wasActive) {
               dropdown.classList.remove('active');
               trigger.setAttribute('aria-expanded', 'false');
@@ -1110,9 +1109,9 @@
       }
     });
 
-    // Chiusura automatica menu mobile al click sui link effettivi di navigazione
+    // Chiusura automatica menu mobile al click sui link effettivi
     document.querySelectorAll('nav a').forEach(link => {
-      link.addEventListener('click', (e) => {
+      link.addEventListener('click', () => {
         const parentLi = link.parentElement;
         const isParentDropdownLink = parentLi && parentLi.classList.contains('dropdown') && link.matches('.dropdown > a');
 
@@ -1135,7 +1134,7 @@
       }
     });
 
-    // EmailJS Form Handling Script con Invio Doppio (Admin + Cliente)
+    // Gestione Invio Form tramite EmailJS
     const quoteForm = document.getElementById('quoteForm');
     const submitBtn = document.getElementById('submitBtn');
     const formStatus = document.getElementById('formStatus');
@@ -1145,28 +1144,17 @@
       
       const SERVICE_ID = "Libero_service";
       const TEMPLATE_ADMIN = "template_zkgspel";
-      const TEMPLATE_CLIENT = "YOUR_TEMPLATE_ID_CLIENT";
-
-      if (SERVICE_ID === "Libero_service" || TEMPLATE_ADMIN === "template_zkgspel") {
-        formStatus.style.color = '#eab308';
-        formStatus.textContent = 'Nota: Configura le tue chiavi EmailJS reali per abilitare la trasmissione dei messaggi.';
-        return;
-      }
 
       submitBtn.disabled = true;
       submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i> Invio in corso...';
       formStatus.style.color = '#00d2ff';
       formStatus.textContent = '';
 
-      // 1. Invio prima email (Notifica a te)
+      // Invio email diretta a EmailJS
       emailjs.sendForm(SERVICE_ID, TEMPLATE_ADMIN, this)
         .then(() => {
-          // 2. Invio seconda email (Conferma automatica al cliente)
-          return emailjs.sendForm(SERVICE_ID, TEMPLATE_CLIENT, quoteForm);
-        })
-        .then(() => {
           formStatus.style.color = '#10b981';
-          formStatus.textContent = 'Richiesta inviata con successo! Controlla la tua email per la conferma.';
+          formStatus.textContent = 'Richiesta inviata con successo! Ti risponderemo al più presto.';
           quoteForm.reset();
           submitBtn.disabled = false;
           submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Invia Richiesta Preventivo';
