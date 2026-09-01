@@ -13,6 +13,7 @@
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script type="text/javascript">
     (function() {
+      // Sostituire "YOUR_PUBLIC_KEY" con la chiave pubblica reale di EmailJS
       emailjs.init("YOUR_PUBLIC_KEY");
     })();
   </script>
@@ -766,7 +767,7 @@
   <header>
     <a href="#home" class="logo-container">
       <div class="logo-img">
-        <img src="Assets/IMG_7597.jpeg" alt="Logo DIGITAL SAT Impianti Elettrici">
+        <img src="Assets/IMG_7597.jpeg" alt="Logo DIGITAL SAT Impianti Elettrici" width="48" height="48" loading="eager">
       </div>
       <div class="logo-text-wrap">
         <div class="logo-text">DIGITAL SAT</div>
@@ -774,7 +775,7 @@
       </div>
     </a>
 
-    <button class="menu-toggle" id="menuToggle" aria-label="Apri menu di navigazione">
+    <button class="menu-toggle" id="menuToggle" aria-label="Apri menu di navigazione" aria-expanded="false" aria-controls="mainNav">
       <span></span>
       <span></span>
       <span></span>
@@ -785,7 +786,7 @@
         <li><a href="#home">Home</a></li>
         
         <li class="dropdown" id="dropServizi">
-          <a href="#servizi" aria-expanded="false">Servizi</a>
+          <a href="#servizi" aria-expanded="false" aria-haspopup="true">Servizi</a>
           <ul class="dropdown-content">
             <li><a href="#fotovoltaico">Fotovoltaici & Storage</a></li>
             <li><a href="#tv-satellite">TV & Sistemi Satellitari</a></li>
@@ -795,7 +796,7 @@
         </li>
 
         <li class="dropdown" id="dropImpianti">
-          <a href="#impianti" aria-expanded="false">Impianti</a>
+          <a href="#impianti" aria-expanded="false" aria-haspopup="true">Impianti</a>
           <ul class="dropdown-content">
             <li><a href="#civili">Civili</a></li>
             <li><a href="#industriali">Industriali</a></li>
@@ -980,14 +981,14 @@
             <i class="fa-solid fa-phone" aria-hidden="true"></i>
             <div>
               <h4>Telefono</h4>
-              <p>+39 080 0000000</p>
+              <p><a href="tel:+390800000000" style="color: #cbd5e1; text-decoration: none;">+39 080 0000000</a></p>
             </div>
           </div>
           <div class="contact-info-item">
             <i class="fa-solid fa-envelope" aria-hidden="true"></i>
             <div>
               <h4>Email</h4>
-              <p>info@digitalsatimpianti.it</p>
+              <p><a href="mailto:info@digitalsatimpianti.it" style="color: #cbd5e1; text-decoration: none;">info@digitalsatimpianti.it</a></p>
             </div>
           </div>
           <div class="contact-info-item">
@@ -1035,7 +1036,7 @@
   <footer>
     <div class="logo-container" style="justify-content: center; margin-bottom: 1rem;">
       <div class="logo-img">
-        <img src="Assets/IMG_7597.jpeg" alt="Logo DIGITAL SAT Impianti Elettrici">
+        <img src="Assets/IMG_7597.jpeg" alt="Logo DIGITAL SAT Impianti Elettrici" width="48" height="48" loading="lazy">
       </div>
       <div class="logo-text-wrap" style="text-align: left;">
         <div class="logo-text">DIGITAL SAT</div>
@@ -1050,6 +1051,17 @@
     const menuToggle = document.getElementById('menuToggle');
     const mainNav = document.getElementById('mainNav');
     const dropdowns = document.querySelectorAll('.dropdown');
+
+    const closeAllMenus = () => {
+      menuToggle.classList.remove('active');
+      mainNav.classList.remove('active');
+      menuToggle.setAttribute('aria-expanded', 'false');
+      dropdowns.forEach(d => {
+        d.classList.remove('active');
+        const trigger = d.querySelector('a');
+        if (trigger) trigger.setAttribute('aria-expanded', 'false');
+      });
+    };
 
     menuToggle.addEventListener('click', () => {
       const isActive = menuToggle.classList.toggle('active');
@@ -1081,20 +1093,15 @@
       });
     });
 
-    // Chiusura automatica menu mobile al click su link interno standard
+    // Chiusura automatica menu mobile al click su qualsiasi link di navigazione (inclusi sotto-menu dropdown)
     document.querySelectorAll('nav a').forEach(link => {
       link.addEventListener('click', (e) => {
+        // Se si tratta del link principale di un dropdown in visualizzazione mobile, non chiudere il menu
         if (window.innerWidth <= 992 && link.parentElement.classList.contains('dropdown')) {
           return;
         }
         if (window.innerWidth <= 992) {
-          menuToggle.classList.remove('active');
-          mainNav.classList.remove('active');
-          dropdowns.forEach(d => {
-            d.classList.remove('active');
-            const t = d.querySelector('a');
-            if (t) t.setAttribute('aria-expanded', 'false');
-          });
+          closeAllMenus();
         }
       });
     });
@@ -1103,11 +1110,7 @@
     document.addEventListener('click', (e) => {
       if (window.innerWidth <= 992) {
         if (!mainNav.contains(e.target) && !menuToggle.contains(e.target)) {
-          dropdowns.forEach(d => {
-            d.classList.remove('active');
-            const t = d.querySelector('a');
-            if (t) t.setAttribute('aria-expanded', 'false');
-          });
+          closeAllMenus();
         }
       }
     });
@@ -1120,13 +1123,19 @@
     quoteForm.addEventListener('submit', function(e) {
       e.preventDefault();
       
+      const SERVICE_ID = "YOUR_SERVICE_ID";
+      const TEMPLATE_ID = "YOUR_TEMPLATE_ID";
+
+      if (SERVICE_ID === "YOUR_SERVICE_ID" || TEMPLATE_ID === "YOUR_TEMPLATE_ID") {
+        formStatus.style.color = '#eab308';
+        formStatus.textContent = 'Nota: Configura le tue chiavi EmailJS reali per abilitare la trasmissione dei messaggi.';
+        return;
+      }
+
       submitBtn.disabled = true;
       submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i> Invio in corso...';
       formStatus.style.color = '#00d2ff';
       formStatus.textContent = '';
-
-      const SERVICE_ID = "YOUR_SERVICE_ID";
-      const TEMPLATE_ID = "YOUR_TEMPLATE_ID";
 
       emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, this)
         .then(() => {
@@ -1146,3 +1155,5 @@
 
 </body>
 </html>
+index.html
+Visualizzazione di index.html.
