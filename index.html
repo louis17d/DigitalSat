@@ -1,17 +1,23 @@
-<!DOCTYPE html>
+  <!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="DIGITAL SAT di Coviello Giuseppe realizza impianti elettrici civili e industriali, sistemi fotovoltaici e antintrusione a Bari. Massima qualità e certificazione a norma di legge.">
+  <meta name="description" content="DIGITAL SAT di Coviello Giuseppe realizza impianti elettrici civili e industriali, sistemi fotovoltaici e antintrusione a Bari e Modugno. Massima qualità e certificazione DM 37/08.">
   <meta name="robots" content="index, follow">
   
-  <!-- Content Security Policy per blindare il sito contro XSS e script non autorizzati -->
+  <!-- Open Graph / Social Media -->
+  <meta property="og:title" content="DIGITAL SAT | Impianti Elettrici e Fotovoltaico PUGLIA">
+  <meta property="og:description" content="Progettazione, installazione e certificazione impianti elettrici, fotovoltaici e videocitofonia a Bari e provincia.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://digitalsat.pages.dev/">
+  
+  <!-- Content Security Policy -->
   <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://www.google.com https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data: https:;">
 
   <title>DIGITAL SAT | Impianti Elettrici e Fotovoltaico PUGLIA</title>
   
-  <!-- Favicon / Logo per le schede del browser -->
+  <!-- Favicon -->
   <link rel="icon" type="image/jpeg" href="Assets/IMG_7597.jpeg">
   <link rel="apple-touch-icon" href="Assets/IMG_7597.jpeg">
 
@@ -25,7 +31,7 @@
     })();
   </script>
 
-  <!-- Script Google reCAPTCHA v2 (Caricamento dinamico basato sul consenso) -->
+  <!-- Google reCAPTCHA v2 (Caricamento dinamico) -->
   <script>
     function loadRecaptchaScript() {
       if (document.getElementById('recaptcha-script')) return;
@@ -43,6 +49,46 @@
         loadRecaptchaScript();
       }
     });
+  </script>
+
+  <!-- Schema.org JSON-LD per SEO Locale -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Electrician",
+    "name": "DIGITAL SAT di Coviello Giuseppe",
+    "image": "https://digitalsat.pages.dev/Assets/IMG_7597.jpeg",
+    "@id": "https://digitalsat.pages.dev/#electrician",
+    "url": "https://digitalsat.pages.dev/",
+    "telephone": "+393939537159",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Via Giovanni Pascoli 2/G",
+      "addressLocality": "Modugno",
+      "addressRegion": "BA",
+      "postalCode": "70026",
+      "addressCountry": "IT"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 41.0875,
+      "longitude": 16.7792
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday"
+      ],
+      "opens": "08:00",
+      "closes": "18:00"
+    },
+    "vatID": "IT08028220724"
+  }
   </script>
 
   <style>
@@ -165,7 +211,6 @@
       outline: none;
     }
 
-    /* Dropdown Navigation */
     .dropdown {
       position: relative;
     }
@@ -222,7 +267,6 @@
       }
     }
 
-    /* Hamburger Menu Toggle Button */
     .menu-toggle {
       display: none;
       flex-direction: column;
@@ -508,6 +552,39 @@
       font-size: 0.9rem;
     }
 
+    /* Testimonials / Social Proof Section */
+    .reviews-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+    }
+
+    .review-card {
+      background: var(--light-color);
+      padding: 2rem;
+      border-radius: 12px;
+      border: 1px solid #e2e8f0;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+    }
+
+    .stars {
+      color: #f59e0b;
+      margin-bottom: 0.8rem;
+    }
+
+    .review-card p {
+      font-style: italic;
+      color: var(--text-muted);
+      font-size: 0.95rem;
+      margin-bottom: 1rem;
+    }
+
+    .review-author {
+      font-weight: 700;
+      color: var(--brand-navy);
+      font-size: 0.9rem;
+    }
+
     /* Chi Siamo Section */
     .about-grid {
       display: grid;
@@ -718,7 +795,27 @@
       cursor: pointer;
     }
 
-    /* Cookie Banner Styles */
+    /* Floating Call Button for Mobile */
+    .floating-call-btn {
+      display: none;
+      position: fixed;
+      bottom: 25px;
+      right: 25px;
+      background: var(--accent-gradient);
+      color: var(--brand-navy-dark);
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      box-shadow: 0 6px 20px rgba(0, 210, 255, 0.5);
+      z-index: 999;
+      text-decoration: none;
+      transition: var(--transition-smooth);
+    }
+
+    /* Cookie Banner */
     #cookieBanner {
       position: fixed;
       bottom: 0;
@@ -764,12 +861,8 @@
       color: var(--light-color);
       border: 1px solid rgba(255,255,255,0.3);
     }
-    .cookie-btn:hover {
-      opacity: 0.9;
-      transform: translateY(-1px);
-    }
 
-    /* Modal Generico per Policy */
+    /* Modal Generico Policy */
     .legal-modal {
       display: none;
       position: fixed;
@@ -822,9 +915,6 @@
       margin-bottom: 0.8rem;
       line-height: 1.6;
     }
-    .legal-modal-content ul {
-      padding-left: 20px;
-    }
 
     /* Footer */
     footer {
@@ -858,6 +948,9 @@
     }
 
     @media (max-width: 992px) {
+      .floating-call-btn {
+        display: flex;
+      }
       .menu-toggle {
         display: flex;
       }
@@ -900,11 +993,6 @@
         border-radius: 0;
       }
 
-      nav a:hover {
-        background-color: rgba(0, 210, 255, 0.1);
-        color: var(--accent-color);
-      }
-
       .dropdown > a::after {
         float: right;
       }
@@ -922,18 +1010,6 @@
       .dropdown.active .dropdown-content {
         display: block;
         animation: fadeIn 0.3s ease-in-out;
-      }
-
-      .menu-toggle.active span:nth-child(1) {
-        transform: translateY(9px) rotate(45deg);
-      }
-
-      .menu-toggle.active span:nth-child(2) {
-        opacity: 0;
-      }
-
-      .menu-toggle.active span:nth-child(3) {
-        transform: translateY(-9px) rotate(-45deg);
       }
     }
 
@@ -1103,7 +1179,7 @@
         <div class="process-card">
           <div class="process-number">4</div>
           <h3>Collaudo & Rilasci</h3>
-          <p>Effettuiamo test strumentali approfonditi e consegniamo la Dichiarazione di Conformità (DICO) ufficiale a norma di legge.</p>
+          <p>Effettuiamo test instrumental approfonditi e consegniamo la Dichiarazione di Conformità (DICO) ufficiale a norma di legge.</p>
         </div>
       </div>
     </section>
@@ -1132,6 +1208,30 @@
 
     <section style="background-color: var(--bg-gray);">
       <div class="section-title">
+        <h2>Dicono di Noi</h2>
+        <p>La soddisfazione dei nostri clienti è la nostra migliore garanzia</p>
+      </div>
+      <div class="reviews-grid">
+        <div class="review-card">
+          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <p>"Installazione di un impianto fotovoltaico con accumulo impeccabile. Lavori eseguiti nei tempi previsti e documentazione DICO rilasciata subito."</p>
+          <div class="review-author">M. Caporusso - Bari</div>
+        </div>
+        <div class="review-card">
+          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <p>"Professionista serio e puntuale. Ha risolto un problema complesso sull'impianto di videocitofonia condominiale in tempi record."</p>
+          <div class="review-author">A. Di Leo - Modugno</div>
+        </div>
+        <div class="review-card">
+          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <p>"Rifacimento completo del quadro elettrico della mia attività. Pulizia nel lavoro e massima precisione. Consigliatissimo."</p>
+          <div class="review-author">R. Milella - Bitonto</div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="section-title">
         <h2>Domande Frequenti (FAQ)</h2>
         <p>Risposte chiare ai dubbi più comuni dei nostri clienti</p>
       </div>
@@ -1146,7 +1246,7 @@
         </div>
         <div class="faq-item">
           <h3><i class="fa-solid fa-circle-question"></i> Operate solo su Bari o anche in provincia?</h3>
-          <p>La nostra sede operativa principale è a Bari, ma interveniamo regolarmente su tutto il territorio provinciale e nei comuni limitrofi per impianti civili e industriali.</p>
+          <p>La nostra sede operativa principale è a Modugno (Bari), ma interveniamo regolarmente su tutto il territorio provinciale per impianti civili e industriali.</p>
         </div>
       </div>
     </section>
@@ -1178,7 +1278,7 @@
             <i class="fa-solid fa-envelope" aria-hidden="true"></i>
             <div>
               <h4>PEC</h4>
-              <p><a href="mailto:digitalsat2006@libero.it" style="color: #cbd5e1; text-decoration: none;">digital.coviello@pec.it</a></p>
+              <p><a href="mailto:digital.coviello@pec.it" style="color: #cbd5e1; text-decoration: none;">digital.coviello@pec.it</a></p>
             </div>
           </div>
           <div class="contact-info-item">
@@ -1240,6 +1340,11 @@
     </section>
   </main>
 
+  <!-- Pulsante di Chiamata Rapida Fluttuante Mobile -->
+  <a href="tel:+393939537159" class="floating-call-btn" aria-label="Chiama ora">
+    <i class="fa-solid fa-phone"></i>
+  </a>
+
   <div id="cookieBanner">
     <p>Questo sito utilizza cookie tecnici e di terze parti (Google reCAPTCHA) per garantirti la migliore esperienza di navigazione. Puoi accettare tutti i cookie o rifiutare. Consulta la nostra <button type="button" class="btn-link" id="openCookieModal" style="color: var(--accent-color);">Cookie Policy</button> per maggiori dettagli.</p>
     <div class="cookie-buttons">
@@ -1254,7 +1359,7 @@
       <h2>Informativa sulla Privacy (GDPR)</h2>
       <p>Ai sensi del Regolamento UE 2016/679 (GDPR), DIGITAL SAT di Coviello Giuseppe fornisce la presente informativa sul trattamento dei dati personali raccolti tramite il form di contatto.</p>
       <h3>1. Titolare del Trattamento</h3>
-      <p>DIGITAL SAT di Coviello Giuseppe, con sede legale a Bari (BA) – Email: digitalsat2006@libero.it.</p>
+      <p>DIGITAL SAT di Coviello Giuseppe, con sede legale a Modugno (BA) – Email: digital.coviello@pec.it.</p>
       <h3>2. Finalità e Base Giuridica</h3>
       <p>I dati personali forniti (nome, email, telefono, messaggio) vengono raccolti e trattati esclusivamente per rispondere alle richieste di preventivo e informazioni commerciali avanzate dall'utente. La base giuridica è l'esecuzione di misure precontrattuali.</p>
       <h3>3. Conservazione dei Dati</h3>
@@ -1287,7 +1392,7 @@
       <h2>Risoluzione delle Controversie (ODR)</h2>
       <p>La Commissione Europea fornisce una piattaforma per la risoluzione alternativa delle controversie online (ODR), accessibile al seguente link ufficiale:</p>
       <p><a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer">https://ec.europa.eu/consumers/odr</a></p>
-      <p>Il nostro indirizzo email di contatto per eventuali contestazioni è: digitalsat2006@libero.it</p>
+      <p>Il nostro indirizzo email di contatto per eventuali contestazioni è: digital.coviello@pec.it</p>
     </div>
   </div>
 
