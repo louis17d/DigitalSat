@@ -6,6 +6,9 @@
   <meta name="description" content="DIGITAL SAT di Coviello Giuseppe realizza impianti elettrici civili e industriali, sistemi fotovoltaici e antintrusione a Bari. Massima qualità e certificazione a norma di legge.">
   <meta name="robots" content="index, follow">
   
+  <!-- Content Security Policy per blindare il sito contro XSS e script non autorizzati -->
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://www.google.com https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data: https:;">
+
   <title>DIGITAL SAT | Impianti Elettrici e Fotovoltaico PUGLIA</title>
   
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -319,7 +322,6 @@
       transform: translateY(-2px);
     }
 
-    /* Pulsanti testuali per modali (accessibili) */
     .btn-link {
       background: none;
       border: none;
@@ -450,7 +452,7 @@
       margin-bottom: 1.5rem;
     }
 
-    /* Metodo di Lavoro (Step by Step) */
+    /* Metodo di Lavoro */
     .process-grid {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
@@ -696,7 +698,6 @@
       font-size: 0.95rem;
     }
 
-    /* Privacy Checkbox Style */
     .privacy-group {
       display: flex;
       align-items: flex-start;
@@ -764,7 +765,7 @@
       transform: translateY(-1px);
     }
 
-    /* Modal Generico per Policy (Privacy / Cookie / Note Legali / ODR) */
+    /* Modal Generico per Policy */
     .legal-modal {
       display: none;
       position: fixed;
@@ -852,7 +853,6 @@
       padding-top: 1.2rem;
     }
 
-    /* Responsive Queries */
     @media (max-width: 992px) {
       .menu-toggle {
         display: flex;
@@ -1190,15 +1190,15 @@
           <form id="quoteForm" novalidate>
             <div class="form-group">
               <label for="name">Nome e Cognome *</label>
-              <input type="text" id="name" name="user_name" required placeholder="Es. Mario Rossi">
+              <input type="text" id="name" name="user_name" autocomplete="name" required placeholder="Es. Mario Rossi">
             </div>
             <div class="form-group">
               <label for="email">Email *</label>
-              <input type="email" id="email" name="user_email" required placeholder="Es. mario@example.com">
+              <input type="email" id="email" name="user_email" autocomplete="email" required placeholder="Es. mario@example.com">
             </div>
             <div class="form-group">
               <label for="phone">Telefono *</label>
-              <input type="tel" id="phone" name="user_phone" required placeholder="Es. 3331234567">
+              <input type="tel" id="phone" name="user_phone" autocomplete="tel" required placeholder="Es. 3331234567">
             </div>
             <div class="form-group">
               <label for="service">Servizio di Interesse *</label>
@@ -1214,10 +1214,9 @@
             </div>
             <div class="form-group">
               <label for="message">Messaggio / Dettagli *</label>
-              <textarea id="message" name="message" rows="4" required placeholder="Descrivi brevemente la tua richiesta o il problema da risolvere..."></textarea>
+              <textarea id="message" name="message" rows="4" autocomplete="off" required placeholder="Descrivi brevemente la tua richiesta o il problema da risolvere..."></textarea>
             </div>
             
-            <!-- Checkbox Privacy Obbligatoria GDPR -->
             <div class="privacy-group">
               <input type="checkbox" id="privacyCheck" name="privacy_consent" required>
               <label for="privacyCheck" style="font-weight: normal; margin-bottom: 0;">
@@ -1225,7 +1224,6 @@
               </label>
             </div>
 
-            <!-- Contenitore reCAPTCHA v2 -->
             <div class="form-group" style="display: flex; justify-content: center;">
               <div class="g-recaptcha" data-sitekey="6LfIo6MtAAAAAPmgCGjlsrj1te4BVVGrp68sbf4o"></div>
             </div>
@@ -1238,7 +1236,6 @@
     </section>
   </main>
 
-  <!-- Cookie Banner (GDPR & ePrivacy Compliant con blocco preventivo reCAPTCHA) -->
   <div id="cookieBanner">
     <p>Questo sito utilizza cookie tecnici e di terze parti (Google reCAPTCHA) per garantirti la migliore esperienza di navigazione. Puoi accettare tutti i cookie o rifiutare. Consulta la nostra <button type="button" class="btn-link" id="openCookieModal" style="color: var(--accent-color);">Cookie Policy</button> per maggiori dettagli.</p>
     <div class="cookie-buttons">
@@ -1247,7 +1244,6 @@
     </div>
   </div>
 
-  <!-- Modale Informativa Privacy -->
   <div class="legal-modal" id="privacyModal" aria-hidden="true" role="dialog">
     <div class="legal-modal-content">
       <button class="legal-modal-close" id="closePrivacyModal" aria-label="Chiudi">&times;</button>
@@ -1264,7 +1260,6 @@
     </div>
   </div>
 
-  <!-- Modale Cookie Policy -->
   <div class="legal-modal" id="cookieModal" aria-hidden="true" role="dialog">
     <div class="legal-modal-content">
       <button class="legal-modal-close" id="closeCookieModal" aria-label="Chiudi">&times;</button>
@@ -1282,13 +1277,12 @@
     </div>
   </div>
 
-  <!-- Modale Note Legali / Piattaforma ODR -->
   <div class="legal-modal" id="odrModal" aria-hidden="true" role="dialog">
     <div class="legal-modal-content">
       <button class="legal-modal-close" id="closeOdrModal" aria-label="Chiudi">&times;</button>
       <h2>Risoluzione delle Controversie (ODR)</h2>
       <p>La Commissione Europea fornisce una piattaforma per la risoluzione alternativa delle controversie online (ODR), accessibile al seguente link ufficiale:</p>
-      <p><a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener">https://ec.europa.eu/consumers/odr</a></p>
+      <p><a href="https://ec.europa.eu/consumers/odr" target="_blank" rel="noopener noreferrer">https://ec.europa.eu/consumers/odr</a></p>
       <p>Il nostro indirizzo email di contatto per eventuali contestazioni è: digitalsat2006@libero.it</p>
     </div>
   </div>
@@ -1320,7 +1314,6 @@
   </footer>
 
   <script>
-    // Gestione Menu Mobile & Dropdown con Toggle Bidirezionale
     const menuToggle = document.getElementById('menuToggle');
     const mainNav = document.getElementById('mainNav');
     const dropdowns = document.querySelectorAll('.dropdown');
@@ -1395,7 +1388,6 @@
       }
     });
 
-    // Gestione Modali Legali (Privacy, Cookie, ODR)
     const privacyModal = document.getElementById('privacyModal');
     const cookieModal = document.getElementById('cookieModal');
     const odrModal = document.getElementById('odrModal');
@@ -1420,7 +1412,6 @@
       if (e.target === odrModal) closeModal(odrModal);
     });
 
-    // Gestione Cookie Banner & Blocco Preventivo reCAPTCHA
     const cookieBanner = document.getElementById('cookieBanner');
     const cookieAccept = document.getElementById('cookieAccept');
     const cookieReject = document.getElementById('cookieReject');
@@ -1440,7 +1431,6 @@
       cookieBanner.style.display = 'none';
     });
 
-    // Gestione Invio Form tramite EmailJS con Validazioni Avanzate, Privacy e reCAPTCHA v2
     const quoteForm = document.getElementById('quoteForm');
     const submitBtn = document.getElementById('submitBtn');
     const formStatus = document.getElementById('formStatus');
@@ -1527,7 +1517,6 @@
         if (!errorMessage) errorMessage = 'Devi accettare l\'informativa sulla privacy per procedere.';
       }
 
-      // Validazione reCAPTCHA solo se i cookie sono stati accettati e l'SDK è caricato
       if (localStorage.getItem('cookie_consent') === 'accepted' && typeof grecaptcha !== 'undefined') {
         const recaptchaResponse = grecaptcha.getResponse();
         if (recaptchaResponse.length === 0) {
