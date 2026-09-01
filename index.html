@@ -1143,49 +1143,101 @@
       }
     });
 
-    // Gestione Invio Form tramite EmailJS con Validazione Completa
+    // Gestione Invio Form tramite EmailJS con Validazioni Avanzate
     const quoteForm = document.getElementById('quoteForm');
     const submitBtn = document.getElementById('submitBtn');
     const formStatus = document.getElementById('formStatus');
 
-    // Rimuove la classe d'errore appena l'utente digita
+    // Utility per la rimozione dello stato di errore durante l'inserimento
     quoteForm.querySelectorAll('input, select, textarea').forEach(field => {
-      field.addEventListener('input', () => {
-        if (field.value.trim() !== '') {
-          field.classList.remove('field-error');
-        }
-      });
-      field.addEventListener('change', () => {
-        if (field.value.trim() !== '') {
-          field.classList.remove('field-error');
-        }
-      });
+      const clearError = () => field.classList.remove('field-error');
+      field.addEventListener('input', clearError);
+      field.addEventListener('change', clearError);
     });
+
+    // Helper di validazione avanzata
+    const isValidEmail = (email) => {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email.trim());
+    };
+
+    const isValidPhone = (phone) => {
+      // Accetta numeri, spazi, trattini e il '+' iniziale (minimo 6 cifre)
+      const digitsOnly = phone.replace(/\D/g, '');
+      const phoneRegex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
+      return digitsOnly.length >= 6 && (phoneRegex.test(phone.trim()) || digitsOnly.length >= 8);
+    };
+
+    const isMeaningfulText = (text, minLength = 3) => {
+      const trimmed = text.trim();
+      if (trimmed.length < minLength) return false;
+      // Controlla che il testo non sia composto interamente da caratteri identici ripetuti (es. "aaaaa")
+      const isRepeated = /^([a-zA-Z0-9])\1+$/.test(trimmed);
+      return !isRepeated;
+    };
 
     quoteForm.addEventListener('submit', function(e) {
       e.preventDefault();
 
       let isValid = true;
+      let errorMessage = '';
       let firstInvalidField = null;
 
-      // Reset degli errori visivi
-      const requiredFields = quoteForm.querySelectorAll('input[required], select[required], textarea[required]');
-      requiredFields.forEach(field => {
-        if (!field.value || field.value.trim() === '') {
-          isValid = false;
-          field.classList.add('field-error');
-          if (!firstInvalidField) {
-            firstInvalidField = field;
-          }
-        } else {
-          field.classList.remove('field-error');
-        }
+      const nameInput = document.getElementById('name');
+      const emailInput = document.getElementById('email');
+      const phoneInput = document.getElementById('phone');
+      const serviceInput = document.getElementById('service');
+      const messageInput = document.getElementById('message');
+
+      // Reset iniziale errori visivi
+      [nameInput, emailInput, phoneInput, serviceInput, messageInput].forEach(field => {
+        field.classList.remove('field-error');
       });
 
-      // Se il modulo non è completo, blocca l'invio
+      // 1. Validazione Nome e Cognome
+      if (!isMeaningfulText(nameInput.value, 3)) {
+        isValid = false;
+        nameInput.classList.add('field-error');
+        if (!firstInvalidField) firstInvalidField = nameInput;
+        errorMessage = 'Inserisci un nome e cognome valido.';
+      }
+
+      // 2. Validazione Email
+      if (!isValidEmail(emailInput.value)) {
+        isValid = false;
+        emailInput.classList.add('field-error');
+        if (!firstInvalidField) firstInvalidField = emailInput;
+        if (!errorMessage) errorMessage = 'Inserisci un indirizzo email valido (es. nome@dominio.it).';
+      }
+
+      // 3. Validazione Numero di Telefono
+      if (!isValidPhone(phoneInput.value)) {
+        isValid = false;
+        phoneInput.classList.add('field-error');
+        if (!firstInvalidField) firstInvalidField = phoneInput;
+        if (!errorMessage) errorMessage = 'Inserisci un numero di telefono valido (es. 3331234567).';
+      }
+
+      // 4. Validazione Selezione Servizio
+      if (!serviceInput.value || serviceInput.value.trim() === '') {
+        isValid = false;
+        serviceInput.classList.add('field-error');
+        if (!firstInvalidField) firstInvalidField = serviceInput;
+        if (!errorMessage) errorMessage = 'Seleziona un servizio dal menu.';
+      }
+
+      // 5. Validazione Messaggio / Dettagli
+      if (!isMeaningfulText(messageInput.value, 10)) {
+        isValid = false;
+        messageInput.classList.add('field-error');
+        if (!firstInvalidField) firstInvalidField = messageInput;
+        if (!errorMessage) errorMessage = 'Inserisci un messaggio dettagliato (almeno 10 caratteri).';
+      }
+
+      // Gestione blocco se un controllo fallisce
       if (!isValid) {
         formStatus.style.color = '#ef4444';
-        formStatus.textContent = 'Compila tutti i campi evidenziati in rosso per procedere.';
+        formStatus.textContent = errorMessage || 'Verifica i campi evidenziati in rosso.';
         if (firstInvalidField) {
           firstInvalidField.focus();
         }
@@ -1200,7 +1252,7 @@
       formStatus.style.color = '#00d2ff';
       formStatus.textContent = '';
 
-      // Invio tramite EmailJS
+      // Invio effettivo tramite EmailJS
       emailjs.sendForm(SERVICE_ID, TEMPLATE_ADMIN, this)
         .then(() => {
           formStatus.style.color = '#10b981';
