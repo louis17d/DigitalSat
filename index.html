@@ -147,6 +147,12 @@
       content: ' ▾';
       font-size: 0.7rem;
       color: var(--accent-color);
+      transition: transform 0.3s ease;
+      display: inline-block;
+    }
+
+    .dropdown.active > a::after {
+      transform: rotate(180deg);
     }
 
     .dropdown-content {
@@ -182,9 +188,11 @@
       padding-left: 1.5rem;
     }
 
-    .dropdown:hover .dropdown-content,
-    .dropdown:focus-within .dropdown-content {
-      display: block;
+    @media (min-width: 993px) {
+      .dropdown:hover .dropdown-content,
+      .dropdown:focus-within .dropdown-content {
+        display: block;
+      }
     }
 
     /* Hamburger Menu Toggle Button */
@@ -722,11 +730,7 @@
         padding-left: 1rem;
         display: none;
         border: none;
-      }
-
-      /* Disattiva l'effetto hover su mobile e gestisci solo via JS con .active */
-      .dropdown:hover .dropdown-content {
-        display: none;
+        width: 100%;
       }
 
       .dropdown.active .dropdown-content {
@@ -913,7 +917,7 @@
         <div class="process-card">
           <div class="process-number">4</div>
           <h3>Collaudo & Rilasci</h3>
-          <p>Effettuiamo test strumentali approfonditi e consegniamo la Dichiarazione di Conformità (DICO) ufficiale a norma di legge.</p>
+          <p>Effettuiamo test instrumental approfonditi e consegniamo la Dichiarazione di Conformità (DICO) ufficiale a norma di legge.</p>
         </div>
       </div>
     </section>
@@ -1047,7 +1051,7 @@
   </footer>
 
   <script>
-    // Gestione Menu Mobile & Dropdown con Toggle Bidirezionale
+    // Gestione Menu Mobile & Dropdown con Toggle Bidirezionale Corretto
     const menuToggle = document.getElementById('menuToggle');
     const mainNav = document.getElementById('mainNav');
     const dropdowns = document.querySelectorAll('.dropdown');
@@ -1058,7 +1062,7 @@
       menuToggle.setAttribute('aria-expanded', 'false');
       dropdowns.forEach(d => {
         d.classList.remove('active');
-        const trigger = d.querySelector('a');
+        const trigger = d.querySelector(':scope > a');
         if (trigger) trigger.setAttribute('aria-expanded', 'false');
       });
     };
@@ -1069,44 +1073,58 @@
       menuToggle.setAttribute('aria-expanded', isActive);
     });
 
-    // Toggle dropdown mobile corretto (apre e chiude al tap successivo)
+    // Toggle dropdown mobile corretto (solo sulle voci principali dei dropdown)
     dropdowns.forEach(dropdown => {
-      const trigger = dropdown.querySelector('a');
-      trigger.addEventListener('click', (e) => {
-        if (window.innerWidth <= 992) {
-          e.preventDefault();
-          const wasActive = dropdown.classList.contains('active');
-          
-          // Chiudi tutti i dropdown prima di valutare
-          dropdowns.forEach(d => {
-            d.classList.remove('active');
-            const t = d.querySelector('a');
-            if (t) t.setAttribute('aria-expanded', 'false');
-          });
+      const trigger = dropdown.querySelector(':scope > a');
+      if (trigger) {
+        trigger.addEventListener('click', (e) => {
+          if (window.innerWidth <= 992) {
+            e.preventDefault();
+            e.stopPropagation();
+            
+            const wasActive = dropdown.classList.contains('active');
+            
+            // Chiudi gli altri dropdown aperti
+            dropdowns.forEach(d => {
+              if (d !== dropdown) {
+                d.classList.remove('active');
+                const t = d.querySelector(':scope > a');
+                if (t) t.setAttribute('aria-expanded', 'false');
+              }
+            });
 
-          // Se non era attivo, aprilo ora. Se era già attivo, resta chiuso.
-          if (!wasActive) {
-            dropdown.classList.add('active');
-            trigger.setAttribute('aria-expanded', 'true');
+            // Inverti lo stato del corrente
+            if (wasActive) {
+              dropdown.classList.remove('active');
+              trigger.setAttribute('aria-expanded', 'false');
+            } else {
+              dropdown.classList.add('active');
+              trigger.setAttribute('aria-expanded', 'true');
+            }
           }
-        }
-      });
+        });
+      }
     });
 
-    // Chiusura automatica menu mobile al click su qualsiasi link di navigazione (inclusi sotto-menu dropdown)
+    // Chiusura automatica menu mobile al click sui link effettivi di navigazione
     document.querySelectorAll('nav a').forEach(link => {
       link.addEventListener('click', (e) => {
-        // Se si tratta del link principale di un dropdown in visualizzazione mobile, non chiudere il menu
-        if (window.innerWidth <= 992 && link.parentElement.classList.contains('dropdown')) {
+        const parentLi = link.parentElement;
+        const isParentDropdownLink = parentLi && parentLi.classList.contains('dropdown') && link.matches('.dropdown > a');
+
+        // Se è una voce parent di un dropdown su mobile, l'evento è già gestito
+        if (window.innerWidth <= 992 && isParentDropdownLink) {
           return;
         }
+
+        // Per tutti gli altri link reali (sottomenu o singoli), chiudi il menu mobile
         if (window.innerWidth <= 992) {
           closeAllMenus();
         }
       });
     });
 
-    // Chiusura dropdown al click all'esterno su mobile
+    // Chiusura menu al click all'esterno su mobile
     document.addEventListener('click', (e) => {
       if (window.innerWidth <= 992) {
         if (!mainNav.contains(e.target) && !menuToggle.contains(e.target)) {
@@ -1155,5 +1173,3 @@
 
 </body>
 </html>
-index.html
-Visualizzazione di index.html.
