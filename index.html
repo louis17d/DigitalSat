@@ -8,10 +8,8 @@
   
   <title>DIGITAL SAT | Impianti Elettrici e Fotovoltaico a Bari</title>
   
-  <!-- FontAwesome per icone moderne -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   
-  <!-- EmailJS SDK -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script type="text/javascript">
     (function() {
@@ -725,6 +723,11 @@
         border: none;
       }
 
+      /* Disattiva l'effetto hover su mobile e gestisci solo via JS con .active */
+      .dropdown:hover .dropdown-content {
+        display: none;
+      }
+
       .dropdown.active .dropdown-content {
         display: block;
         animation: fadeIn 0.3s ease-in-out;
@@ -760,7 +763,6 @@
 </head>
 <body>
 
-  <!-- Header & Nav Semantico -->
   <header>
     <a href="#home" class="logo-container">
       <div class="logo-img">
@@ -808,7 +810,6 @@
   </header>
 
   <main>
-    <!-- 1. HERO SECTION -->
     <section id="home" class="hero">
       <div class="hero-content">
         <h1>Impianti Elettrici e Fotovoltaico d'Eccellenza a <span>Bari</span></h1>
@@ -820,7 +821,6 @@
       </div>
     </section>
 
-    <!-- TRUST STATS BAR -->
     <div class="stats-bar">
       <div class="stat-item">
         <h3>100%</h3>
@@ -840,7 +840,6 @@
       </div>
     </div>
 
-    <!-- 2. SERVIZI -->
     <section id="servizi" style="background-color: var(--bg-gray);">
       <div class="section-title">
         <h2>I Nostri Servizi Specialistici</h2>
@@ -870,7 +869,6 @@
       </div>
     </section>
 
-    <!-- 3. IMPIANTI -->
     <section id="impianti">
       <div class="section-title">
         <h2>Infrastrutture Elettriche Civili e Industriali</h2>
@@ -890,7 +888,6 @@
       </div>
     </section>
 
-    <!-- 4. IL METODO DI LAVORO -->
     <section id="metodo" style="background-color: var(--bg-gray);">
       <div class="section-title">
         <h2>Il Nostro Metodo Operativo</h2>
@@ -920,7 +917,6 @@
       </div>
     </section>
 
-    <!-- 5. CHI SIAMO -->
     <section id="chisiamo">
       <div class="section-title">
         <h2>Chi C'è Dietro DIGITAL SAT</h2>
@@ -943,7 +939,6 @@
       </div>
     </section>
 
-    <!-- FAQ SECTION -->
     <section style="background-color: var(--bg-gray);">
       <div class="section-title">
         <h2>Domande Frequenti (FAQ)</h2>
@@ -965,7 +960,6 @@
       </div>
     </section>
 
-    <!-- 6. PREVENTIVI & CONTATTI -->
     <section id="preventivi" class="preventivi-section">
       <div class="section-title">
         <h2>Richiedi il Tuo Preventivo Gratuito</h2>
@@ -1038,7 +1032,6 @@
     </section>
   </main>
 
-  <!-- Footer -->
   <footer>
     <div class="logo-container" style="justify-content: center; margin-bottom: 1rem;">
       <div class="logo-img">
@@ -1053,7 +1046,7 @@
   </footer>
 
   <script>
-    // Gestione Menu Mobile & Dropdown con Toggle Bidirezionale Nativo
+    // Gestione Menu Mobile & Dropdown con Toggle Bidirezionale
     const menuToggle = document.getElementById('menuToggle');
     const mainNav = document.getElementById('mainNav');
     const dropdowns = document.querySelectorAll('.dropdown');
@@ -1064,7 +1057,7 @@
       menuToggle.setAttribute('aria-expanded', isActive);
     });
 
-    // Toggle diretto del dropdown con controllo nativo sull'elemento cliccato
+    // Toggle dropdown mobile corretto (apre e chiude al tap successivo)
     dropdowns.forEach(dropdown => {
       const trigger = dropdown.querySelector('a');
       trigger.addEventListener('click', (e) => {
@@ -1072,14 +1065,14 @@
           e.preventDefault();
           const wasActive = dropdown.classList.contains('active');
           
-          // Chiudi tutti i dropdown
+          // Chiudi tutti i dropdown prima di valutare
           dropdowns.forEach(d => {
             d.classList.remove('active');
             const t = d.querySelector('a');
             if (t) t.setAttribute('aria-expanded', 'false');
           });
 
-          // Se non era attivo, aprilo; se era già attivo, resta chiuso (toggle perfetto)
+          // Se non era attivo, aprilo ora. Se era già attivo, resta chiuso.
           if (!wasActive) {
             dropdown.classList.add('active');
             trigger.setAttribute('aria-expanded', 'true');
@@ -1088,7 +1081,7 @@
       });
     });
 
-    // Chiusura automatica menu mobile al click su link standard interno
+    // Chiusura automatica menu mobile al click su link interno standard
     document.querySelectorAll('nav a').forEach(link => {
       link.addEventListener('click', (e) => {
         if (window.innerWidth <= 992 && link.parentElement.classList.contains('dropdown')) {
