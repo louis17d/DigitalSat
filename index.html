@@ -1,16 +1,21 @@
-  <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="it">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="DIGITAL SAT di Coviello Giuseppe realizza impianti elettrici civili e industriali, sistemi fotovoltaici e antintrusione a Bari e Modugno. Massima qualità e certificazione DM 37/08.">
   <meta name="robots" content="index, follow">
+  <meta name="theme-color" content="#121c2e">
+  
+  <!-- Manifest PWA -->
+  <link rel="manifest" href="manifest.json">
   
   <!-- Open Graph / Social Media -->
   <meta property="og:title" content="DIGITAL SAT | Impianti Elettrici e Fotovoltaico PUGLIA">
   <meta property="og:description" content="Progettazione, installazione e certificazione impianti elettrici, fotovoltaici e videocitofonia a Bari e provincia.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://digitalsat.pages.dev/">
+  <meta property="og:image" content="https://digitalsat.pages.dev/Assets/IMG_7597.jpeg">
   
   <!-- Content Security Policy -->
   <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://www.google.com https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data: https:;">
@@ -51,7 +56,7 @@
     });
   </script>
 
-  <!-- Schema.org JSON-LD per SEO Locale -->
+  <!-- Schema.org JSON-LD per SEO Locale avanzata -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -565,6 +570,12 @@
       border-radius: 12px;
       border: 1px solid #e2e8f0;
       box-shadow: 0 4px 12px rgba(0,0,0,0.03);
+      transition: var(--transition-smooth);
+    }
+
+    .review-card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.06);
     }
 
     .stars {
@@ -650,6 +661,11 @@
       border-radius: 10px;
       padding: 1.5rem;
       box-shadow: 0 2px 8px rgba(0,0,0,0.02);
+      transition: var(--transition-smooth);
+    }
+
+    .faq-item:hover {
+      border-color: var(--accent-color);
     }
 
     .faq-item h3 {
@@ -795,7 +811,7 @@
       cursor: pointer;
     }
 
-    /* Floating Call Button for Mobile */
+    /* Floating Call Button per Mobile con micro-animazione */
     .floating-call-btn {
       display: none;
       position: fixed;
@@ -813,6 +829,24 @@
       z-index: 999;
       text-decoration: none;
       transition: var(--transition-smooth);
+    }
+
+    .floating-call-btn:hover {
+      transform: scale(1.08);
+      box-shadow: 0 8px 25px rgba(0, 210, 255, 0.7);
+    }
+
+    .floating-call-btn:active {
+      transform: scale(0.95);
+    }
+
+    /* Micro-interazioni su Bottoni */
+    button, .btn {
+      transition: transform 0.2s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.2s ease !important;
+    }
+
+    button:active, .btn:active {
+      transform: translateY(0) scale(0.98);
     }
 
     /* Cookie Banner */
@@ -1179,7 +1213,7 @@
         <div class="process-card">
           <div class="process-number">4</div>
           <h3>Collaudo & Rilasci</h3>
-          <p>Effettuiamo test instrumental approfonditi e consegniamo la Dichiarazione di Conformità (DICO) ufficiale a norma di legge.</p>
+          <p>Effettuiamo test strumentali approfonditi e consegniamo la Dichiarazione di Conformità (DICO) ufficiale a norma di legge.</p>
         </div>
       </div>
     </section>
