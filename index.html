@@ -14,10 +14,13 @@
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script type="text/javascript">
     (function() {
-      // Inizializzazione EmailJS con la tua Public Key
+      // Inizializzazione EmailJS
       emailjs.init("o5a-f-SojzvUm6KxW");
     })();
   </script>
+
+  <!-- Script Google reCAPTCHA v2 -->
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
 
   <style>
     :root {
@@ -648,7 +651,6 @@
       box-shadow: 0 0 0 3px rgba(0, 210, 255, 0.2);
     }
 
-    /* Stile per i campi non validi/vuoti */
     .form-group input.field-error,
     .form-group select.field-error,
     .form-group textarea.field-error {
@@ -1043,6 +1045,12 @@
               <label for="message">Messaggio / Dettagli *</label>
               <textarea id="message" name="message" rows="4" required placeholder="Descrivi brevemente la tua richiesta o il problema da risolvere..."></textarea>
             </div>
+            
+            <!-- Contenitore reCAPTCHA v2 -->
+            <div class="form-group" style="display: flex; justify-content: center;">
+              <div class="g-recaptcha" data-sitekey="6LfIo6MtAAAAAPmgCGjlsrj1te4BVVGrp68sbf4o"></div>
+            </div>
+
             <button type="submit" id="submitBtn" class="btn btn-primary" style="width: 100%; justify-content: center;"><i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Invia Richiesta Preventivo</button>
             <div id="formStatus" aria-live="polite"></div>
           </form>
@@ -1087,7 +1095,6 @@
       menuToggle.setAttribute('aria-expanded', isActive);
     });
 
-    // Toggle dropdown mobile
     dropdowns.forEach(dropdown => {
       const trigger = dropdown.querySelector(':scope > a');
       if (trigger) {
@@ -1118,7 +1125,6 @@
       }
     });
 
-    // Chiusura automatica menu mobile al click sui link effettivi
     document.querySelectorAll('nav a').forEach(link => {
       link.addEventListener('click', () => {
         const parentLi = link.parentElement;
@@ -1134,7 +1140,6 @@
       });
     });
 
-    // Chiusura menu al click all'esterno su mobile
     document.addEventListener('click', (e) => {
       if (window.innerWidth <= 992) {
         if (!mainNav.contains(e.target) && !menuToggle.contains(e.target)) {
@@ -1143,26 +1148,23 @@
       }
     });
 
-    // Gestione Invio Form tramite EmailJS con Validazioni Avanzate
+    // Gestione Invio Form tramite EmailJS con Validazioni Avanzate e reCAPTCHA v2
     const quoteForm = document.getElementById('quoteForm');
     const submitBtn = document.getElementById('submitBtn');
     const formStatus = document.getElementById('formStatus');
 
-    // Utility per la rimozione dello stato di errore durante l'inserimento
     quoteForm.querySelectorAll('input, select, textarea').forEach(field => {
       const clearError = () => field.classList.remove('field-error');
       field.addEventListener('input', clearError);
       field.addEventListener('change', clearError);
     });
 
-    // Helper di validazione avanzata
     const isValidEmail = (email) => {
       const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
       return emailRegex.test(email.trim());
     };
 
     const isValidPhone = (phone) => {
-      // Accetta numeri, spazi, trattini e il '+' iniziale (minimo 6 cifre)
       const digitsOnly = phone.replace(/\D/g, '');
       const phoneRegex = /^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/;
       return digitsOnly.length >= 6 && (phoneRegex.test(phone.trim()) || digitsOnly.length >= 8);
@@ -1171,7 +1173,6 @@
     const isMeaningfulText = (text, minLength = 3) => {
       const trimmed = text.trim();
       if (trimmed.length < minLength) return false;
-      // Controlla che il testo non sia composto interamente da caratteri identici ripetuti (es. "aaaaa")
       const isRepeated = /^([a-zA-Z0-9])\1+$/.test(trimmed);
       return !isRepeated;
     };
@@ -1189,7 +1190,6 @@
       const serviceInput = document.getElementById('service');
       const messageInput = document.getElementById('message');
 
-      // Reset iniziale errori visivi
       [nameInput, emailInput, phoneInput, serviceInput, messageInput].forEach(field => {
         field.classList.remove('field-error');
       });
@@ -1226,7 +1226,7 @@
         if (!errorMessage) errorMessage = 'Seleziona un servizio dal menu.';
       }
 
-      // 5. Validazione Messaggio / Dettagli
+      // 5. Validazione Messaggio
       if (!isMeaningfulText(messageInput.value, 10)) {
         isValid = false;
         messageInput.classList.add('field-error');
@@ -1234,7 +1234,15 @@
         if (!errorMessage) errorMessage = 'Inserisci un messaggio dettagliato (almeno 10 caratteri).';
       }
 
-      // Gestione blocco se un controllo fallisce
+      // 6. Validazione reCAPTCHA v2
+      if (typeof grecaptcha !== 'undefined') {
+        const recaptchaResponse = grecaptcha.getResponse();
+        if (recaptchaResponse.length === 0) {
+          isValid = false;
+          if (!errorMessage) errorMessage = 'Per favore, spunta la casella "Non sono un robot".';
+        }
+      }
+
       if (!isValid) {
         formStatus.style.color = '#ef4444';
         formStatus.textContent = errorMessage || 'Verifica i campi evidenziati in rosso.';
@@ -1252,12 +1260,12 @@
       formStatus.style.color = '#00d2ff';
       formStatus.textContent = '';
 
-      // Invio effettivo tramite EmailJS
       emailjs.sendForm(SERVICE_ID, TEMPLATE_ADMIN, this)
         .then(() => {
           formStatus.style.color = '#10b981';
           formStatus.textContent = 'Richiesta inviata con successo! Ti risponderemo al più presto.';
           quoteForm.reset();
+          if (typeof grecaptcha !== 'undefined') grecaptcha.reset();
           submitBtn.disabled = false;
           submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Invia Richiesta Preventivo';
         })
@@ -1265,6 +1273,7 @@
           console.error('Errore EmailJS:', error);
           formStatus.style.color = '#ef4444';
           formStatus.textContent = 'Errore di invio. Verifica i dati o riprova più tardi.';
+          if (typeof grecaptcha !== 'undefined') grecaptcha.reset();
           submitBtn.disabled = false;
           submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Invia Richiesta Preventivo';
         });
