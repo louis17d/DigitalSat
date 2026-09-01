@@ -13,7 +13,7 @@
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script type="text/javascript">
     (function() {
-      // Sostituire "YOUR_PUBLIC_KEY" con la chiave pubblica reale di EmailJS
+      // Inserisci qui la tua Public Key reale di EmailJS
       emailjs.init("YOUR_PUBLIC_KEY");
     })();
   </script>
@@ -992,7 +992,7 @@
             <i class="fa-solid fa-envelope" aria-hidden="true"></i>
             <div>
               <h4>Email</h4>
-              <p><a href="mailto:digitalsat2006@libero.it" style="color: #cbd5e1; text-decoration: none;">digitalsat2006@libero.it</a></p>
+              <p><a href="mailto:digitalsat2006@libero.it" style="color: #cbd5e1; text-decoration: none;">digitalsat2006@libero.it</a></p> <!-- cite: 1 -->
             </div>
           </div>
           <div class="contact-info-item">
@@ -1009,6 +1009,10 @@
             <div class="form-group">
               <label for="name">Nome e Cognome</label>
               <input type="text" id="name" name="user_name" required placeholder="Es. Mario Rossi">
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" name="user_email" required placeholder="Es. mario@example.com">
             </div>
             <div class="form-group">
               <label for="phone">Telefono</label>
@@ -1112,12 +1116,10 @@
         const parentLi = link.parentElement;
         const isParentDropdownLink = parentLi && parentLi.classList.contains('dropdown') && link.matches('.dropdown > a');
 
-        // Se è una voce parent di un dropdown su mobile, l'evento è già gestito
         if (window.innerWidth <= 992 && isParentDropdownLink) {
           return;
         }
 
-        // Per tutti gli altri link reali (sottomenu o singoli), chiudi il menu mobile
         if (window.innerWidth <= 992) {
           closeAllMenus();
         }
@@ -1133,7 +1135,7 @@
       }
     });
 
-    // EmailJS Form Handling Script
+    // EmailJS Form Handling Script con Invio Doppio (Admin + Cliente)
     const quoteForm = document.getElementById('quoteForm');
     const submitBtn = document.getElementById('submitBtn');
     const formStatus = document.getElementById('formStatus');
@@ -1142,9 +1144,10 @@
       e.preventDefault();
       
       const SERVICE_ID = "YOUR_SERVICE_ID";
-      const TEMPLATE_ID = "YOUR_TEMPLATE_ID";
+      const TEMPLATE_ADMIN = "YOUR_TEMPLATE_ID_ADMIN";
+      const TEMPLATE_CLIENT = "YOUR_TEMPLATE_ID_CLIENT";
 
-      if (SERVICE_ID === "YOUR_SERVICE_ID" || TEMPLATE_ID === "YOUR_TEMPLATE_ID") {
+      if (SERVICE_ID === "YOUR_SERVICE_ID" || TEMPLATE_ADMIN === "YOUR_TEMPLATE_ID_ADMIN") {
         formStatus.style.color = '#eab308';
         formStatus.textContent = 'Nota: Configura le tue chiavi EmailJS reali per abilitare la trasmissione dei messaggi.';
         return;
@@ -1155,14 +1158,21 @@
       formStatus.style.color = '#00d2ff';
       formStatus.textContent = '';
 
-      emailjs.sendForm(SERVICE_ID, TEMPLATE_ID, this)
+      // 1. Invio prima email (Notifica a te)
+      emailjs.sendForm(SERVICE_ID, TEMPLATE_ADMIN, this)
+        .then(() => {
+          // 2. Invio seconda email (Conferma automatica al cliente)
+          return emailjs.sendForm(SERVICE_ID, TEMPLATE_CLIENT, quoteForm);
+        })
         .then(() => {
           formStatus.style.color = '#10b981';
-          formStatus.textContent = 'Richiesta inviata con successo! Ti ricontatteremo presto.';
+          formStatus.textContent = 'Richiesta inviata con successo! Controlla la tua email per la conferma.';
           quoteForm.reset();
           submitBtn.disabled = false;
           submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Invia Richiesta Preventivo';
-        }, (error) => {
+        })
+        .catch((error) => {
+          console.error('Errore EmailJS:', error);
           formStatus.style.color = '#ef4444';
           formStatus.textContent = 'Errore di invio. Verifica i dati o riprova più tardi.';
           submitBtn.disabled = false;
