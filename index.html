@@ -14,13 +14,29 @@
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
   <script type="text/javascript">
     (function() {
-      // Inizializzazione EmailJS
       emailjs.init("o5a-f-SojzvUm6KxW");
     })();
   </script>
 
-  <!-- Script Google reCAPTCHA v2 -->
-  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
+  <!-- Script Google reCAPTCHA v2 (Caricamento dinamico basato sul consenso) -->
+  <script>
+    function loadRecaptchaScript() {
+      if (document.getElementById('recaptcha-script')) return;
+      var script = document.createElement('script');
+      script.id = 'recaptcha-script';
+      script.src = 'https://www.google.com/recaptcha/api.js';
+      script.async = true;
+      script.defer = true;
+      document.head.appendChild(script);
+    }
+
+    document.addEventListener("DOMContentLoaded", function() {
+      const consent = localStorage.getItem('cookie_consent');
+      if (consent === 'accepted') {
+        loadRecaptchaScript();
+      }
+    });
+  </script>
 
   <style>
     :root {
@@ -1224,9 +1240,9 @@
     </section>
   </main>
 
-  <!-- Cookie Banner (GDPR & ePrivacy Compliant) -->
+  <!-- Cookie Banner (GDPR & ePrivacy Compliant con blocco preventivo reCAPTCHA) -->
   <div id="cookieBanner">
-    <p>Questo sito utilizza cookie tecnici e di terze parti (Google reCAPTCHA) per garantirti la migliore esperienza di navigazione. Puoi accettare tutti i cookie o gestire le preferenze. Consulta la nostra <a href="#" id="openCookieModal">Cookie Policy</a> per maggiori dettagli.</p>
+    <p>Questo sito utilizza cookie tecnici e di terze parti (Google reCAPTCHA) per garantirti la migliore esperienza di navigazione. Puoi accettare tutti i cookie o rifiutare. Consulta la nostra <a href="#" id="openCookieModal">Cookie Policy</a> per maggiori dettagli.</p>
     <div class="cookie-buttons">
       <button class="cookie-btn cookie-btn-reject" id="cookieReject">Rifiuta</button>
       <button class="cookie-btn cookie-btn-accept" id="cookieAccept">Accetta Tutti</button>
@@ -1240,11 +1256,11 @@
       <h2>Informativa sulla Privacy (GDPR)</h2>
       <p>Ai sensi del Regolamento UE 2016/679 (GDPR), DIGITAL SAT di Coviello Giuseppe fornisce la presente informativa sul trattamento dei dati personali raccolti tramite il form di contatto.</p>
       <h3>1. Titolare del Trattamento</h3>
-      <p>DIGITAL SAT di Coviello Giuseppe, con sede legale a Bari (BA). Email: digitalsat2006@libero.it.</p>
+      <p>DIGITAL SAT di Coviello Giuseppe, con sede legale a Bari (BA) – Email: digitalsat2006@libero.it.</p>
       <h3>2. Finalità e Base Giuridica</h3>
-      <p>I dati personali forniti (nome, email, telefono) vengono raccolti e trattati esclusivamente per risponder alle richieste di preventivo e informazioni commerciali avanzate dall'utente. La base giuridica è l'esecuzione di misure precontrattuali.</p>
+      <p>I dati personali forniti (nome, email, telefono, messaggio) vengono raccolti e trattati esclusivamente per risponder alle richieste di preventivo e informazioni commerciali avanzate dall'utente. La base giuridica è l'esecuzione di misure precontrattuali.</p>
       <h3>3. Conservazione dei Dati</h3>
-      <p>I dati saranno conservati per il tempo strettamente necessario all'evasione della richiesta e comunque non oltre i termini di legge.</p>
+      <p>I dati saranno conservati per il tempo strettamente necessario all'evasione della richiesta e comunque non oltre i termini di legge amministrativi e fiscali.</p>
       <h3>4. Diritti dell'Interessato</h3>
       <p>L'utente ha il diritto di accedere ai propri dati, richiederne la rettifica, la cancellazione o la limitazione del trattamento inviando una comunicazione all'indirizzo email del titolare.</p>
     </div>
@@ -1260,11 +1276,11 @@
       <p>I cookie sono piccoli file di testo salvati sul dispositivo dell'utente durante la navigazione.</p>
       <h3>Tipologie utilizzate</h3>
       <ul>
-        <li><strong>Cookie tecnici:</strong> Necessari per il corretto funzionamento del sito e la gestione del consenso.</li>
-        <li><strong>Cookie di terze parti:</strong> Servizio Google reCAPTCHA v2 integrato nel modulo di contatto per la prevenzione dello spam, gestito da Google LLC.</li>
+        <li><strong>Cookie tecnici:</strong> Necessari per il corretto funzionamento del sito e la gestione delle preferenze di consenso.</li>
+        <li><strong>Cookie di terze parti (Google reCAPTCHA v2):</strong> Integrato nel modulo di contatto esclusivamente previo consenso dell'utente per finalità di sicurezza e prevenzione spam.</li>
       </ul>
       <h3>Gestione dei consensi</h3>
-      <p>L'utente può in ogni momento modificare le preferenze sui cookie o revocare il consenso prestato tramite le impostazioni del proprio browser o azzerando la cache.</p>
+      <p>L'utente può in ogni momento modificare o revocare il consenso ai cookie azzerando la cache o cancellando i dati di navigazione dal proprio browser.</p>
     </div>
   </div>
 
@@ -1292,8 +1308,8 @@
     
     <div class="footer-legal-info">
       <strong>DIGITAL SAT di Coviello Giuseppe</strong><br>
-      Sede Operativa e Legale: Bari (BA) | P.IVA: 08123450723 | REA: BA-601234<br>
-      Impiantista Abilitato ai sensi del D.M. 37/08 (lettere A, B, C, D, E, G)
+      Sede Operativa e Legale: Bari (BA) | P.IVA: [INSERISCI PARTITA IVA] | REA: [INSERISCI REA]<br>
+      PEC: [INSERISCI INDIRIZZO PEC] | Impiantista Abilitato ai sensi del D.M. 37/08
     </div>
 
     <div class="footer-legal-links">
@@ -1403,7 +1419,7 @@
       if (e.target === odrModal) odrModal.style.display = 'none';
     });
 
-    // Gestione Cookie Banner
+    // Gestione Cookie Banner & Blocco Preventivo reCAPTCHA
     const cookieBanner = document.getElementById('cookieBanner');
     const cookieAccept = document.getElementById('cookieAccept');
     const cookieReject = document.getElementById('cookieReject');
@@ -1415,6 +1431,7 @@
     cookieAccept.addEventListener('click', () => {
       localStorage.setItem('cookie_consent', 'accepted');
       cookieBanner.style.display = 'none';
+      loadRecaptchaScript();
     });
 
     cookieReject.addEventListener('click', () => {
@@ -1469,7 +1486,6 @@
         field.classList.remove('field-error');
       });
 
-      // 1. Validazione Nome e Cognome
       if (!isMeaningfulText(nameInput.value, 3)) {
         isValid = false;
         nameInput.classList.add('field-error');
@@ -1477,7 +1493,6 @@
         errorMessage = 'Inserisci un nome e cognome valido.';
       }
 
-      // 2. Validazione Email
       if (!isValidEmail(emailInput.value)) {
         isValid = false;
         emailInput.classList.add('field-error');
@@ -1485,7 +1500,6 @@
         if (!errorMessage) errorMessage = 'Inserisci un indirizzo email valido (es. nome@dominio.it).';
       }
 
-      // 3. Validazione Numero di Telefono
       if (!isValidPhone(phoneInput.value)) {
         isValid = false;
         phoneInput.classList.add('field-error');
@@ -1493,7 +1507,6 @@
         if (!errorMessage) errorMessage = 'Inserisci un numero di telefono valido (es. 3331234567).';
       }
 
-      // 4. Validazione Selezione Servizio
       if (!serviceInput.value || serviceInput.value.trim() === '') {
         isValid = false;
         serviceInput.classList.add('field-error');
@@ -1501,7 +1514,6 @@
         if (!errorMessage) errorMessage = 'Seleziona un servizio dal menu.';
       }
 
-      // 5. Validazione Messaggio
       if (!isMeaningfulText(messageInput.value, 10)) {
         isValid = false;
         messageInput.classList.add('field-error');
@@ -1509,14 +1521,12 @@
         if (!errorMessage) errorMessage = 'Inserisci un messaggio dettagliato (almeno 10 caratteri).';
       }
 
-      // 6. Validazione Checkbox Privacy
       if (!privacyCheck.checked) {
         isValid = false;
-        if (!errorMessage) errorMessage = 'Devi accettare l'informativa sulla privacy per procedere.';
+        if (!errorMessage) errorMessage = 'Devi accettare l\'informativa sulla privacy per procedere.';
       }
 
-      // 7. Validazione reCAPTCHA v2
-      if (typeof grecaptcha !== 'undefined') {
+      if (localStorage.getItem('cookie_consent') === 'accepted' && typeof grecaptcha !== 'undefined') {
         const recaptchaResponse = grecaptcha.getResponse();
         if (recaptchaResponse.length === 0) {
           isValid = false;
