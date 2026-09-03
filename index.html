@@ -7,30 +7,24 @@
   <meta name="robots" content="index, follow">
   <meta name="theme-color" content="#121c2e">
   
-  <!-- Manifest PWA -->
   <link rel="manifest" href="manifest.json">
   
-  <!-- Open Graph / Social Media -->
   <meta property="og:title" content="DIGITAL SAT | Impianti Elettrici, Fotovoltaico e Condizionatori PUGLIA">
   <meta property="og:description" content="Progettazione, installazione e certificazione impianti elettrici, fotovoltaici, climatizzazione e videocitofonia a Bari e provincia.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://digitalsat.pages.dev/">
   <meta property="og:image" content="https://digitalsat.pages.dev/Assets/IMG_7597.jpeg">
   
-  <!-- Content Security Policy -->
   <meta http-equiv="Content-Security-Policy" content="default-src 'self' https:; script-src 'self' 'unsafe-inline' https://cdn.jsdelivr.net https://www.google.com https://www.gstatic.com; style-src 'self' 'unsafe-inline' https://cdnjs.cloudflare.com; img-src 'self' data: https:;">
 
   <title>DIGITAL SAT | Impianti Elettrici, Fotovoltaico e Condizionatori PUGLIA</title>
   
-  <!-- Favicon -->
   <link rel="icon" type="image/jpeg" href="Assets/IMG_7597.jpeg">
   <link rel="apple-touch-icon" href="Assets/IMG_7597.jpeg">
 
-  <!-- Ottimizzazione Caricamento CSS Esterni -->
   <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
   
-  <!-- SDK EmailJS -->
   <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js" defer></script>
   <script type="text/javascript">
     window.addEventListener('DOMContentLoaded', function() {
@@ -40,7 +34,6 @@
     });
   </script>
 
-  <!-- Google reCAPTCHA v2 (Caricamento dinamico) -->
   <script>
     function loadRecaptchaScript() {
       if (document.getElementById('recaptcha-script')) return;
@@ -53,14 +46,13 @@
     }
 
     document.addEventListener("DOMContentLoaded", function() {
-      const consent = localStorage.getItem('cookie_consent');
-      if (consent === 'accepted') {
+      const thirdPartyConsent = localStorage.getItem('cookie_consent_thirdparty');
+      if (thirdPartyConsent === 'accepted') {
         loadRecaptchaScript();
       }
     });
   </script>
 
-  <!-- Schema.org JSON-LD per SEO Locale avanzata -->
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -896,6 +888,7 @@
     .cookie-buttons {
       display: flex;
       gap: 10px;
+      flex-wrap: wrap;
     }
     .cookie-btn {
       padding: 0.5rem 1.2rem;
@@ -914,6 +907,49 @@
       background: transparent;
       color: var(--light-color);
       border: 1px solid rgba(255,255,255,0.3);
+    }
+    .cookie-btn-settings {
+      background: rgba(255, 255, 255, 0.1);
+      color: var(--light-color);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    /* Stili per la configurazione granulare dentro la modale cookie */
+    .cookie-pref-section {
+      background: var(--bg-gray);
+      padding: 1rem;
+      border-radius: 8px;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      border: 1px solid #e2e8f0;
+    }
+    .cookie-pref-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 15px;
+      padding: 0.8rem 0;
+      border-bottom: 1px solid #e2e8f0;
+    }
+    .cookie-pref-item:last-child {
+      border-bottom: none;
+    }
+    .cookie-pref-info h4 {
+      font-size: 0.95rem;
+      color: var(--brand-navy);
+      margin-bottom: 0.2rem;
+    }
+    .cookie-pref-info p {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      margin-bottom: 0;
+    }
+    .cookie-pref-item input[type="checkbox"] {
+      width: 20px;
+      height: 20px;
+      accent-color: var(--brand-navy);
+      cursor: pointer;
+      margin-top: 3px;
     }
 
     /* Modal Generico Policy */
@@ -992,6 +1028,7 @@
       flex-wrap: wrap;
       margin-bottom: 1.5rem;
       font-size: 0.85rem;
+      align-items: center;
     }
 
     footer p.copyright {
@@ -1395,12 +1432,10 @@
       </div>
     </section>
 
-    <!-- Sezione Marchi Utilizzati -->
     <section class="brands-section" aria-label="Marchi trattati">
       <div class="brands-title">Marchi Leader Trattati e Installati</div>
       <div class="brands-slider">
         <div class="brands-track">
-          <!-- Primo Set di Loghi -->
           <div class="brand-item"><img src="Assets/brands/bticino.png" alt="Bticino" width="120" height="40" loading="lazy"></div>
           <div class="brand-item"><img src="Assets/brands/vimar.png" alt="Vimar" width="120" height="40" loading="lazy"></div>
           <div class="brand-item"><img src="Assets/brands/gewiss.png" alt="Gewiss" width="120" height="40" loading="lazy"></div>
@@ -1409,7 +1444,6 @@
           <div class="brand-item"><img src="Assets/brands/faac.png" alt="faac" width="120" height="40" loading="lazy"></div>
           <div class="brand-item"><img src="Assets/brands/urmet.png" alt="Urmet" width="120" height="40" loading="lazy"></div>
 
-          <!-- Secondo Set di Loghi (Duplicato esatto per ciclo continuo infinito) -->
           <div class="brand-item"><img src="Assets/brands/bticino.png" alt="Bticino" width="120" height="40" loading="lazy"></div>
           <div class="brand-item"><img src="Assets/brands/vimar.png" alt="Vimar" width="120" height="40" loading="lazy"></div>
           <div class="brand-item"><img src="Assets/brands/gewiss.png" alt="Gewiss" width="120" height="40" loading="lazy"></div>
@@ -1511,7 +1545,6 @@
     </section>
   </main>
 
-  <!-- Pulsanti Fluttuanti Mobile (WhatsApp + Chiamata) -->
   <div class="floating-buttons-wrap">
     <a href="https://wa.me/393939537159?text=Salve,%20desidero%20maggiori%20informazioni%20sui%20vostri%20servizi." class="floating-btn floating-whatsapp-btn" aria-label="Contatta su WhatsApp" target="_blank" rel="noopener noreferrer">
       <i class="fa-brands fa-whatsapp"></i>
@@ -1522,9 +1555,10 @@
   </div>
 
   <div id="cookieBanner">
-    <p>Questo sito utilizza cookie tecnici e di terze parti (Google reCAPTCHA) per garantirti la migliore esperienza di navigazione. Puoi accettare tutti i cookie o rifiutare. Consulta la nostra <button type="button" class="btn-link" id="openCookieModal" style="color: var(--accent-color);">Cookie Policy</button> per maggiori dettagli.</p>
+    <p>Questo sito utilizza cookie tecnici e di terze parti (Google reCAPTCHA). Puoi gestire le tue preferenze in modo granulare o accettare tutti i cookie. Consulta la nostra <button type="button" class="btn-link" id="openCookieModal" style="color: var(--accent-color);">Cookie Policy</button> per maggiori dettagli.</p>
     <div class="cookie-buttons">
-      <button class="cookie-btn cookie-btn-reject" id="cookieReject">Rifiuta</button>
+      <button class="cookie-btn cookie-btn-reject" id="cookieReject">Rifiuta Non Essenziali</button>
+      <button class="cookie-btn cookie-btn-settings" id="cookieSettings">Personalizza</button>
       <button class="cookie-btn cookie-btn-accept" id="cookieAccept">Accetta Tutti</button>
     </div>
   </div>
@@ -1548,17 +1582,33 @@
   <div class="legal-modal" id="cookieModal" aria-hidden="true" role="dialog">
     <div class="legal-modal-content">
       <button class="legal-modal-close" id="closeCookieModal" aria-label="Chiudi">&times;</button>
-      <h2>Informativa sui Cookie (Cookie Policy)</h2>
+      <h2>Informativa sui Cookie & Preferenze di Consenso</h2>
       <p>Il presente sito web utilizza i cookie per migliorare l'esperienza di navigazione degli utenti.</p>
-      <h3>Cosa sono i cookie?</h3>
-      <p>I cookie sono piccoli file di testo salvati sul dispositivo dell'utente durante la navigazione.</p>
-      <h3>Tipologie utilizzate</h3>
-      <ul>
-        <li><strong>Cookie tecnici:</strong> Necessari per il corretto funzionamento del sito e la gestione delle preferenze di consenso.</li>
-        <li><strong>Cookie di terze parti (Google reCAPTCHA v2):</strong> Integrato nel modulo di contatto esclusivamente previo consenso dell'utente per finalità di sicurezza e prevenzione spam.</li>
-      </ul>
-      <h3>Gestione dei consensi</h3>
-      <p>L'utente può in ogni momento modificare o revocare il consenso ai cookie azzerando la cache o cancellando i dati di navigazione dal proprio browser.</p>
+      
+      <div class="cookie-pref-section">
+        <div class="cookie-pref-item">
+          <div class="cookie-pref-info">
+            <h4>Cookie Tecnici (Necessari)</h4>
+            <p>Indispensabili per il corretto funzionamento del sito, la navigazione e la memorizzazione delle preferenze sui cookie. Non possono essere disattivati.</p>
+          </div>
+          <input type="checkbox" id="prefTech" checked disabled>
+        </div>
+        <div class="cookie-pref-item">
+          <div class="cookie-pref-info">
+            <h4>Cookie di Terze Parti (Google reCAPTCHA v2)</h4>
+            <p>Utilizzati per la protezione anti-spam del modulo di contatto e per garantire la sicurezza delle richieste inoltrate.</p>
+          </div>
+          <input type="checkbox" id="prefThirdParty">
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 10px; justify-content: flex-end; margin-top: 1.5rem; flex-wrap: wrap;">
+        <button type="button" class="cookie-btn cookie-btn-reject" id="savePreferencesReject" style="border: 1px solid #cbd5e1; color: var(--dark-color);">Salva e Rifiuta Opzionali</button>
+        <button type="button" class="cookie-btn cookie-btn-accept" id="savePreferencesCustom">Salva Preferenze</button>
+      </div>
+
+      <h3>Dettagli e Tipologie</h3>
+      <p>Puoi modificare o revocare il tuo consenso in qualsiasi momento cliccando sul link "Revoca Consenso Cookie" presente nel footer del sito.</p>
     </div>
   </div>
 
@@ -1593,6 +1643,7 @@
       <button type="button" class="btn-link" id="openPrivacyFooter">Privacy Policy</button>
       <button type="button" class="btn-link" id="openCookieFooter">Cookie Policy</button>
       <button type="button" class="btn-link" id="openOdrFooter">Piattaforma ODR (Consumatori)</button>
+      <button type="button" class="btn-link" id="revokeCookieConsent" style="color: var(--accent-color); font-weight: 600;">Revoca Consenso Cookie</button>
     </div>
 
     <p class="copyright">&copy; <span id="currentYear"></span> DIGITAL SAT di Coviello Giuseppe. Tutti i diritti riservati.</p>
@@ -1686,8 +1737,17 @@
     document.getElementById('openPrivacyFooter').addEventListener('click', () => openModal(privacyModal));
     document.getElementById('closePrivacyModal').addEventListener('click', () => closeModal(privacyModal));
 
-    document.getElementById('openCookieModal').addEventListener('click', () => openModal(cookieModal));
-    document.getElementById('openCookieFooter').addEventListener('click', () => openModal(cookieModal));
+    document.getElementById('openCookieModal').addEventListener('click', () => {
+      // Sincronizza lo stato delle checkbox con i valori salvati
+      const thirdPartyVal = localStorage.getItem('cookie_consent_thirdparty');
+      document.getElementById('prefThirdParty').checked = (thirdPartyVal === 'accepted');
+      openModal(cookieModal);
+    });
+    document.getElementById('openCookieFooter').addEventListener('click', () => {
+      const thirdPartyVal = localStorage.getItem('cookie_consent_thirdparty');
+      document.getElementById('prefThirdParty').checked = (thirdPartyVal === 'accepted');
+      openModal(cookieModal);
+    });
     document.getElementById('closeCookieModal').addEventListener('click', () => closeModal(cookieModal));
 
     document.getElementById('openOdrFooter').addEventListener('click', () => openModal(odrModal));
@@ -1707,23 +1767,68 @@
       }
     });
 
+    // Gestione Consensi Cookie e Banner
     const cookieBanner = document.getElementById('cookieBanner');
     const cookieAccept = document.getElementById('cookieAccept');
     const cookieReject = document.getElementById('cookieReject');
+    const cookieSettings = document.getElementById('cookieSettings');
+    const revokeCookieConsent = document.getElementById('revokeCookieConsent');
+    const prefThirdParty = document.getElementById('prefThirdParty');
+    const savePreferencesCustom = document.getElementById('savePreferencesCustom');
+    const savePreferencesReject = document.getElementById('savePreferencesReject');
 
-    if (localStorage.getItem('cookie_consent')) {
+    const checkCookieConsentState = () => {
+      const consentGiven = localStorage.getItem('cookie_consent_status');
+      if (consentGiven) {
+        cookieBanner.style.display = 'none';
+      } else {
+        cookieBanner.style.display = 'flex';
+      }
+    };
+
+    checkCookieConsentState();
+
+    const applyConsentAndClose = (acceptThirdParty) => {
+      localStorage.setItem('cookie_consent_status', 'configured');
+      localStorage.setItem('cookie_consent_thirdparty', acceptThirdParty ? 'accepted' : 'rejected');
       cookieBanner.style.display = 'none';
-    }
+      closeModal(cookieModal);
+
+      if (acceptThirdParty) {
+        loadRecaptchaScript();
+      }
+    };
 
     cookieAccept.addEventListener('click', () => {
-      localStorage.setItem('cookie_consent', 'accepted');
-      cookieBanner.style.display = 'none';
-      loadRecaptchaScript();
+      applyConsentAndClose(true);
     });
 
     cookieReject.addEventListener('click', () => {
-      localStorage.setItem('cookie_consent', 'rejected');
-      cookieBanner.style.display = 'none';
+      applyConsentAndClose(false);
+    });
+
+    cookieSettings.addEventListener('click', () => {
+      const thirdPartyVal = localStorage.getItem('cookie_consent_thirdparty');
+      prefThirdParty.checked = (thirdPartyVal === 'accepted');
+      openModal(cookieModal);
+    });
+
+    savePreferencesCustom.addEventListener('click', () => {
+      applyConsentAndClose(prefThirdParty.checked);
+    });
+
+    savePreferencesReject.addEventListener('click', () => {
+      prefThirdParty.checked = false;
+      applyConsentAndClose(false);
+    });
+
+    // Pulsante Revoca Consenso
+    revokeCookieConsent.addEventListener('click', () => {
+      localStorage.removeItem('cookie_consent_status');
+      localStorage.removeItem('cookie_consent_thirdparty');
+      cookieBanner.style.display = 'flex';
+      prefThirdParty.checked = false;
+      alert('I consensi dei cookie sono stati revocati. Il banner delle preferenze è stato riattivato.');
     });
 
     const quoteForm = document.getElementById('quoteForm');
@@ -1812,11 +1917,11 @@
         if (!errorMessage) errorMessage = 'Devi accettare l\'informativa sulla privacy per procedere.';
       }
 
-      if (localStorage.getItem('cookie_consent') === 'accepted' && typeof grecaptcha !== 'undefined') {
+      if (localStorage.getItem('cookie_consent_thirdparty') === 'accepted' && typeof grecaptcha !== 'undefined') {
         const recaptchaResponse = grecaptcha.getResponse();
         if (recaptchaResponse.length === 0) {
           isValid = false;
-          if (!errorMessage) errorMessage = 'Por favor, spunta la casella "Non sono un robot".';
+          if (!errorMessage) errorMessage = 'Per favore, spunta la casella "Non sono un robot".';
         }
       }
 
@@ -1842,7 +1947,9 @@
           formStatus.style.color = '#10b981';
           formStatus.textContent = 'Richiesta inviata con successo! Ti risponderemo al più presto.';
           quoteForm.reset();
-          if (typeof grecaptcha !== 'undefined') grecaptcha.reset();
+          if (typeof grecaptcha !== 'undefined' && localStorage.getItem('cookie_consent_thirdparty') === 'accepted') {
+            grecaptcha.reset();
+          }
           submitBtn.disabled = false;
           submitBtn.innerHTML = '<i class="fa-solid fa-paper-plane" aria-hidden="true"></i> Invia Richiesta Preventivo';
         })
@@ -1850,7 +1957,7 @@
           console.error('Errore EmailJS:', error);
           formStatus.style.color = '#ef4444';
           formStatus.textContent = 'Errore di invio. Verifica i dati o riprova più tardi.';
-          if (typeof grecaptcha !== 'undefined' && localStorage.getItem('cookie_consent') === 'accepted') {
+          if (typeof grecaptcha !== 'undefined' && localStorage.getItem('cookie_consent_thirdparty') === 'accepted') {
             grecaptcha.reset();
           }
           submitBtn.disabled = false;
