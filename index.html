@@ -113,12 +113,12 @@
       --brand-navy-dark: #121c2e;
       --primary-color: #1b2a47;
       --primary-light: #2c436d;
-      --accent-color: #00bfff; /* Ottimizzato leggermente per maggiore contrasto WCAG */
+      --accent-color: #00bfff;
       --accent-gradient: linear-gradient(135deg, #00bfff 0%, #3a7bd5 100%);
       --dark-color: #0b111e;
       --light-color: #ffffff;
       --bg-gray: #f4f7fb;
-      --text-muted: #4a5568; /* Scurito per migliorare il contrasto con gli sfondi chiari */
+      --text-muted: #4a5568;
       --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
@@ -196,7 +196,7 @@
 
     .logo-subtext {
       font-size: 0.72rem;
-      color: #cbd5e1; /* Scurito/schiarito per leggibilità ottimale */
+      color: #cbd5e1;
       letter-spacing: 0.3px;
     }
 
@@ -590,7 +590,7 @@
     }
 
     .stars {
-      color: #d97706; /* Scurito per conformità WCAG di contrasto stelle su bianco */
+      color: #d97706;
       margin-bottom: 0.8rem;
     }
 
@@ -1353,17 +1353,17 @@
       </div>
       <div class="reviews-grid">
         <div class="review-card">
-          <div class="stars" aria-label="5 stelle su 5"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <div class="stars" role="img" aria-label="5 stelle su 5"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
           <p>"Installazione di un impianto fotovoltaico con accumulo impeccabile. Lavori eseguiti nei tempi previsti e documentazione DICO rilasciata subito."</p>
           <div class="review-author">M. Caporusso - Bari</div>
         </div>
         <div class="review-card">
-          <div class="stars" aria-label="5 stelle su 5"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <div class="stars" role="img" aria-label="5 stelle su 5"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
           <p>"Professionista serio e puntuale. Ha risolto un problema complesso sull'impianto di videocitofonia condominiale in tempi record."</p>
           <div class="review-author">A. Di Leo - Modugno</div>
         </div>
         <div class="review-card">
-          <div class="stars" aria-label="5 stelle su 5"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <div class="stars" role="img" aria-label="5 stelle su 5"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
           <p>"Rifacimento completo del quadro elettrico della mia attività. Pulizia nel lavoro e massima precisione. Consigliatissimo."</p>
           <div class="review-author">R. Milella - Bitonto</div>
         </div>
@@ -1599,7 +1599,6 @@
   </footer>
 
   <script>
-    // Aggiornamento anno dinamico nel copyright
     document.getElementById('currentYear').textContent = new Date().getFullYear();
 
     const menuToggle = document.getElementById('menuToggle');
@@ -1700,7 +1699,6 @@
       if (e.target === odrModal) closeModal(odrModal);
     });
 
-    // Chiusura modali con tasto ESC (Accessibilità avanzata)
     document.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
         closeModal(privacyModal);
