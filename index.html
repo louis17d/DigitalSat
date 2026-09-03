@@ -80,6 +80,13 @@
       "latitude": 41.0875,
       "longitude": 16.7792
     },
+    "areaServed": [
+      {"@type": "AdministrativeArea", "name": "Bari"},
+      {"@type": "AdministrativeArea", "name": "Modugno"},
+      {"@type": "AdministrativeArea", "name": "Bitonto"},
+      {"@type": "AdministrativeArea", "name": "Molfetta"},
+      {"@type": "AdministrativeArea", "name": "Giovinazzo"}
+    ],
     "openingHoursSpecification": {
       "@type": "OpeningHoursSpecification",
       "dayOfWeek": [
@@ -811,33 +818,42 @@
       cursor: pointer;
     }
 
-    /* Floating Call Button per Mobile con micro-animazione */
-    .floating-call-btn {
+    /* Floating Buttons Mobile (WhatsApp & Phone) */
+    .floating-buttons-wrap {
       display: none;
       position: fixed;
       bottom: 25px;
       right: 25px;
-      background: var(--accent-gradient);
-      color: var(--brand-navy-dark);
-      width: 60px;
-      height: 60px;
+      flex-direction: column;
+      gap: 12px;
+      z-index: 999;
+    }
+
+    .floating-btn {
+      display: flex;
+      width: 55px;
+      height: 55px;
       border-radius: 50%;
       align-items: center;
       justify-content: center;
       font-size: 1.5rem;
-      box-shadow: 0 6px 20px rgba(0, 210, 255, 0.5);
-      z-index: 999;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.3);
       text-decoration: none;
       transition: var(--transition-smooth);
     }
 
-    .floating-call-btn:hover {
-      transform: scale(1.08);
-      box-shadow: 0 8px 25px rgba(0, 210, 255, 0.7);
+    .floating-call-btn {
+      background: var(--accent-gradient);
+      color: var(--brand-navy-dark);
     }
 
-    .floating-call-btn:active {
-      transform: scale(0.95);
+    .floating-whatsapp-btn {
+      background: #25d366;
+      color: #ffffff;
+    }
+
+    .floating-btn:hover {
+      transform: scale(1.08);
     }
 
     /* Micro-interazioni su Bottoni */
@@ -982,7 +998,7 @@
     }
 
     @media (max-width: 992px) {
-      .floating-call-btn {
+      .floating-buttons-wrap {
         display: flex;
       }
       .menu-toggle {
@@ -1060,7 +1076,8 @@
         padding: 1.5rem;
       }
     }
-        /* Brands Slider Section */
+
+    /* Brands Slider Section */
     .brands-section {
       background-color: var(--light-color);
       padding: 3rem 0;
@@ -1132,6 +1149,13 @@
       }
     }
 
+    @media (prefers-reduced-motion: reduce) {
+      .brands-track {
+        animation: none;
+        overflow-x: auto;
+        justify-content: flex-start;
+      }
+    }
   </style>
 </head>
 <body>
@@ -1190,7 +1214,7 @@
         <p>Progettazione sartoriale, posa a regola d'arte, climatizzazione efficiente e conformità normativa assoluta (DM 37/08) per privati, condomini e aziende che non si accontentano del compromesso.</p>
         <div class="btn-group">
           <a href="#preventivi" class="btn btn-primary"><i class="fa-solid fa-calculator" aria-hidden="true"></i> Richiedi Preventivo Gratuito</a>
-          <a href="#servizi" class="btn btn-outline"><i class="fa-solid fa-arrow-down" aria-hidden="true"></i> Scopri i Servizi</a>
+          <a href="tel:+393939537159" class="btn btn-outline"><i class="fa-solid fa-phone" aria-hidden="true"></i> Chiama Subito</a>
         </div>
       </div>
     </section>
@@ -1325,17 +1349,17 @@
       </div>
       <div class="reviews-grid">
         <div class="review-card">
-          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <div class="stars" aria-label="5 stelle su 5"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
           <p>"Installazione di un impianto fotovoltaico con accumulo impeccabile. Lavori eseguiti nei tempi previsti e documentazione DICO rilasciata subito."</p>
           <div class="review-author">M. Caporusso - Bari</div>
         </div>
         <div class="review-card">
-          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <div class="stars" aria-label="5 stelle su 5"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
           <p>"Professionista serio e puntuale. Ha risolto un problema complesso sull'impianto di videocitofonia condominiale in tempi record."</p>
           <div class="review-author">A. Di Leo - Modugno</div>
         </div>
         <div class="review-card">
-          <div class="stars"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
+          <div class="stars" aria-label="5 stelle su 5"><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i></div>
           <p>"Rifacimento completo del quadro elettrico della mia attività. Pulizia nel lavoro e massima precisione. Consigliatissimo."</p>
           <div class="review-author">R. Milella - Bitonto</div>
         </div>
@@ -1349,20 +1373,46 @@
       </div>
       <div class="faq-container">
         <div class="faq-item">
-          <h3><i class="fa-solid fa-circle-question"></i> Quanto tempo richiede l'installazione di un impianto fotovoltaico?</h3>
+          <h3><i class="fa-solid fa-circle-question" aria-hidden="true"></i> Quanto tempo richiede l'installazione di un impianto fotovoltaico?</h3>
           <p>In media, l'installazione residenziale standard viene completata in 5 giorni lavorativi, espletando successivamente tutte le pratiche di connessione e burocratiche.</p>
         </div>
         <div class="faq-item">
-          <h3><i class="fa-solid fa-circle-question"></i> Effettuate anche l'installazione e la manutenzione dei condizionatori?</h3>
+          <h3><i class="fa-solid fa-circle-question" aria-hidden="true"></i> Effettuate anche l'installazione e la manutenzione dei condizionatori?</h3>
           <p>Sì, ci occupiamo dell'installazione completa di impianti di climatizzazione e condizionamento, offrendo inoltre servizi programmati di manutenzione e sanificazione.</p>
         </div>
         <div class="faq-item">
-          <h3><i class="fa-solid fa-circle-question"></i> Rilasciate la certificazione a fine lavori?</h3>
+          <h3><i class="fa-solid fa-circle-question" aria-hidden="true"></i> Rilasciate la certificazione a fine lavori?</h3>
           <p>Assolutamente sì. Ogni impianto viene collaudato e corredato dalla regolare Dichiarazione di Conformità (DICO) ai sensi del DM 37/08 obbligatoria per legge.</p>
         </div>
         <div class="faq-item">
-          <h3><i class="fa-solid fa-circle-question"></i> Operate solo su Bari o anche in provincia?</h3>
+          <h3><i class="fa-solid fa-circle-question" aria-hidden="true"></i> Operate solo su Bari o anche in provincia?</h3>
           <p>La nostra sede operativa principale è a Modugno (Bari), ma interveniamo regolarmente su tutto il territorio provinciale per impianti civili e industriali.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Sezione Marchi Utilizzati -->
+    <section class="brands-section" aria-label="Marchi trattati">
+      <div class="brands-title">Marchi Leader Trattati e Installati</div>
+      <div class="brands-slider">
+        <div class="brands-track">
+          <!-- Primo Set di Loghi -->
+          <div class="brand-item"><img src="Assets/brands/bticino.png" alt="Bticino" width="120" height="40" loading="lazy"></div>
+          <div class="brand-item"><img src="Assets/brands/vimar.png" alt="Vimar" width="120" height="40" loading="lazy"></div>
+          <div class="brand-item"><img src="Assets/brands/gewiss.png" alt="Gewiss" width="120" height="40" loading="lazy"></div>
+          <div class="brand-item"><img src="Assets/brands/abb.png" alt="ABB" width="120" height="40" loading="lazy"></div>
+          <div class="brand-item"><img src="Assets/brands/Fracarro.png" alt="Fracarro" width="120" height="40" loading="lazy"></div>
+          <div class="brand-item"><img src="Assets/brands/faac.png" alt="faac" width="120" height="40" loading="lazy"></div>
+          <div class="brand-item"><img src="Assets/brands/urmet.png" alt="Urmet" width="120" height="40" loading="lazy"></div>
+
+          <!-- Secondo Set di Loghi (Duplicato esatto per ciclo continuo infinito) -->
+          <div class="brand-item"><img src="Assets/brands/bticino.png" alt="Bticino" width="120" height="40" loading="lazy"></div>
+          <div class="brand-item"><img src="Assets/brands/vimar.png" alt="Vimar" width="120" height="40" loading="lazy"></div>
+          <div class="brand-item"><img src="Assets/brands/gewiss.png" alt="Gewiss" width="120" height="40" loading="lazy"></div>
+          <div class="brand-item"><img src="Assets/brands/abb.png" alt="ABB" width="120" height="40" loading="lazy"></div>
+          <div class="brand-item"><img src="Assets/brands/Fracarro.png" alt="Fracarro" width="120" height="40" loading="lazy"></div>
+          <div class="brand-item"><img src="Assets/brands/faac.png" alt="faac" width="120" height="40" loading="lazy"></div>
+          <div class="brand-item"><img src="Assets/brands/urmet.png" alt="Urmet" width="120" height="40" loading="lazy"></div>
         </div>
       </div>
     </section>
@@ -1456,37 +1506,16 @@
       </div>
     </section>
   </main>
-    <!-- Sezione Marchi Utilizzati -->
-    <section class="brands-section" aria-label="Marchi trattati">
-      <div class="brands-title">Marchi Leader Trattati e Installati</div>
-      <div class="brands-slider">
-        <div class="brands-track">
-          <!-- Primo Set di Loghi -->
-          <div class="brand-item"><img src="Assets/brands/bticino.png" alt="Bticino" width="120" height="40" loading="lazy"></div>
-          <div class="brand-item"><img src="Assets/brands/vimar.png" alt="Vimar" width="120" height="40" loading="lazy"></div>
-          <div class="brand-item"><img src="Assets/brands/gewiss.png" alt="Gewiss" width="120" height="40" loading="lazy"></div>
-          <div class="brand-item"><img src="Assets/brands/abb.png" alt="ABB" width="120" height="40" loading="lazy"></div>
-          <div class="brand-item"><img src="Assets/brands/Fracarro.png" alt="Fracarro" width="120" height="40" loading="lazy"></div>
-          <div class="brand-item"><img src="Assets/brands/faac.png" alt="faac" width="120" height="40" loading="lazy"></div>
-          <div class="brand-item"><img src="Assets/brands/urmet.png" alt="Urmet" width="120" height="40" loading="lazy"></div>
 
-          <!-- Secondo Set di Loghi (Duplicato esatto per creare il ciclo continuo infinito senza interruzioni) -->
-         <div class="brand-item"><img src="Assets/brands/bticino.png" alt="Bticino" width="120" height="40" loading="lazy"></div>
-          <div class="brand-item"><img src="Assets/brands/vimar.png" alt="Vimar" width="120" height="40" loading="lazy"></div>
-          <div class="brand-item"><img src="Assets/brands/gewiss.png" alt="Gewiss" width="120" height="40" loading="lazy"></div>
-          <div class="brand-item"><img src="Assets/brands/abb.png" alt="ABB" width="120" height="40" loading="lazy"></div>
-          <div class="brand-item"><img src="Assets/brands/Fracarro.png" alt="Fracarro" width="120" height="40" loading="lazy"></div>
-          <div class="brand-item"><img src="Assets/brands/faac.png" alt="faac" width="120" height="40" loading="lazy"></div>
-          <div class="brand-item"><img src="Assets/brands/urmet.png" alt="Urmet" width="120" height="40" loading="lazy"></div>
-
-        </div>
-      </div>
-    </section>
-
-  <!-- Pulsante di Chiamata Rapida Fluttuante Mobile -->
-  <a href="tel:+393939537159" class="floating-call-btn" aria-label="Chiama ora">
-    <i class="fa-solid fa-phone"></i>
-  </a>
+  <!-- Pulsanti Fluttuanti Mobile (WhatsApp + Chiamata) -->
+  <div class="floating-buttons-wrap">
+    <a href="https://wa.me/393939537159?text=Salve,%20desidero%20maggiori%20informazioni%20sui%20vostri%20servizi." class="floating-btn floating-whatsapp-btn" aria-label="Contatta su WhatsApp" target="_blank" rel="noopener noreferrer">
+      <i class="fa-brands fa-whatsapp"></i>
+    </a>
+    <a href="tel:+393939537159" class="floating-btn floating-call-btn" aria-label="Chiama ora">
+      <i class="fa-solid fa-phone"></i>
+    </a>
+  </div>
 
   <div id="cookieBanner">
     <p>Questo sito utilizza cookie tecnici e di terze parti (Google reCAPTCHA) per garantirti la migliore esperienza di navigazione. Puoi accettare tutti i cookie o rifiutare. Consulta la nostra <button type="button" class="btn-link" id="openCookieModal" style="color: var(--accent-color);">Cookie Policy</button> per maggiori dettagli.</p>
@@ -1562,10 +1591,13 @@
       <button type="button" class="btn-link" id="openOdrFooter">Piattaforma ODR (Consumatori)</button>
     </div>
 
-    <p class="copyright">&copy; 2026 DIGITAL SAT di Coviello Giuseppe. Tutti i diritti riservati.</p>
+    <p class="copyright">&copy; <span id="currentYear"></span> DIGITAL SAT di Coviello Giuseppe. Tutti i diritti riservati.</p>
   </footer>
 
   <script>
+    // Aggiornamento anno dinamico nel copyright
+    document.getElementById('currentYear').textContent = new Date().getFullYear();
+
     const menuToggle = document.getElementById('menuToggle');
     const mainNav = document.getElementById('mainNav');
     const dropdowns = document.querySelectorAll('.dropdown');
@@ -1662,6 +1694,15 @@
       if (e.target === privacyModal) closeModal(privacyModal);
       if (e.target === cookieModal) closeModal(cookieModal);
       if (e.target === odrModal) closeModal(odrModal);
+    });
+
+    // Chiusura modali con tasto ESC (Accessibilità avanzata)
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape') {
+        closeModal(privacyModal);
+        closeModal(cookieModal);
+        closeModal(odrModal);
+      }
     });
 
     const cookieBanner = document.getElementById('cookieBanner');
