@@ -26,14 +26,18 @@
   <link rel="icon" type="image/jpeg" href="Assets/IMG_7597.jpeg">
   <link rel="apple-touch-icon" href="Assets/IMG_7597.jpeg">
 
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <!-- Ottimizzazione Caricamento CSS Esterni -->
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"></noscript>
   
   <!-- SDK EmailJS -->
-  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js" defer></script>
   <script type="text/javascript">
-    (function() {
-      emailjs.init("o5a-f-SojzvUm6KxW");
-    })();
+    window.addEventListener('DOMContentLoaded', function() {
+      if(typeof emailjs !== 'undefined') {
+        emailjs.init("o5a-f-SojzvUm6KxW");
+      }
+    });
   </script>
 
   <!-- Google reCAPTCHA v2 (Caricamento dinamico) -->
@@ -109,12 +113,12 @@
       --brand-navy-dark: #121c2e;
       --primary-color: #1b2a47;
       --primary-light: #2c436d;
-      --accent-color: #00d2ff;
-      --accent-gradient: linear-gradient(135deg, #00d2ff 0%, #3a7bd5 100%);
+      --accent-color: #00bfff; /* Ottimizzato leggermente per maggiore contrasto WCAG */
+      --accent-gradient: linear-gradient(135deg, #00bfff 0%, #3a7bd5 100%);
       --dark-color: #0b111e;
       --light-color: #ffffff;
       --bg-gray: #f4f7fb;
-      --text-muted: #556270;
+      --text-muted: #4a5568; /* Scurito per migliorare il contrasto con gli sfondi chiari */
       --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     }
 
@@ -147,7 +151,7 @@
       z-index: 1000;
       box-shadow: 0 4px 20px rgba(0,0,0,0.25);
       width: 100%;
-      border-bottom: 2px solid rgba(0, 210, 255, 0.2);
+      border-bottom: 2px solid rgba(0, 191, 255, 0.2);
     }
 
     .logo-container {
@@ -169,7 +173,7 @@
       border: 2px solid var(--accent-color);
       flex-shrink: 0;
       overflow: hidden;
-      box-shadow: 0 0 12px rgba(0, 210, 255, 0.3);
+      box-shadow: 0 0 12px rgba(0, 191, 255, 0.3);
     }
 
     .logo-img img {
@@ -192,7 +196,7 @@
 
     .logo-subtext {
       font-size: 0.72rem;
-      color: #94a3b8;
+      color: #cbd5e1; /* Scurito/schiarito per leggibilità ottimale */
       letter-spacing: 0.3px;
     }
 
@@ -250,7 +254,7 @@
       border-radius: 8px;
       padding: 0.5rem 0;
       z-index: 1001;
-      border: 1px solid rgba(0, 210, 255, 0.2);
+      border: 1px solid rgba(0, 191, 255, 0.2);
     }
 
     .dropdown-content li {
@@ -267,7 +271,7 @@
     }
 
     .dropdown-content a:hover {
-      background-color: rgba(0, 210, 255, 0.1);
+      background-color: rgba(0, 191, 255, 0.1);
       color: var(--accent-color);
       padding-left: 1.5rem;
     }
@@ -305,7 +309,7 @@
       position: relative;
       min-height: 85vh;
       background: linear-gradient(135deg, rgba(27, 42, 71, 0.92), rgba(11, 17, 30, 0.95)),
-                  radial-gradient(circle, rgba(0, 210, 255, 0.12) 0%, transparent 70%);
+                  radial-gradient(circle, rgba(0, 191, 255, 0.12) 0%, transparent 70%);
       display: flex;
       align-items: center;
       justify-content: center;
@@ -361,13 +365,13 @@
     .btn-primary {
       background: var(--accent-gradient);
       color: var(--brand-navy-dark);
-      box-shadow: 0 4px 20px rgba(0, 210, 255, 0.35);
+      box-shadow: 0 4px 20px rgba(0, 191, 255, 0.35);
       font-weight: 700;
     }
 
     .btn-primary:hover {
       transform: translateY(-2px);
-      box-shadow: 0 6px 25px rgba(0, 210, 255, 0.5);
+      box-shadow: 0 6px 25px rgba(0, 191, 255, 0.5);
     }
 
     .btn-outline {
@@ -549,7 +553,7 @@
       justify-content: center;
       font-weight: 800;
       font-size: 0.95rem;
-      box-shadow: 0 4px 10px rgba(0, 210, 255, 0.3);
+      box-shadow: 0 4px 10px rgba(0, 191, 255, 0.3);
     }
 
     .process-card h3 {
@@ -586,7 +590,7 @@
     }
 
     .stars {
-      color: #f59e0b;
+      color: #d97706; /* Scurito per conformità WCAG di contrasto stelle su bianco */
       margin-bottom: 0.8rem;
     }
 
@@ -724,7 +728,7 @@
       display: flex;
       flex-direction: column;
       gap: 2rem;
-      border: 1px solid rgba(0, 210, 255, 0.15);
+      border: 1px solid rgba(0, 191, 255, 0.15);
     }
 
     .contact-info-item {
@@ -785,7 +789,7 @@
     .form-group textarea:focus {
       outline: none;
       border-color: var(--accent-color);
-      box-shadow: 0 0 0 3px rgba(0, 210, 255, 0.2);
+      box-shadow: 0 0 0 3px rgba(0, 191, 255, 0.2);
     }
 
     .form-group input.field-error,
@@ -1017,7 +1021,7 @@
         transition: right 0.4s ease-in-out;
         padding-top: 5rem;
         overflow-y: auto;
-        border-left: 1px solid rgba(0, 210, 255, 0.2);
+        border-left: 1px solid rgba(0, 191, 255, 0.2);
       }
 
       nav.active {
@@ -1166,8 +1170,8 @@
         <img src="Assets/IMG_7597.jpeg" alt="Logo DIGITAL SAT Impianti Elettrici" width="48" height="48" loading="eager">
       </div>
       <div class="logo-text-wrap">
-        <div class="logo-text">DIGITAL SAT</div>
-        <div class="logo-subtext">di Coviello Giuseppe</div>
+        <span class="logo-text">DIGITAL SAT</span>
+        <span class="logo-subtext">di Coviello Giuseppe</span>
       </div>
     </a>
 
@@ -1574,8 +1578,8 @@
         <img src="Assets/IMG_7597.jpeg" alt="Logo DIGITAL SAT Impianti Elettrici" width="48" height="48" loading="lazy">
       </div>
       <div class="logo-text-wrap" style="text-align: left;">
-        <div class="logo-text">DIGITAL SAT</div>
-        <div class="logo-subtext">di Coviello Giuseppe</div>
+        <span class="logo-text">DIGITAL SAT</span>
+        <span class="logo-subtext">di Coviello Giuseppe</span>
       </div>
     </div>
     
@@ -1814,7 +1818,7 @@
         const recaptchaResponse = grecaptcha.getResponse();
         if (recaptchaResponse.length === 0) {
           isValid = false;
-          if (!errorMessage) errorMessage = 'Per favore, spunta la casella "Non sono un robot".';
+          if (!errorMessage) errorMessage = 'Por favor, spunta la casella "Non sono un robot".';
         }
       }
 
@@ -1832,7 +1836,7 @@
 
       submitBtn.disabled = true;
       submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin" aria-hidden="true"></i> Invio in corso...';
-      formStatus.style.color = '#00d2ff';
+      formStatus.style.color = '#00bfff';
       formStatus.textContent = '';
 
       emailjs.sendForm(SERVICE_ID, TEMPLATE_ADMIN, this)
